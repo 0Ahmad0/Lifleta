@@ -1,0 +1,9 @@
+{
+  "ok": "Ok",
+  "an_error_occurred": "An Error Occurred",
+  "not_found": {
+    "not_found": "Page not found",
+    "error": "404 - Page Not Found!",
+    "go_to_home": "Go To Home"
+  }
+}
