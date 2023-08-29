@@ -1,132 +1,79 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lifleta/src/features/not_found/no_found_page.dart';
+import 'package:page_transition/page_transition.dart';
+import '/src/features/auth/presentation/pages/login_page.dart';
+import '/src/features/auth/presentation/pages/sign_up_page.dart';
+import '/src/features/splash/presentation/pages/splash_page.dart';
+import '/src/features/not_found/no_found_page.dart';
 
-enum AppRoute {
-  splash,
-  home,
-  cart,
-  product,
-  leaveReview,
-  checkout,
-  orders,
-  account,
-  signIn,
-}
+enum AppRoute { splash, signUp, logIn }
 
 final goRouter = GoRouter(
   initialLocation: '/',
   debugLogDiagnostics: true,
   errorBuilder: (context, state) => const NoFoundPage(),
   routes: [
-    /// [HomePage].
+    /// [Splash Page].
     GoRoute(
-        path: '/',
-        name: AppRoute.home.name,
-        builder: (context, state) => Scaffold(
-              appBar: AppBar(),
-            ),
-        routes: [
-          GoRoute(
-              path: 'product/:id',
-              name: AppRoute.product.name,
-              builder: (context, state) {
-                final productId = state.pathParameters['id']!;
-                return Scaffold(
-                  appBar: AppBar(
-                    title: Text('${productId}'),
-                  ),
-                );
-                /*
-              parmas:{'id':Product.id}
-               */
-              },
-              routes: [
-                GoRoute(
-                  name: AppRoute.leaveReview.name,
-                  path: 'review',
-                  pageBuilder: (context, state) {
-                    final productId = state.pathParameters['id']!;
+      path: '/',
+      name: AppRoute.splash.name,
+      builder: (context, state) => SplashPage(),
+      routes: [
+        GoRoute(
+          path: 'logIn',
+          name: AppRoute.logIn.name,
+          builder: (context, state) => LoginPage(),
+          
+        ),
+        GoRoute(
+          path: 'signUp',
+          name: AppRoute.signUp.name,
+          builder: (context, state) => SignUpPage(),
+        )
+        // GoRoute(
+        //     path: 'product/:id',
+        //     name: AppRoute.product.name,
+        //     builder: (context, state) {
+        //       final productId = state.pathParameters['id']!;
+        //       return Scaffold(
+        //         appBar: AppBar(
+        //           title: Text('${productId}'),
+        //         ),
+        //       );
+        //       /*
+        //     parmas:{'id':Product.id}
+        //      */
+        //     },
+        //   ),
+        // GoRoute(
+        //     name: AppRoute.cart.name,
+        //     path: 'cart',
+        //     pageBuilder: (context, state) => MaterialPage(
+        //       key: state.pageKey,
+        //       fullscreenDialog: true,
+        //       child: Scaffold(
+        //         appBar: AppBar(
+        //           title: Text('Cart'),
+        //         ),
+        //       ),
+        //     ),
+        //     routes: [
+        //       GoRoute(
+        //         path: 'checkout',
+        //         name: AppRoute.checkout.name,
+        //         pageBuilder: (context, state) => MaterialPage(
+        //           key: state.pageKey,
+        //           fullscreenDialog: true,
+        //           child: Scaffold(
+        //             appBar: AppBar(
+        //               title: Text('Checkout'),
+        //             ),
+        //           ),
+        //         ),
+        //       ),
+        //     ]),
+      ],
+    ),
 
-                    return MaterialPage(
-                      key: state.pageKey,
-                      fullscreenDialog: true,
-                      child: Scaffold(
-                        appBar: AppBar(
-                          title: Text('Leave Review'),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ]),
-          GoRoute(
-              name: AppRoute.cart.name,
-              path: 'cart',
-              pageBuilder: (context, state) => MaterialPage(
-                    key: state.pageKey,
-                    fullscreenDialog: true,
-                    child: Scaffold(
-                      appBar: AppBar(
-                        title: Text('Cart'),
-                      ),
-                    ),
-                  ),
-              routes: [
-                GoRoute(
-                  path: 'checkout',
-                  name: AppRoute.checkout.name,
-                  pageBuilder: (context, state) => MaterialPage(
-                    key: state.pageKey,
-                    fullscreenDialog: true,
-                    child: Scaffold(
-                      appBar: AppBar(
-                        title: Text('Checkout'),
-                      ),
-                    ),
-                  ),
-                ),
-              ]),
-          GoRoute(
-            path: 'orders',
-            name: AppRoute.orders.name,
-            pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child: Scaffold(
-                appBar: AppBar(
-                  title: Text('Orders'),
-                ),
-              ),
-            ),
-          ),
-          GoRoute(
-            path: 'account',
-            name: AppRoute.account.name,
-            pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child: Scaffold(
-                appBar: AppBar(
-                  title: Text('Account'),
-                ),
-              ),
-            ),
-          ),
-          GoRoute(
-            path: 'signIn',
-            name: AppRoute.signIn.name,
-            pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child: Scaffold(
-                appBar: AppBar(
-                  title: Text('Sign In'),
-                ),
-              ),
-            ),
-          ),
-        ]),
   ],
 );

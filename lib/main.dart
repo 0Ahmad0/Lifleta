@@ -1,19 +1,21 @@
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
-import '/src/features/an_error_occurred/an_error_occurred_page.dart';
 
 import 'firebase_options.dart';
 import 'src/app.dart';
+import 'src/features/an_error_occurred/an_error_occurred_page.dart';
 import 'translations/codegen_loader.g.dart';
 void main() async {
-  await WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await EasyLocalization.ensureInitialized();
+   WidgetsFlutterBinding.ensureInitialized();
+
   await runZonedGuarded(() async {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await EasyLocalization.ensureInitialized();
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -21,15 +23,16 @@ void main() async {
       EasyLocalization(
         path: 'assets/translations/',
         supportedLocales: [
-          Locale("en"),
-          Locale("ar"),
+          const Locale("en"),
+          const Locale("ar"),
         ],
-        fallbackLocale: Locale(/*Get.deviceLocale?.languageCode ?? */'en'),
-        assetLoader: CodegenLoader(),
+        fallbackLocale: const Locale(/*Get.deviceLocale?.languageCode ?? */'en'),
+        assetLoader: const CodegenLoader(),
         // child: MyApp(),
-        child: LifletaApp(),
+        child: const LifletaApp(),
       ),
     ));
+
     FlutterError.onError = (FlutterErrorDetails details) {
       FlutterError.presentError(details);
     };

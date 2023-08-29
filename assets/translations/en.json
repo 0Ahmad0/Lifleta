@@ -1,9 +1,25 @@
 {
   "ok": "Ok",
   "an_error_occurred": "An Error Occurred",
+  "text_filed": {
+    "field_required": "This field is required"
+  },
   "not_found": {
     "not_found": "Page not found",
     "error": "404 - Page Not Found!",
     "go_to_home": "Go To Home"
+  },
+
+  "login": {
+    "login": "Login",
+    "id": "ID",
+    "enter_id": "Enter your ID here",
+    "password": "Password",
+    "enter_Password": "Enter your Password here",
+    "remember_me": "Remember me",
+    "forget_password": "Forget password?",
+    "do_not_have_account": "Don't have account?",
+    "create_account": "Sign up"
   }
+
 }

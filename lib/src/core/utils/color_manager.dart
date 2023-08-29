@@ -7,6 +7,7 @@ class ColorManager{
  static const black = Colors.black;
  static const error = Colors.red;
  static const success = Colors.green;
+ static const grey = Colors.grey;
 
 
 
