@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'color_manager.dart';
 import 'style_manager.dart';
 import 'values_manager.dart';
@@ -19,6 +20,7 @@ Map<int, Color> color = {
 
 class ThemeManager {
   static var myTheme = ThemeData(
+    fontFamily: GoogleFonts.almarai().fontFamily,
       dividerColor: ColorManager.white,
       primarySwatch: MaterialColor(ColorManager.primaryColor.value, color),
       primaryColor: ColorManager.primaryColor,
@@ -29,9 +31,6 @@ class ThemeManager {
       primaryIconTheme: const IconThemeData(color: ColorManager.primaryColor),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            textStyle: getRegularStyle(
-              color: ColorManager.white,
-            ),
             minimumSize: const Size(double.infinity, AppSize.s60),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSize.s8))),
@@ -39,8 +38,8 @@ class ThemeManager {
       appBarTheme: AppBarTheme(
           backgroundColor: ColorManager.white,
           centerTitle: true,
-          elevation: 0.0,
+          elevation: 1.0,
           titleTextStyle:
-              getRegularStyle(color: ColorManager.black, fontSize: 14.sp)),
+              TextStyle(color: ColorManager.black, fontSize: 14.sp)),
       scaffoldBackgroundColor: ColorManager.scaffoldBackgroundColor);
 }

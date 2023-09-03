@@ -18,7 +18,13 @@ class CodegenLoader extends AssetLoader{
   "ok": "نعم",
   "an_error_occurred": "حدث خطأ غير متوقع",
   "text_filed": {
-    "field_required": "This field is required"
+    "field_required": "هذا الحقل مطلوب"
+  },
+  "selected_language": {
+    "how_are_we": "من نحن ؟",
+    "about_us": "نبذة عنا",
+    "arabic": "العربية",
+    "english": "English"
   },
   "not_found": {
     "not_found": "الصفحة غير موجودة",
@@ -26,7 +32,7 @@ class CodegenLoader extends AssetLoader{
     "go_to_home": "الذهاب للرئيسية"
   },
   "login": {
-    "login": "تسحيل الدخول",
+    "login": "تسجيل الدخول",
     "id": "الرقم التعريفي",
     "enter_id": "أدخل الرقم التعريفي",
     "password": "كلمة المرور",
@@ -35,6 +41,20 @@ class CodegenLoader extends AssetLoader{
     "forget_password": "نسيت كلمة المرور؟",
     "do_not_have_account": "ليس لديك حساب؟",
     "create_account": "إنشاء حساب"
+  },
+  "signup": {
+    "signup": "إنشاء الحساب",
+    "name": "الاسم",
+    "enter_name": "أدخل الاسم",
+    "id": "الرقم التعريفي",
+    "enter_id": "أدخل الرقم التعريفي",
+    "password": "كلمة المرور",
+    "enter_Password": "***********",
+    "confirm_password": "تأكيد كلمة المرور",
+    "have_account": "هل لديك حساب؟ ",
+    "login": "تسجيل الدخول",
+    "less_character": "8 حروف على الأقل",
+    "contain_number_and_characters": "رموز وأرقام وأحرف كبيرة"
   }
 };
 static const Map<String,dynamic> en = {
@@ -48,6 +68,12 @@ static const Map<String,dynamic> en = {
     "error": "404 - Page Not Found!",
     "go_to_home": "Go To Home"
   },
+  "selected_language": {
+    "how_are_we": "How Are We ?",
+    "about_us": "About us",
+    "arabic": "العربية",
+    "english": "English"
+  },
   "login": {
     "login": "Login",
     "id": "ID",
@@ -58,6 +84,20 @@ static const Map<String,dynamic> en = {
     "forget_password": "Forget password?",
     "do_not_have_account": "Don't have account?",
     "create_account": "Sign up"
+  },
+  "signup": {
+    "signup": "Sign Up",
+    "name": "NAME",
+    "enter_name": "Enter your name",
+    "id": "ID",
+    "enter_id": "Enter your Id",
+    "password": "Password",
+    "enter_Password": "***********",
+    "confirm_password": "Confirm password",
+    "have_account": "Are you have account? ",
+    "login": "Login",
+    "less_character": "At least 8 characters",
+    "contain_number_and_characters": "Symbols, numbers and uppercase letters"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};

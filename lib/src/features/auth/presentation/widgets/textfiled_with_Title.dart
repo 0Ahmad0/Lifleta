@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../common_widgets/custom_text_filed.dart';
 import '../../../../core/utils/values_manager.dart';
@@ -19,7 +20,11 @@ class TextFieldWithTitle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(title),
+        Text(title,style: TextStyle(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).primaryColor
+        ),),
         const SizedBox(
           height: AppSize.s10,
         ),

@@ -5,6 +5,11 @@ abstract class  LocaleKeys {
   static const an_error_occurred = 'an_error_occurred';
   static const text_filed_field_required = 'text_filed.field_required';
   static const text_filed = 'text_filed';
+  static const selected_language_how_are_we = 'selected_language.how_are_we';
+  static const selected_language_about_us = 'selected_language.about_us';
+  static const selected_language_arabic = 'selected_language.arabic';
+  static const selected_language_english = 'selected_language.english';
+  static const selected_language = 'selected_language';
   static const not_found_not_found = 'not_found.not_found';
   static const not_found_error = 'not_found.error';
   static const not_found_go_to_home = 'not_found.go_to_home';
@@ -19,5 +24,18 @@ abstract class  LocaleKeys {
   static const login_do_not_have_account = 'login.do_not_have_account';
   static const login_create_account = 'login.create_account';
   static const login = 'login';
+  static const signup_signup = 'signup.signup';
+  static const signup_name = 'signup.name';
+  static const signup_enter_name = 'signup.enter_name';
+  static const signup_id = 'signup.id';
+  static const signup_enter_id = 'signup.enter_id';
+  static const signup_password = 'signup.password';
+  static const signup_enter_Password = 'signup.enter_Password';
+  static const signup_confirm_password = 'signup.confirm_password';
+  static const signup_have_account = 'signup.have_account';
+  static const signup_login = 'signup.login';
+  static const signup_less_character = 'signup.less_character';
+  static const signup_contain_number_and_characters = 'signup.contain_number_and_characters';
+  static const signup = 'signup';
 
 }

@@ -9,6 +9,12 @@
     "error": "404 - Page Not Found!",
     "go_to_home": "Go To Home"
   },
+  "selected_language":{
+  "how_are_we": "How Are We ?",
+    "about_us": "About us",
+    "arabic": "العربية",
+    "english": "English"
+},
 
   "login": {
     "login": "Login",
@@ -20,6 +26,20 @@
     "forget_password": "Forget password?",
     "do_not_have_account": "Don't have account?",
     "create_account": "Sign up"
+  },
+  "signup": {
+    "signup": "Sign Up",
+    "name": "NAME",
+    "enter_name": "Enter your name",
+    "id": "ID",
+    "enter_id": "Enter your Id",
+    "password": "Password",
+    "enter_Password": "***********",
+    "confirm_password": "Confirm password",
+    "have_account": "Are you have account? ",
+    "login": "Login",
+    "less_character": "At least 8 characters",
+    "contain_number_and_characters": "Symbols, numbers and uppercase letters"
   }
 
 }

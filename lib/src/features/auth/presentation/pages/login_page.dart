@@ -34,20 +34,53 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(AppPadding.p16),
-          child: Form(
-            key: _formKey,
+      appBar: AppBar(
+        leading:  Image.asset(AssetsManager.logoIMG),
+        actions: [
+          IconButton(
+          onPressed: () {},
+      icon: Icon(
+        Icons.arrow_back_ios_new,
+        color: Theme.of(context).primaryColor,
+      ),
+    ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(AppPadding.p16),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(
+                  height: AppSize.s40,
+                ),
                 FadeInLeft(
-                  child: Image.asset(
-                    AssetsManager.logoIMG,
-                    width: 200.w,
-                    height: 200.w,
-                  ),
+                    child: Row(
+                  children: [
+                    Container(
+                      width: 8.w,
+                      height: 30.h,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(10.r)),
+                    ),
+                    const SizedBox(
+                      width: AppSize.s4,
+                    ),
+                    Text(
+                      tr(LocaleKeys.login_login),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24.sp,
+                          color: Theme.of(context).primaryColor),
+                    )
+                  ],
+                )),
+                const SizedBox(
+                  height: AppSize.s40,
                 ),
                 FadeInLeft(
                   child: TextFieldWithTitle(
@@ -74,12 +107,31 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+                FadeInRight(
+                  child: TextButton(
+                    style: ButtonStyle(
+                        overlayColor:
+                            MaterialStateProperty.all(Colors.transparent)),
+                    onPressed: () {},
+                    child: Text(
+                      tr(LocaleKeys.login_forget_password),
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        decoration: TextDecoration.underline
+                      ),
+                    ),
+                  ),
+                ),
                 StatefulBuilder(builder: (_, setStateCheckBox) {
                   return FadeInLeft(
                     child: ListTile(
                       contentPadding: EdgeInsets.zero,
                       title: Text(tr(LocaleKeys.login_remember_me)),
                       leading: Checkbox(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(3.r)
+                        ),
+                        activeColor: Theme.of(context).primaryColor,
                         value: rememberMe,
                         onChanged: (value) {
                           setStateCheckBox(() {
@@ -108,48 +160,34 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: AppSize.s20,
                 ),
-                FadeInRight(
-                  child: Row(
-                    children: [
-                      const Expanded(
-                          child: Divider(
-                        color: ColorManager.black,
-                      )),
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(tr(LocaleKeys.login_forget_password))),
-                      const Expanded(
-                          child: Divider(
-                        color: ColorManager.black,
-                      )),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: AppSize.s20,
-                ),
                 FadeInUp(
-                  child: TextButton(
-                      style: ButtonStyle(
-                          overlayColor:
-                              MaterialStateProperty.all(Colors.transparent)),
-                      onPressed: () {
-                        goRouter.pushReplacementNamed(
-                          AppRoute.signUp.name,
-                        );
-                      },
-                      child: Text.rich(TextSpan(children: [
-                        TextSpan(
-                            text:
-                                tr(LocaleKeys.login_do_not_have_account) + '  ',
-                            style: const TextStyle(color: ColorManager.black)),
-                        TextSpan(
-                            text: tr(LocaleKeys.login_create_account),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14.sp,
-                            ))
-                      ]))),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                        style: ButtonStyle(
+                            overlayColor:
+                                MaterialStateProperty.all(Colors.transparent)),
+                        onPressed: () {
+                          goRouter.pushReplacementNamed(
+                            AppRoute.signUp.name,
+                          );
+                        },
+                        child: Text.rich(
+
+                            TextSpan(
+                                children: [
+                          TextSpan(
+                              text:
+                                  tr(LocaleKeys.login_do_not_have_account) + '  ',
+                              style: const TextStyle(color: ColorManager.black)),
+                          TextSpan(
+                              text: tr(LocaleKeys.login_create_account),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14.sp,
+                              ))
+                        ]))),
+                  ),
                 )
               ],
             ),

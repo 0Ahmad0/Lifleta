@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lifleta/src/features/select_language/presentation/pages/selected_langauge_page.dart';
 import 'package:page_transition/page_transition.dart';
 import '/src/features/auth/presentation/pages/login_page.dart';
 import '/src/features/auth/presentation/pages/sign_up_page.dart';
 import '/src/features/splash/presentation/pages/splash_page.dart';
 import '/src/features/not_found/no_found_page.dart';
 
-enum AppRoute { splash, signUp, logIn }
+enum AppRoute { splash, selectedLanguage, signUp, logIn }
 
 final goRouter = GoRouter(
   initialLocation: '/',
@@ -20,10 +21,14 @@ final goRouter = GoRouter(
       builder: (context, state) => SplashPage(),
       routes: [
         GoRoute(
+            path: 'selectedLanguage',
+            name: AppRoute.selectedLanguage.name,
+            builder: (context, state) => SelectedLanguagePage(),
+            ),
+        GoRoute(
           path: 'logIn',
           name: AppRoute.logIn.name,
           builder: (context, state) => LoginPage(),
-          
         ),
         GoRoute(
           path: 'signUp',
@@ -74,6 +79,5 @@ final goRouter = GoRouter(
         //     ]),
       ],
     ),
-
   ],
 );

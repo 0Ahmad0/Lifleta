@@ -4,13 +4,19 @@
   "text_filed": {
     "field_required": "هذا الحقل مطلوب"
   },
+  "selected_language":{
+    "how_are_we": "من نحن ؟",
+    "about_us": "نبذة عنا",
+    "arabic": "العربية",
+    "english": "English"
+  },
   "not_found": {
     "not_found": "الصفحة غير موجودة",
     "error": "404 - حدث خطأ ما!",
     "go_to_home": "الذهاب للرئيسية"
   },
   "login": {
-    "login": "تسحيل الدخول",
+    "login": "تسجيل الدخول",
     "id": "الرقم التعريفي",
     "enter_id": "أدخل الرقم التعريفي",
     "password": "كلمة المرور",
@@ -19,5 +25,19 @@
     "forget_password": "نسيت كلمة المرور؟",
     "do_not_have_account": "ليس لديك حساب؟",
     "create_account": "إنشاء حساب"
+  },
+  "signup": {
+    "signup": "إنشاء الحساب",
+    "name": "الاسم",
+    "enter_name": "أدخل الاسم",
+    "id": "الرقم التعريفي",
+    "enter_id": "أدخل الرقم التعريفي",
+    "password": "كلمة المرور",
+    "enter_Password": "***********",
+    "confirm_password": "تأكيد كلمة المرور",
+    "have_account": "هل لديك حساب؟ ",
+    "login": "تسجيل الدخول",
+    "less_character": "8 حروف على الأقل",
+    "contain_number_and_characters": "رموز وأرقام وأحرف كبيرة"
   }
 }

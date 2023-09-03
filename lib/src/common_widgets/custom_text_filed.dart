@@ -72,7 +72,9 @@ class _TextFiledAppState extends State<TextFiledApp> {
       controller: widget.controller,
 
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(),
+
         filled: true,
         fillColor: ColorManager.white,
           // hintStyle: TextStyle(fontSize: 12.sp, color: ColorManager.hintColor),
