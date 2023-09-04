@@ -68,7 +68,21 @@ class CodegenLoader extends AssetLoader{
     "send_report_delay_alert": "إرسال تنبيه بتأخير تنفيذ بلاغ؟",
     "send": "إرسال",
     "cancel": "إلغاء",
-    "more": "المزيد..."
+    "more": "المزيد...",
+    "show": "عرض"
+  },
+  "create_report": {
+    "report_subject": "موضوع البلاغ",
+    "enter_report_subject": "أدخل موضوع البلاغ",
+    "report_date": "تاريخ البلاغ",
+    "select_report_date": "حدد تاريخ البلاغ",
+    "report_description": "الوصف",
+    "enter_report_description": "أدخل الوصف",
+    "attachments": "مرفقات",
+    "location": "الموقع",
+    "select_location": "اضغط لتحديد الموقع",
+    "send": "إرسال",
+    "save_draft": "مسودة"
   }
 };
 static const Map<String,dynamic> en = {
@@ -125,7 +139,21 @@ static const Map<String,dynamic> en = {
     "send_report_delay_alert": "Send a report dealy alert ? ",
     "send": "Send",
     "cancel": "Cancel",
-    "more": "More..."
+    "more": "More...",
+    "show": "Show"
+  },
+  "create_report": {
+    "report_subject": "Report subject",
+    "enter_report_subject": "Enter report Subject",
+    "report_date": "Report date",
+    "select_report_date": "Select Report date",
+    "report_description": "Description",
+    "enter_report_description": "Enter description",
+    "attachments": "Attachments",
+    "location": "Location",
+    "select_location": "Select Location",
+    "send": "Send",
+    "save_draft": "Draft"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};

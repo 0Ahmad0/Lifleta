@@ -52,6 +52,20 @@
     "send_report_delay_alert": "إرسال تنبيه بتأخير تنفيذ بلاغ؟",
     "send": "إرسال",
     "cancel": "إلغاء",
-    "more": "المزيد..."
+    "more": "المزيد...",
+    "show": "عرض"
+  },
+  "create_report": {
+    "report_subject": "موضوع البلاغ",
+    "enter_report_subject": "أدخل موضوع البلاغ",
+    "report_date": "تاريخ البلاغ",
+    "select_report_date": "حدد تاريخ البلاغ",
+    "report_description": "الوصف",
+    "enter_report_description": "أدخل الوصف",
+    "attachments": "مرفقات",
+    "location": "الموقع",
+    "select_location": "اضغط لتحديد الموقع",
+    "send": "إرسال",
+    "save_draft": "مسودة"
   }
 }

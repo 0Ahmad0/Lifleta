@@ -53,7 +53,21 @@
     "send_report_delay_alert": "Send a report dealy alert ? ",
     "send": "Send",
     "cancel": "Cancel",
-    "more": "More..."
+    "more": "More...",
+    "show": "Show"
+  },
+  "create_report": {
+    "report_subject": "Report subject",
+    "enter_report_subject": "Enter report Subject",
+    "report_date": "Report date",
+    "select_report_date": "Select Report date",
+    "report_description": "Description",
+    "enter_report_description": "Enter description",
+    "attachments": "Attachments",
+    "location": "Location",
+    "select_location": "Select Location",
+    "send": "Send",
+    "save_draft": "Draft"
   }
 
 }

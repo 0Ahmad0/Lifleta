@@ -49,6 +49,19 @@ abstract class  LocaleKeys {
   static const home_send = 'home.send';
   static const home_cancel = 'home.cancel';
   static const home_more = 'home.more';
+  static const home_show = 'home.show';
   static const home = 'home';
+  static const create_report_report_subject = 'create_report.report_subject';
+  static const create_report_enter_report_subject = 'create_report.enter_report_subject';
+  static const create_report_report_date = 'create_report.report_date';
+  static const create_report_select_report_date = 'create_report.select_report_date';
+  static const create_report_report_description = 'create_report.report_description';
+  static const create_report_enter_report_description = 'create_report.enter_report_description';
+  static const create_report_attachments = 'create_report.attachments';
+  static const create_report_location = 'create_report.location';
+  static const create_report_select_location = 'create_report.select_location';
+  static const create_report_send = 'create_report.send';
+  static const create_report_save_draft = 'create_report.save_draft';
+  static const create_report = 'create_report';
 
 }
