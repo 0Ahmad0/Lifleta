@@ -185,6 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14.sp,
+                                decoration: TextDecoration.underline
                               ))
                         ]))),
                   ),

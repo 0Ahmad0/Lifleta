@@ -55,6 +55,20 @@ class CodegenLoader extends AssetLoader{
     "login": "تسجيل الدخول",
     "less_character": "8 حروف على الأقل",
     "contain_number_and_characters": "رموز وأرقام وأحرف كبيرة"
+  },
+  "home": {
+    "hello": "مرحباً بك...",
+    "current_reports": "البلاغات الحالية",
+    "current_report": "بلاغ حالي",
+    "previous_report": "بلاغ سابق",
+    "done_report": "تم التنفيذ",
+    "previous_reports": "البلاغات السابقة",
+    "tracking": "تتبع",
+    "dealy_alert": "تنبيه تأخير",
+    "send_report_delay_alert": "إرسال تنبيه بتأخير تنفيذ بلاغ؟",
+    "send": "إرسال",
+    "cancel": "إلغاء",
+    "more": "المزيد..."
   }
 };
 static const Map<String,dynamic> en = {
@@ -98,6 +112,20 @@ static const Map<String,dynamic> en = {
     "login": "Login",
     "less_character": "At least 8 characters",
     "contain_number_and_characters": "Symbols, numbers and uppercase letters"
+  },
+  "home": {
+    "hello": "Welcome, ",
+    "current_reports": "Current Reports",
+    "current_report": "Current Report",
+    "previous_report": "Previous Report",
+    "done_report": "Report Done",
+    "previous_reports": "Previous Reports",
+    "tracking": "Tracking",
+    "dealy_alert": "Dealy Alert",
+    "send_report_delay_alert": "Send a report dealy alert ? ",
+    "send": "Send",
+    "cancel": "Cancel",
+    "more": "More..."
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};

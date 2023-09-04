@@ -40,6 +40,20 @@
     "login": "Login",
     "less_character": "At least 8 characters",
     "contain_number_and_characters": "Symbols, numbers and uppercase letters"
+  },
+  "home": {
+    "hello": "Welcome, ",
+    "current_reports": "Current Reports",
+    "current_report": "Current Report",
+    "previous_report": "Previous Report",
+    "done_report": "Report Done",
+    "previous_reports": "Previous Reports",
+    "tracking": "Tracking",
+    "dealy_alert": "Dealy Alert",
+    "send_report_delay_alert": "Send a report dealy alert ? ",
+    "send": "Send",
+    "cancel": "Cancel",
+    "more": "More..."
   }
 
 }

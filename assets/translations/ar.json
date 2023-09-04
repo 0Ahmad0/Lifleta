@@ -39,5 +39,19 @@
     "login": "تسجيل الدخول",
     "less_character": "8 حروف على الأقل",
     "contain_number_and_characters": "رموز وأرقام وأحرف كبيرة"
+  },
+  "home": {
+    "hello": "مرحباً بك...",
+    "current_reports": "البلاغات الحالية",
+    "current_report": "بلاغ حالي",
+    "previous_report": "بلاغ سابق",
+    "done_report": "تم التنفيذ",
+    "previous_reports": "البلاغات السابقة",
+    "tracking": "تتبع",
+    "dealy_alert": "تنبيه تأخير",
+    "send_report_delay_alert": "إرسال تنبيه بتأخير تنفيذ بلاغ؟",
+    "send": "إرسال",
+    "cancel": "إلغاء",
+    "more": "المزيد..."
   }
 }

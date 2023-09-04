@@ -37,5 +37,18 @@ abstract class  LocaleKeys {
   static const signup_less_character = 'signup.less_character';
   static const signup_contain_number_and_characters = 'signup.contain_number_and_characters';
   static const signup = 'signup';
+  static const home_hello = 'home.hello';
+  static const home_current_reports = 'home.current_reports';
+  static const home_current_report = 'home.current_report';
+  static const home_previous_report = 'home.previous_report';
+  static const home_done_report = 'home.done_report';
+  static const home_previous_reports = 'home.previous_reports';
+  static const home_tracking = 'home.tracking';
+  static const home_dealy_alert = 'home.dealy_alert';
+  static const home_send_report_delay_alert = 'home.send_report_delay_alert';
+  static const home_send = 'home.send';
+  static const home_cancel = 'home.cancel';
+  static const home_more = 'home.more';
+  static const home = 'home';
 
 }

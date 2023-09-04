@@ -20,7 +20,7 @@ Map<int, Color> color = {
 
 class ThemeManager {
   static var myTheme = ThemeData(
-    fontFamily: GoogleFonts.almarai().fontFamily,
+      fontFamily: GoogleFonts.poppins().fontFamily,
       dividerColor: ColorManager.white,
       primarySwatch: MaterialColor(ColorManager.primaryColor.value, color),
       primaryColor: ColorManager.primaryColor,
@@ -31,15 +31,19 @@ class ThemeManager {
       primaryIconTheme: const IconThemeData(color: ColorManager.primaryColor),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity, AppSize.s60),
+            textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
+            minimumSize: const Size(double.infinity, AppSize.s50),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSize.s8))),
       ),
       appBarTheme: AppBarTheme(
-          backgroundColor: ColorManager.white,
-          centerTitle: true,
-          elevation: 1.0,
-          titleTextStyle:
-              TextStyle(color: ColorManager.black, fontSize: 14.sp)),
-      scaffoldBackgroundColor: ColorManager.scaffoldBackgroundColor);
+        backgroundColor: ColorManager.white,
+        centerTitle: true,
+        elevation: 1.0,
+        iconTheme: const IconThemeData(
+          color: ColorManager.primaryColor
+        ),
+        titleTextStyle: TextStyle(color: ColorManager.black, fontSize: 14.sp),
+      ),
+      scaffoldBackgroundColor: ColorManager.white);
 }

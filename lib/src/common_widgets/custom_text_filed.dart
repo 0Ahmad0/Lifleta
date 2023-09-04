@@ -72,18 +72,26 @@ class _TextFiledAppState extends State<TextFiledApp> {
       controller: widget.controller,
 
       decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        enabledBorder: OutlineInputBorder(),
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 12.sp,
+              horizontal: 8.sp
+        ),
+        border:  OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r)
+        ),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.r)
+        ),
 
         filled: true,
         fillColor: ColorManager.white,
           // hintStyle: TextStyle(fontSize: 12.sp, color: ColorManager.hintColor),
-          prefixIcon: widget.iconData == null
-              ? null
-              : Icon(
-            widget.iconData,
-            size:  24.sp,
-          ),
+          // prefixIcon: widget.iconData == null
+          //     ? null
+          //     : Icon(
+          //   widget.iconData,
+          //   size:  24.sp,
+          // ),
           suffixIcon: widget.suffixIcon
               ? IconButton(onPressed: (){
                 showPassword();

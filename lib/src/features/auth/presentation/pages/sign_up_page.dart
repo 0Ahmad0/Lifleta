@@ -114,6 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: TextFiledApp(
                   controller: passwordController,
                   iconData: Icons.lock,
+                  textInputAction: TextInputAction.next,
                   hintText: tr(LocaleKeys.signup_enter_Password),
                   suffixIcon: true,
                   obscureText: true,
@@ -127,6 +128,8 @@ class _SignUpPageState extends State<SignUpPage> {
               child: TextFieldWithTitle(
                 title: tr(LocaleKeys.signup_confirm_password),
                 child: TextFiledApp(
+                  textInputAction: TextInputAction.done
+                  ,
                   controller: confirmPasswordController,
                   iconData: Icons.lock,
                   hintText: tr(LocaleKeys.signup_enter_Password),
@@ -135,7 +138,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
             ),
-            Visibility(child: Column(children: [
+            Visibility(
+              //ToDo on Type in Password make true
+                visible: false,
+                child: Column(children: [
               buildHintForPassword(text: tr(LocaleKeys.signup_less_character)),
               buildHintForPassword(text:tr(LocaleKeys.signup_contain_number_and_characters)),
 
@@ -147,7 +153,9 @@ class _SignUpPageState extends State<SignUpPage> {
             FadeInRight(
               child: ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      goRouter.pushReplacementNamed(AppRoute.home.name);
+                    }
                   },
                   child: Text(tr(LocaleKeys.signup_signup))),
             ),
@@ -174,6 +182,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14.sp,
+                            decoration: TextDecoration.underline
                         ))
                   ]))),
             )
