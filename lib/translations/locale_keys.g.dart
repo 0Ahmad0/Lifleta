@@ -63,5 +63,12 @@ abstract class  LocaleKeys {
   static const create_report_send = 'create_report.send';
   static const create_report_save_draft = 'create_report.save_draft';
   static const create_report = 'create_report';
+  static const drawer_id = 'drawer.id';
+  static const drawer_phone = 'drawer.phone';
+  static const drawer_edit_profile = 'drawer.edit_profile';
+  static const drawer_drafts = 'drawer.drafts';
+  static const drawer_change_language = 'drawer.change_language';
+  static const drawer_log_out = 'drawer.log_out';
+  static const drawer = 'drawer';
 
 }

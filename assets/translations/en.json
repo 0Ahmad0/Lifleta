@@ -68,6 +68,14 @@
     "select_location": "Select Location",
     "send": "Send",
     "save_draft": "Draft"
+  },
+  "drawer": {
+    "id": "ID",
+    "phone":"Phone Number",
+    "edit_profile": "Edit Profile",
+    "drafts": "Drafts",
+    "change_language": "Change Language",
+    "log_out": "Logout"
   }
 
 }

@@ -83,6 +83,14 @@ class CodegenLoader extends AssetLoader{
     "select_location": "اضغط لتحديد الموقع",
     "send": "إرسال",
     "save_draft": "مسودة"
+  },
+  "drawer": {
+    "id": "الرقم التعريفي",
+    "phone": "رقم الهاتف",
+    "edit_profile": "تعديل الملف الشخصي",
+    "drafts": "المسودات",
+    "change_language": "تبديل اللغة",
+    "log_out": "تسجيل الخروج"
   }
 };
 static const Map<String,dynamic> en = {
@@ -154,6 +162,14 @@ static const Map<String,dynamic> en = {
     "select_location": "Select Location",
     "send": "Send",
     "save_draft": "Draft"
+  },
+  "drawer": {
+    "id": "ID",
+    "phone": "Phone Number",
+    "edit_profile": "Edit Profile",
+    "drafts": "Drafts",
+    "change_language": "Change Language",
+    "log_out": "Logout"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
