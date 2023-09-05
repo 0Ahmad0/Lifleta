@@ -182,6 +182,9 @@ class _HomePageState extends State<HomePage> {
                             const SizedBox(height: AppSize.s20,),
                             Text('شكرًا على ملاحظاتك , ستساعدنا ملاحظاتك في تحسين خدماتنا لكم ..',
                               textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                              ),
                             ),
 
                           ],
