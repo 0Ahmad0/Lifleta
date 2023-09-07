@@ -197,7 +197,145 @@ class _HomePageState extends State<HomePage> {
               },
               icon: const Icon(
                 Icons.notifications,
-              ))
+              )),
+          IconButton(
+              onPressed: () {
+                _showModalBottomHome(
+                  context,
+                  PageView(
+                    controller: _pageViewController,
+                    children: [
+                      _modalRateContent(context,question: 'مامدى رضاك عن تجربتك بشكل عام مع تطبيق Lifeleta؟',
+                        child:             StatefulBuilder(builder: (context, setStateRate) {
+                          final rateList = [
+                            AssetsManager.rate1IMG,
+                            AssetsManager.rate2IMG,
+                            AssetsManager.rate3IMG,
+                          ];
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: List.generate(
+                                rateList.length,
+                                    (index) => InkWell(
+                                  onTap: () {
+                                    _rateIndex = index;
+                                    setStateRate(() {});
+                                  },
+                                  child: Column(
+                                    children: [
+                                      AnimatedContainer(
+                                        width: _rateIndex == index ? 60.sp : 50.sp,
+                                        height: _rateIndex == index ? 60.sp : 50.sp,
+                                        duration: Duration(milliseconds: 300),
+                                        child: Image.asset(
+                                          rateList[index],
+                                        ),
+                                      ),
+                                      Visibility(
+                                          visible: _rateIndex == index,
+                                          child: Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                vertical: AppPadding.p8),
+                                            width: 50.w,
+                                            height: 4.sp,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(10.r),
+                                                gradient: LinearGradient(colors: [
+                                                  ColorManager.primaryColor,
+                                                  ColorManager.primaryColor
+                                                      .withOpacity(.25),
+                                                ])),
+                                          ))
+                                    ],
+                                  ),
+                                )),
+                          );
+                        }),
+                        buttonText: 'التالي',
+                        onTap: (){
+                        print('object');
+                        _pageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+                        }
+                      ),
+                      /// ----
+                      _modalRateContent(context,question: 'بناءًا على اختيارك ماهي أهم الأسباب التي أثرت على تقييمك ؟',
+                          child:             StatefulBuilder(builder: (context, setStateRate) {
+                            final questionRateList = [
+                              'تصفح التطبيق وسهولة التنقل',
+                              'الوقت المستغرق لتنفيذ الخدمة',
+                              'إمكانية تنفيذ الخدمة من أول محاولة',
+                              'أخرى'
+                            ];
+                            return Column(
+                              children: List.generate(questionRateList.length, (index) => Container(
+                                margin: const EdgeInsets.symmetric(vertical: AppMargin.m8),
+                                decoration: BoxDecoration(
+                                    color: ColorManager.grey.shade200,
+                                    borderRadius: BorderRadius.circular(10.r)
+                                ),
+                                child: ListTile(
+                                  onTap: (){
+                                    setStateRate(() {
+                                      _questionRate[index] = !_questionRate[index];
+                                    });
+                                  },
+                                  title: Text(questionRateList[index],
+                                  ),
+                                  trailing: Checkbox(
+                                    activeColor: ColorManager.primaryColor,
+                                    onChanged: (value){
+                                      setStateRate((){
+                                        _questionRate[index] = value!;
+                                      });
+                                    },
+                                    value: _questionRate[index],
+                                  ),
+                                ),
+                              )),
+                            );
+                          }),
+                          buttonText: 'قيم',
+                        onTap: (){
+                          _pageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+                        }
+                      ),
+                      /// ---
+                      _modalRateContent(context,question: 'بناءًا على اختيارك ماهي أهم الأسباب التي أثرت على تقييمك ؟',
+                          child:            Container(),
+                          buttonText: 'إغلاق',
+                        onTap: ()=> Navigator.pop(context),
+                        isShowIcon: false,
+                        finalChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(AssetsManager.logoIMG),
+                            const SizedBox(height: AppSize.s20,),
+                            Text('شكراً لك!',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: ColorManager.primaryColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24.sp
+                            ),),
+                            const SizedBox(height: AppSize.s20,),
+                            Text('شكرًا على ملاحظاتك , ستساعدنا ملاحظاتك في تحسين خدماتنا لكم ..',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                          ],
+                        )
+                      ),
+                    ],
+                  ),
+                );
+              },
+              icon: const Icon(
+                Icons.notifications,
+              )),
         ],
       ),
       body: Column(

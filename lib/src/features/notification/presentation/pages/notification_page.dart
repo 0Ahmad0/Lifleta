@@ -17,6 +17,7 @@ class NotificationPage extends StatelessWidget {
           width: 80.sp,
         ),
 
+
       ),
 
       body: ListView.separated(
