@@ -8,7 +8,10 @@
     "how_are_we": "من نحن ؟",
     "about_us": "نبذة عنا",
     "arabic": "العربية",
-    "english": "English"
+    "english": "English",
+    "login_as_employee": "دخول الموظف",
+    "login_as_user": "دخول المواطن"
+
   },
   "not_found": {
     "not_found": "الصفحة غير موجودة",

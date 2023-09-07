@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lifleta/src/features/create_report/presentation/pages/create_report_page.dart';
 import 'package:lifleta/src/features/home/presentation/pages/home_page.dart';
+import 'package:lifleta/src/features/notification/presentation/pages/notification_page.dart';
 import 'package:lifleta/src/features/select_language/presentation/pages/selected_langauge_page.dart';
 import 'package:page_transition/page_transition.dart';
 import '/src/features/auth/presentation/pages/login_page.dart';
@@ -9,7 +10,7 @@ import '/src/features/auth/presentation/pages/sign_up_page.dart';
 import '/src/features/splash/presentation/pages/splash_page.dart';
 import '/src/features/not_found/no_found_page.dart';
 
-enum AppRoute { splash, selectedLanguage, signUp, logIn ,home,createReport}
+enum AppRoute { splash, selectedLanguage, signUp, logIn ,home,createReport,notification}
 
 final goRouter = GoRouter(
   initialLocation: '/',
@@ -87,8 +88,13 @@ final goRouter = GoRouter(
       routes: [
         GoRoute(path: 'createReport',
           name: AppRoute.createReport.name,
-          builder: (context,state)=>CreateReportPage()
-        )
+          builder: (context,state)=>CreateReportPage(),
+        ),
+        GoRoute(path: 'notification',
+          name: AppRoute.notification.name,
+          builder: (context,state)=>NotificationPage(),
+        ),
+
       ]
     )
   ],

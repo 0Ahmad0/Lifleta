@@ -7,6 +7,7 @@ import 'package:lifleta/translations/locale_keys.g.dart';
 import '../core/utils/assets_manager.dart';
 import '../core/utils/color_manager.dart';
 import '../core/utils/values_manager.dart';
+
 class TextFiledApp extends StatefulWidget {
   TextFiledApp(
       {Key? key,

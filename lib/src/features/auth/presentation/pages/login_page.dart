@@ -153,6 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                 FadeInRight(
                   child: ElevatedButton(
                       onPressed: () {
+                        //Form Validate
                         if (_formKey.currentState!.validate()) {}
                       },
                       child: Text(tr(LocaleKeys.login_login))),

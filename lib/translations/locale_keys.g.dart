@@ -9,6 +9,8 @@ abstract class  LocaleKeys {
   static const selected_language_about_us = 'selected_language.about_us';
   static const selected_language_arabic = 'selected_language.arabic';
   static const selected_language_english = 'selected_language.english';
+  static const selected_language_login_as_employee = 'selected_language.login_as_employee';
+  static const selected_language_login_as_user = 'selected_language.login_as_user';
   static const selected_language = 'selected_language';
   static const not_found_not_found = 'not_found.not_found';
   static const not_found_error = 'not_found.error';

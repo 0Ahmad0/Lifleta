@@ -13,7 +13,9 @@
   "how_are_we": "How Are We ?",
     "about_us": "About us",
     "arabic": "العربية",
-    "english": "English"
+    "english": "English",
+    "login_as_employee": "Login as Employee",
+    "login_as_user": "Login as User"
 },
 
   "login": {

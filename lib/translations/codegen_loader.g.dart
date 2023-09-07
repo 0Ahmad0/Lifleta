@@ -24,7 +24,9 @@ class CodegenLoader extends AssetLoader{
     "how_are_we": "من نحن ؟",
     "about_us": "نبذة عنا",
     "arabic": "العربية",
-    "english": "English"
+    "english": "English",
+    "login_as_employee": "دخول الموظف",
+    "login_as_user": "دخول المواطن"
   },
   "not_found": {
     "not_found": "الصفحة غير موجودة",
@@ -108,7 +110,9 @@ static const Map<String,dynamic> en = {
     "how_are_we": "How Are We ?",
     "about_us": "About us",
     "arabic": "العربية",
-    "english": "English"
+    "english": "English",
+    "login_as_employee": "Login as Employee",
+    "login_as_user": "Login as User"
   },
   "login": {
     "login": "Login",
