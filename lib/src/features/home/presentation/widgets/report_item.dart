@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lifleta/src/core/routing/app_router.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
@@ -161,7 +162,9 @@ class ReportItem extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.r),
                               )),
-                          onPressed: () {},
+                          onPressed: () {
+                            goRouter.pushNamed(AppRoute.trackingReport.name);
+                          },
                           child: Text(tr(LocaleKeys.home_tracking)),
                         )),
                     const SizedBox(
