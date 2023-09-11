@@ -35,7 +35,10 @@ class NotificationItem extends StatelessWidget {
           ]),
 
       child: Container(
-        margin: EdgeInsets.only(right: 10.sp),
+        margin: EdgeInsets.only(
+          right: context.locale.languageCode == 'ar'? 10.sp:0.0,
+          left: context.locale.languageCode == 'en'? 10.sp:0.0,
+        ),
         decoration: BoxDecoration(
           color: ColorManager.white,
           borderRadius: BorderRadius.circular(10.r),
@@ -70,7 +73,10 @@ class NotificationItem extends StatelessWidget {
                         ? ColorManager.primaryColor.withOpacity(.3)
                         : ColorManager.grey.shade300,
                     borderRadius: BorderRadius.horizontal(
-                      right: Radius.circular(14.r),
+                      right: context.locale.languageCode == 'ar'?
+                      Radius.circular(14.r):Radius.zero,
+                      left: context.locale.languageCode == 'en'?
+                      Radius.circular(14.r):Radius.zero,
                     ),
                   ),
                   child: Text(

@@ -64,14 +64,19 @@ class CodegenLoader extends AssetLoader{
     "current_report": "بلاغ حالي",
     "previous_report": "بلاغ سابق",
     "done_report": "تم التنفيذ",
+    "not_done_report": "لم يتم التنفيذ",
     "previous_reports": "البلاغات السابقة",
+    "new_reports": "البلاغات الجديدة",
     "tracking": "تتبع",
     "dealy_alert": "تنبيه تأخير",
     "send_report_delay_alert": "إرسال تنبيه بتأخير تنفيذ بلاغ؟",
     "send": "إرسال",
     "cancel": "إلغاء",
     "more": "المزيد...",
-    "show": "عرض"
+    "show": "عرض",
+    "enter_the_reason_refusing_report": "فضلاً أدخل سبب رفض قبول البلاغ",
+    "please_select_status_report": "فضلاً أختر حالة تنفيذ البلاغ",
+    "update": "تحديث"
   },
   "create_report": {
     "report_subject": "موضوع البلاغ",
@@ -145,14 +150,19 @@ static const Map<String,dynamic> en = {
     "current_report": "Current Report",
     "previous_report": "Previous Report",
     "done_report": "Report Done",
+    "not_done_report": "Report Fail",
     "previous_reports": "Previous Reports",
+    "new_reports": "New Reports",
     "tracking": "Tracking",
     "dealy_alert": "Dealy Alert",
     "send_report_delay_alert": "Send a report dealy alert ? ",
     "send": "Send",
     "cancel": "Cancel",
     "more": "More...",
-    "show": "Show"
+    "show": "Show",
+    "enter_the_reason_refusing_report": "Please enter the reason for refusing to accept the report",
+    "please_select_status_report": "Please select the status of execution of the report ",
+    "update": "Update"
   },
   "create_report": {
     "report_subject": "Report subject",

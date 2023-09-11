@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lifleta/src/features/create_report/presentation/pages/create_report_page.dart';
+import 'package:lifleta/src/features/employee/home_employee/presentation/pages/home_employee_page.dart';
 import 'package:lifleta/src/features/home/presentation/pages/home_page.dart';
 import 'package:lifleta/src/features/notification/presentation/pages/notification_page.dart';
 import 'package:lifleta/src/features/select_language/presentation/pages/selected_langauge_page.dart';
@@ -11,7 +12,17 @@ import '/src/features/auth/presentation/pages/sign_up_page.dart';
 import '/src/features/splash/presentation/pages/splash_page.dart';
 import '/src/features/not_found/no_found_page.dart';
 
-enum AppRoute { splash, selectedLanguage, signUp, logIn ,home,createReport,notification,trackingReport}
+enum AppRoute {
+  splash,
+  selectedLanguage,
+  signUp,
+  logIn,
+  home,
+  createReport,
+  notification,
+  trackingReport,
+  homeEmployee
+}
 
 final goRouter = GoRouter(
   initialLocation: '/',
@@ -25,10 +36,10 @@ final goRouter = GoRouter(
       builder: (context, state) => SplashPage(),
       routes: [
         GoRoute(
-            path: 'selectedLanguage',
-            name: AppRoute.selectedLanguage.name,
-            builder: (context, state) => SelectedLanguagePage(),
-            ),
+          path: 'selectedLanguage',
+          name: AppRoute.selectedLanguage.name,
+          builder: (context, state) => SelectedLanguagePage(),
+        ),
         GoRoute(
           path: 'logIn',
           name: AppRoute.logIn.name,
@@ -83,24 +94,48 @@ final goRouter = GoRouter(
         //     ]),
       ],
     ),
-    GoRoute(path: '/home',
-      name: AppRoute.home.name,
-      builder: (context,state)=> HomePage(),
-      routes: [
-        GoRoute(path: 'createReport',
-          name: AppRoute.createReport.name,
-          builder: (context,state)=>CreateReportPage(),
-        ),
-        GoRoute(path: 'notification',
-          name: AppRoute.notification.name,
-          builder: (context,state)=>NotificationPage(),
-        ),
-        GoRoute(path: 'trackingReport',
-          name: AppRoute.trackingReport.name,
-          builder: (context,state)=>TrackingReportPage(),
-        ),
+    GoRoute(
+        path: '/home',
+        name: AppRoute.home.name,
+        builder: (context, state) => HomePage(),
+        routes: [
+          GoRoute(
+            path: 'createReport',
+            name: AppRoute.createReport.name,
+            builder: (context, state) => CreateReportPage(),
+          ),
+          GoRoute(
+            path: 'notification',
+            name: AppRoute.notification.name,
+            builder: (context, state) => NotificationPage(),
+          ),
+          GoRoute(
+            path: 'trackingReport',
+            name: AppRoute.trackingReport.name,
+            builder: (context, state) => TrackingReportPage(),
+          ),
+        ]),
+    GoRoute(
+        path: '/homeEmployee',
+        name: AppRoute.homeEmployee.name,
+        builder: (context, state) => HomeEmployeePage(),
+        routes: [
+          // GoRoute(
+          //   path: 'createReport',
+          //   name: AppRoute.createReport.name,
+          //   builder: (context, state) => CreateReportPage(),
+          // ),
+          // GoRoute(
+          //   path: 'notification',
+          //   name: AppRoute.notification.name,
+          //   builder: (context, state) => NotificationPage(),
+          // ),
+          // GoRoute(
+          //   path: 'trackingReport',
+          //   name: AppRoute.trackingReport.name,
+          //   builder: (context, state) => TrackingReportPage(),
+          // ),
+        ]),
 
-      ]
-    )
   ],
 );

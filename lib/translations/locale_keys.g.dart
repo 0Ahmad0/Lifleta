@@ -44,7 +44,9 @@ abstract class  LocaleKeys {
   static const home_current_report = 'home.current_report';
   static const home_previous_report = 'home.previous_report';
   static const home_done_report = 'home.done_report';
+  static const home_not_done_report = 'home.not_done_report';
   static const home_previous_reports = 'home.previous_reports';
+  static const home_new_reports = 'home.new_reports';
   static const home_tracking = 'home.tracking';
   static const home_dealy_alert = 'home.dealy_alert';
   static const home_send_report_delay_alert = 'home.send_report_delay_alert';
@@ -52,6 +54,9 @@ abstract class  LocaleKeys {
   static const home_cancel = 'home.cancel';
   static const home_more = 'home.more';
   static const home_show = 'home.show';
+  static const home_enter_the_reason_refusing_report = 'home.enter_the_reason_refusing_report';
+  static const home_please_select_status_report = 'home.please_select_status_report';
+  static const home_update = 'home.update';
   static const home = 'home';
   static const create_report_report_subject = 'create_report.report_subject';
   static const create_report_enter_report_subject = 'create_report.enter_report_subject';

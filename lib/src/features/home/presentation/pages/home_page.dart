@@ -352,7 +352,11 @@ class _HomePageState extends State<HomePage> {
                   height: 120.h,
                   decoration: BoxDecoration(
                       borderRadius:
-                          BorderRadius.horizontal(left: Radius.circular(50.r)),
+                          BorderRadius.horizontal(
+                              right: context.locale.languageCode == 'en'?Radius.circular(50.r):Radius.zero,
+                              left: context.locale.languageCode == 'ar'?Radius.circular(50.r):Radius.zero,
+
+                          ),
                       gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,

@@ -49,14 +49,19 @@
     "current_report": "بلاغ حالي",
     "previous_report": "بلاغ سابق",
     "done_report": "تم التنفيذ",
+    "not_done_report": "لم يتم التنفيذ",
     "previous_reports": "البلاغات السابقة",
+    "new_reports": "البلاغات الجديدة",
     "tracking": "تتبع",
     "dealy_alert": "تنبيه تأخير",
     "send_report_delay_alert": "إرسال تنبيه بتأخير تنفيذ بلاغ؟",
     "send": "إرسال",
     "cancel": "إلغاء",
     "more": "المزيد...",
-    "show": "عرض"
+    "show": "عرض",
+    "enter_the_reason_refusing_report": "فضلاً أدخل سبب رفض قبول البلاغ",
+    "please_select_status_report": "فضلاً أختر حالة تنفيذ البلاغ",
+    "update": "تحديث"
   },
   "create_report": {
     "report_subject": "موضوع البلاغ",

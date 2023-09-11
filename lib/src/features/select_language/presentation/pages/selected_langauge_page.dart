@@ -69,7 +69,7 @@ class SelectedLanguagePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                goRouter.pushReplacementNamed(AppRoute.logIn.name);
+                goRouter.pushReplacementNamed(AppRoute.homeEmployee.name);
               },
               child: Text(
                 tr(LocaleKeys.selected_language_login_as_employee),

@@ -49,14 +49,19 @@
     "current_report": "Current Report",
     "previous_report": "Previous Report",
     "done_report": "Report Done",
+    "not_done_report": "Report Fail",
     "previous_reports": "Previous Reports",
+    "new_reports": "New Reports",
     "tracking": "Tracking",
     "dealy_alert": "Dealy Alert",
     "send_report_delay_alert": "Send a report dealy alert ? ",
     "send": "Send",
     "cancel": "Cancel",
     "more": "More...",
-    "show": "Show"
+    "show": "Show",
+    "enter_the_reason_refusing_report": "Please enter the reason for refusing to accept the report",
+    "please_select_status_report": "Please select the status of execution of the report ",
+    "update": "Update"
   },
   "create_report": {
     "report_subject": "Report subject",
