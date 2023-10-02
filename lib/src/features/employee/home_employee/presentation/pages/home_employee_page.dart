@@ -226,7 +226,9 @@ class _HomeEmployeePageState extends State<HomeEmployeePage> {
             size: 50.sp,
           ),
           onPressed: () {
-            _showStatusReportAlertDialog(context);
+
+            // _showStatusReportAlertDialog(context);
+            _showRefuseReportAlertDialog(context);
           },
         ),
       ),

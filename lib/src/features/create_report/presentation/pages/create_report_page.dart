@@ -19,13 +19,21 @@ class CreateReportPage extends StatefulWidget {
   State<CreateReportPage> createState() => _CreateReportPageState();
 }
 
-class _CreateReportPageState extends State<CreateReportPage> {
+class _CreateReportPageState extends State<CreateReportPage> with
+    SingleTickerProviderStateMixin{
   final reportSubjectController = TextEditingController();
   final reportDescriptionController = TextEditingController();
   final reportDateController = TextEditingController();
   final reportLocationController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   List<File> files = [];
+  late AnimationController _controllerAnimation;
+  @override
+  void initState() {
+     _controllerAnimation = AnimationController(
+        vsync: this);
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -262,6 +270,7 @@ class _CreateReportPageState extends State<CreateReportPage> {
                                             child: GestureDetector(
                                                 onTap: () {
                                                   files.removeAt(index);
+                                                  
                                                   setStateFiles(() {});
                                                 },
                                                 child: Container(

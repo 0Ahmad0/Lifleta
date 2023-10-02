@@ -75,6 +75,7 @@ dependencies:
   readmore: ^2.2.0
   #Picker Files
   file_picker: ^5.3.1
+  smooth_page_indicator:
   #google Maps ====> API KEY
 #  google_maps_flutter: ^2.3.0
 

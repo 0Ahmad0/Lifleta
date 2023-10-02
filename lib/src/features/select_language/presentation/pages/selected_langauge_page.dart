@@ -105,7 +105,8 @@ class SelectedLanguagePage extends StatelessWidget {
                           color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 16.sp))
-                ])))
+                ]))),
+            const SizedBox(height: 20.0,),
           ],
         ),
       ),
