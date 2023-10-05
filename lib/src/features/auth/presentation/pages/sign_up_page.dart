@@ -3,12 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lifleta/src/core/routing/app_router.dart';
+import 'package:lifleta/src/core/utils/app_constant.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
 
 import '../../../../common_widgets/custom_text_filed.dart';
+import '../../controller/auth_controller.dart';
 import '../widgets/textfiled_with_Title.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -21,9 +23,17 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final nameController = TextEditingController();
   final idController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  late  AuthController authController;
+  @override
+  void initState() {
+    // TODO: implement initState
+    authController=AuthController(context: context);
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -31,6 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
     idController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 
@@ -97,6 +108,19 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             FadeInLeft(
               child: TextFieldWithTitle(
+                title: tr(LocaleKeys.signup_email),
+                child: TextFiledApp(
+                  controller: emailController,
+                  hintText: tr(LocaleKeys.signup_enter_email),
+                  iconData: Icons.email_outlined,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: AppSize.s20,
+            ),
+            FadeInLeft(
+              child: TextFieldWithTitle(
                 title: tr(LocaleKeys.signup_id),
                 child: TextFiledApp(
                   controller: idController,
@@ -152,9 +176,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
             FadeInRight(
               child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      goRouter.pushReplacementNamed(AppRoute.home.name);
+                     await authController.signUp(context, firstName: nameController.value.text, lastName: '', gender: 'male', dateBirth: DateTime.now(), email: emailController.value.text, password: passwordController.text, phoneNumber: idController.value.text, photoUrl: '', typeUser: AppConstants.collectionUser);
                     }
                   },
                   child: Text(tr(LocaleKeys.signup_signup))),

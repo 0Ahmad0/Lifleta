@@ -2,12 +2,17 @@ import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lifleta/src/core/data/model/models.dart';
 import 'package:lifleta/src/core/routing/app_router.dart';
 import 'package:lifleta/src/core/utils/app_string.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
+import 'package:lifleta/src/features/auth/controller/provider/auth_provider.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../core/utils/app_constant.dart';
 
 class SelectedLanguagePage extends StatelessWidget {
   const SelectedLanguagePage({super.key});
@@ -48,6 +53,7 @@ class SelectedLanguagePage extends StatelessWidget {
                         onTap: (){
                           context.locale = Locale('en');
                           context.setLocale(Locale('en'));
+                        //  context.read<Adva>();
                         },
                       ),
                         ]),
@@ -69,9 +75,11 @@ class SelectedLanguagePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                goRouter.pushReplacementNamed(AppRoute.homeEmployee.name);
+                context.read<AuthProvider>().typeUser=AppConstants.collectionEmployee;
+                goRouter.pushReplacementNamed(AppRoute.logIn.name);
               },
               child: Text(
+
                 tr(LocaleKeys.selected_language_login_as_employee),
               ),
             ),
@@ -80,6 +88,7 @@ class SelectedLanguagePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
+                context.read<AuthProvider>().typeUser=AppConstants.collectionUser;
                 goRouter.pushReplacementNamed(AppRoute.logIn.name);
 
               },

@@ -6,6 +6,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/routing/app_router.dart';
 import '../../../../core/utils/app_constant.dart';
 import '../../../select_language/presentation/pages/selected_langauge_page.dart';
+import '../../controller/splashController.dart';
 import '/src/core/utils/assets_manager.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -23,8 +24,14 @@ class _SplashPageState extends State<SplashPage> {
     _pageController = PageController(
       initialPage: 0
     );
+    SplashController().init(context);
+    // Future.delayed(Duration(seconds: AppConstants.splashDelay),SplashController().init(context)
+    //        // ()=>goRouter.pushReplacementNamed(AppRoute.selectedLanguage.name)
+    // );
+
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

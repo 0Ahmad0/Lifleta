@@ -3,12 +3,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lifleta/src/core/routing/app_router.dart';
+import 'package:lifleta/src/core/utils/app_constant.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
+import 'package:lifleta/src/features/auth/controller/auth_controller.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common_widgets/custom_text_filed.dart';
+import '../../controller/provider/auth_provider.dart';
 import '../widgets/textfiled_with_Title.dart';
 
 class LoginPage extends StatefulWidget {
@@ -23,7 +27,13 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool rememberMe = false;
-
+ late  AuthController authController;
+ @override
+  void initState() {
+    // TODO: implement initState
+   authController=AuthController(context: context);
+    super.initState();
+  }
   @override
   void dispose() {
     idController.dispose();
@@ -152,43 +162,48 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 FadeInRight(
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         //Form Validate
-                        if (_formKey.currentState!.validate()) {}
+                        if (_formKey.currentState!.validate()) {
+                          await authController.login(context,phone: idController.value.text, password: passwordController.value.text);
+                        }
                       },
                       child: Text(tr(LocaleKeys.login_login))),
                 ),
                 const SizedBox(
                   height: AppSize.s20,
                 ),
-                FadeInUp(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: TextButton(
-                        style: ButtonStyle(
-                            overlayColor:
-                                MaterialStateProperty.all(Colors.transparent)),
-                        onPressed: () {
-                          goRouter.pushReplacementNamed(
-                            AppRoute.signUp.name,
-                          );
-                        },
-                        child: Text.rich(
+                Visibility(
+                  visible: context.read<AuthProvider>().typeUser==AppConstants.collectionUser,
+                  child: FadeInUp(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: TextButton(
+                          style: ButtonStyle(
+                              overlayColor:
+                                  MaterialStateProperty.all(Colors.transparent)),
+                          onPressed: () {
+                            goRouter.pushReplacementNamed(
+                              AppRoute.signUp.name,
+                            );
+                          },
+                          child: Text.rich(
 
+                              TextSpan(
+                                  children: [
                             TextSpan(
-                                children: [
-                          TextSpan(
-                              text:
-                                  tr(LocaleKeys.login_do_not_have_account) + '  ',
-                              style: const TextStyle(color: ColorManager.black)),
-                          TextSpan(
-                              text: tr(LocaleKeys.login_create_account),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.sp,
-                                decoration: TextDecoration.underline
-                              ))
-                        ]))),
+                                text:
+                                    tr(LocaleKeys.login_do_not_have_account) + '  ',
+                                style: const TextStyle(color: ColorManager.black)),
+                            TextSpan(
+                                text: tr(LocaleKeys.login_create_account),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.sp,
+                                  decoration: TextDecoration.underline
+                                ))
+                          ]))),
+                    ),
                   ),
                 )
               ],

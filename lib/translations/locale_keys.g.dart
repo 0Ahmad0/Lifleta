@@ -30,7 +30,9 @@ abstract class  LocaleKeys {
   static const signup_name = 'signup.name';
   static const signup_enter_name = 'signup.enter_name';
   static const signup_id = 'signup.id';
+  static const signup_email = 'signup.email';
   static const signup_enter_id = 'signup.enter_id';
+  static const signup_enter_email = 'signup.enter_email';
   static const signup_password = 'signup.password';
   static const signup_enter_Password = 'signup.enter_Password';
   static const signup_confirm_password = 'signup.confirm_password';
