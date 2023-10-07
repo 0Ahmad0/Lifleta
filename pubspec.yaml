@@ -50,7 +50,7 @@ dependencies:
   #Pick Images
   image_picker: ^1.0.2
   #Dates 2021/3/2 1: 12 : 28:125:21583258 : 254845251845151
-  intl: ^0.18.0
+  intl:
   #Animations
   animate_do: ^3.0.2
   #fonts
@@ -88,6 +88,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_logo.png"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

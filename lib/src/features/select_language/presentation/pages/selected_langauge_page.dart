@@ -9,6 +9,7 @@ import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
 import 'package:lifleta/src/features/auth/controller/provider/auth_provider.dart';
+import 'package:lifleta/src/features/auth/presentation/pages/login_page.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
 import 'package:provider/provider.dart';
 
@@ -30,32 +31,36 @@ class SelectedLanguagePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(AppPadding.p8),
                 child: PopupMenuButton(
-                  child: TextButton.icon(onPressed: null, icon: const Icon(Icons.language_outlined,
-                    color: ColorManager.primaryColor,
-                  ), label: Text(
-                      context.locale == Locale('ar')
-                          ? tr(LocaleKeys.selected_language_arabic)
-                          :tr(LocaleKeys.selected_language_english),
-                    style: TextStyle(
-                      color: ColorManager.primaryColor
-                    ),
-                  )),
+                    child: TextButton.icon(
+                        onPressed: null,
+                        icon: const Icon(
+                          Icons.language_outlined,
+                          color: ColorManager.primaryColor,
+                        ),
+                        label: Text(
+                          context.locale == Locale('ar')
+                              ? tr(LocaleKeys.selected_language_arabic)
+                              : tr(LocaleKeys.selected_language_english),
+                          style: TextStyle(color: ColorManager.primaryColor),
+                        )),
                     itemBuilder: (_) => [
                           PopupMenuItem(
-                            child: Text(tr(LocaleKeys.selected_language_arabic)),
-                            onTap: (){
+                            child:
+                                Text(tr(LocaleKeys.selected_language_arabic)),
+                            onTap: () {
                               context.locale = Locale('ar');
                               context.setLocale(Locale('ar'));
                             },
                           ),
-                      PopupMenuItem(
-                        child: Text(tr(LocaleKeys.selected_language_english)),
-                        onTap: (){
-                          context.locale = Locale('en');
-                          context.setLocale(Locale('en'));
-                        //  context.read<Adva>();
-                        },
-                      ),
+                          PopupMenuItem(
+                            child:
+                                Text(tr(LocaleKeys.selected_language_english)),
+                            onTap: () {
+                              context.locale = Locale('en');
+                              context.setLocale(Locale('en'));
+                              //  context.read<Adva>();
+                            },
+                          ),
                         ]),
               ),
             ),
@@ -75,11 +80,11 @@ class SelectedLanguagePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                context.read<AuthProvider>().typeUser=AppConstants.collectionEmployee;
+                context.read<AuthProvider>().typeUser =
+                    AppConstants.collectionEmployee;
                 goRouter.pushReplacementNamed(AppRoute.logIn.name);
               },
               child: Text(
-
                 tr(LocaleKeys.selected_language_login_as_employee),
               ),
             ),
@@ -88,9 +93,10 @@ class SelectedLanguagePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                context.read<AuthProvider>().typeUser=AppConstants.collectionUser;
+                context.read<AuthProvider>().typeUser =
+                    AppConstants.collectionUser;
                 goRouter.pushReplacementNamed(AppRoute.logIn.name);
-
+               
               },
               child: Text(
                 tr(LocaleKeys.selected_language_login_as_user),
@@ -115,7 +121,9 @@ class SelectedLanguagePage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 16.sp))
                 ]))),
-            const SizedBox(height: 20.0,),
+            const SizedBox(
+              height: 20.0,
+            ),
           ],
         ),
       ),
