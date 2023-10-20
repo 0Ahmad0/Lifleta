@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "617020131936",
+    "project_id": "lifleta-b0341",
+    "storage_bucket": "lifleta-b0341.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617020131936:android:062b0e0056d08ab3151105",
+        "android_client_info": {
+          "package_name": "com.example.lifleta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617020131936-ck0jr1lg2bc2jrkdiq11aab5n6gp25vk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU3HS1C0dS3r0ovf2ZJGlggonJdCkI1Xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617020131936-ck0jr1lg2bc2jrkdiq11aab5n6gp25vk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -31,6 +31,8 @@
   },
   "signup": {
     "signup": "Sign Up",
+    "email": "EMAIL",
+    "enter_email": "Enter your email",
     "name": "NAME",
     "enter_name": "Enter your name",
     "id": "ID",

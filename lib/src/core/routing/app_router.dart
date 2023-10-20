@@ -33,7 +33,7 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/',
       name: AppRoute.splash.name,
-      builder: (context, state) => SplashPage(),
+      builder: (context, state) => CreateReportPage(),
       routes: [
         GoRoute(
           path: 'selectedLanguage',

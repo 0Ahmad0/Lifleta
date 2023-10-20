@@ -11,6 +11,7 @@ import 'package:lifleta/src/core/utils/values_manager.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
 
 import '../../../../core/utils/assets_manager.dart';
+import '../../../location_picker/location_picker_page.dart';
 
 class CreateReportPage extends StatefulWidget {
   const CreateReportPage({super.key});
@@ -19,21 +20,14 @@ class CreateReportPage extends StatefulWidget {
   State<CreateReportPage> createState() => _CreateReportPageState();
 }
 
-class _CreateReportPageState extends State<CreateReportPage> with
-    SingleTickerProviderStateMixin{
+class _CreateReportPageState extends State<CreateReportPage>
+    with SingleTickerProviderStateMixin {
   final reportSubjectController = TextEditingController();
   final reportDescriptionController = TextEditingController();
   final reportDateController = TextEditingController();
   final reportLocationController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   List<File> files = [];
-  late AnimationController _controllerAnimation;
-  @override
-  void initState() {
-     _controllerAnimation = AnimationController(
-        vsync: this);
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -85,8 +79,8 @@ class _CreateReportPageState extends State<CreateReportPage> with
                 ),
                 FadeInUp(
                   child: TextFormField(
-                    validator: (value){
-                      if(value!.trim().isEmpty){
+                    validator: (value) {
+                      if (value!.trim().isEmpty) {
                         return tr(LocaleKeys.text_filed_field_required);
                       }
                     },
@@ -122,32 +116,31 @@ class _CreateReportPageState extends State<CreateReportPage> with
                   return FadeInUp(
                     child: TextFormField(
                       readOnly: true,
-                      onTap: (){
+                      onTap: () {
                         _selectReportDate(context).then((selectedDate) {
                           if (selectedDate != null) {
-                            reportDateController.text = DateFormat.yMd()
-                                .add_jm()
-                                .format(selectedDate);
+                            reportDateController.text =
+                                DateFormat.yMd().add_jm().format(selectedDate);
                             setStateDate(() {});
                           }
                         });
                       },
-                        validator: (value){
-                          if(value!.trim().isEmpty){
-                            return tr(LocaleKeys.text_filed_field_required);
-                          }
-                        },
+                      validator: (value) {
+                        if (value!.trim().isEmpty) {
+                          return tr(LocaleKeys.text_filed_field_required);
+                        }
+                      },
                       controller: reportDateController,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 12.sp),
-                          hintText:
-                          tr(LocaleKeys.create_report_select_report_date),
-                          filled: true,
-                          fillColor: ColorManager.grey.shade200,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                              borderSide: BorderSide.none),
-                        ),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 12.sp),
+                        hintText:
+                            tr(LocaleKeys.create_report_select_report_date),
+                        filled: true,
+                        fillColor: ColorManager.grey.shade200,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: BorderSide.none),
+                      ),
                     ),
                   );
                 }),
@@ -168,8 +161,8 @@ class _CreateReportPageState extends State<CreateReportPage> with
                 ),
                 FadeInUp(
                   child: TextFormField(
-                    validator: (value){
-                      if(value!.trim().isEmpty){
+                    validator: (value) {
+                      if (value!.trim().isEmpty) {
                         return tr(LocaleKeys.text_filed_field_required);
                       }
                     },
@@ -270,7 +263,7 @@ class _CreateReportPageState extends State<CreateReportPage> with
                                             child: GestureDetector(
                                                 onTap: () {
                                                   files.removeAt(index);
-                                                  
+
                                                   setStateFiles(() {});
                                                 },
                                                 child: Container(
@@ -318,25 +311,25 @@ class _CreateReportPageState extends State<CreateReportPage> with
                 FadeInUp(
                   child: TextFormField(
                     readOnly: true,
-                      onTap: (){},
-                    validator: (value){
-                      if(value!.trim().isEmpty){
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=>const LocationPickerPage()));
+                    },
+                    validator: (value) {
+                      if (value!.trim().isEmpty) {
                         return tr(LocaleKeys.text_filed_field_required);
                       }
                     },
-                      controller: reportLocationController,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 12.sp),
-                        hintText:
-                        tr(LocaleKeys.create_report_select_location),
-                        filled: true,
-                        fillColor: ColorManager.grey.shade200,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.r),
-                            borderSide: BorderSide.none),
-                      ),
-
-                      ),
+                    controller: reportLocationController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12.sp),
+                      hintText: tr(LocaleKeys.create_report_select_location),
+                      filled: true,
+                      fillColor: ColorManager.grey.shade200,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                          borderSide: BorderSide.none),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: AppSize.s20,
@@ -351,7 +344,6 @@ class _CreateReportPageState extends State<CreateReportPage> with
                           child: TextButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {}
-
                               },
                               child: Text(
                                 tr(LocaleKeys.create_report_send),
@@ -368,9 +360,7 @@ class _CreateReportPageState extends State<CreateReportPage> with
                               borderRadius: BorderRadius.circular(10.r)),
                           child: TextButton(
                               onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-
-                                }
+                                if (_formKey.currentState!.validate()) {}
                               },
                               child: Text(
                                 tr(LocaleKeys.create_report_save_draft),

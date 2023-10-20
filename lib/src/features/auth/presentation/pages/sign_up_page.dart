@@ -152,8 +152,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: TextFieldWithTitle(
                 title: tr(LocaleKeys.signup_confirm_password),
                 child: TextFiledApp(
-                  textInputAction: TextInputAction.done
-                  ,
+                  textInputAction: TextInputAction.done,
                   controller: confirmPasswordController,
                   iconData: Icons.lock,
                   hintText: tr(LocaleKeys.signup_enter_Password),

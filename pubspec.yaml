@@ -78,6 +78,11 @@ dependencies:
   smooth_page_indicator:
   provider: ^6.0.5
   get_storage: ^2.1.1
+  url_launcher: ^6.1.11
+  open_street_map_search_and_pick: ^0.1.0
+  flutter_osm_plugin:
+  http: ^0.13.6
+  flutter_map: ^3.1.0
   #google Maps ====> API KEY
 #  google_maps_flutter: ^2.3.0
 
