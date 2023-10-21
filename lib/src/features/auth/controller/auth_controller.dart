@@ -30,7 +30,7 @@ class AuthController{
     authProvider.user.password=password;
     final result=await authProvider.login(context);
 
-    //goRouter.pop();
+    goRouter.pop();
     if(result['status']){
       if(authProvider.user.typeUser==AppConstants.collectionEmployee)
          goRouter.pushReplacementNamed(AppRoute.homeEmployee.name);
@@ -60,9 +60,9 @@ class AuthController{
   signUpByUser(BuildContext context) async {
     Const.loading(context);
     final result=await authProvider.signup(context);
-  // goRouter.pop();
+   goRouter.pop();
     if(result['status']){
-    //  authProvider.user=User.init();
+      authProvider.user=User.init();
       goRouter.pushReplacementNamed(AppRoute.home.name);
       // Get.off(() => LoginView(),
       //     transition: Transition.circularReveal);

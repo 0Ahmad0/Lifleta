@@ -177,7 +177,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                     await authController.signUp(context, firstName: nameController.value.text, lastName: '', gender: 'male', dateBirth: DateTime.now(), email: emailController.value.text, password: passwordController.text, phoneNumber: idController.value.text, photoUrl: '', typeUser: AppConstants.collectionUser);
+                     await authController.signUp(context, firstName: nameController.value.text, lastName: '', gender: 'male', dateBirth: DateTime.now(), email: emailController.value.text, password: passwordController.value.text, phoneNumber: idController.value.text, photoUrl: '', typeUser: AppConstants.collectionUser);
                     }
                   },
                   child: Text(tr(LocaleKeys.signup_signup))),
