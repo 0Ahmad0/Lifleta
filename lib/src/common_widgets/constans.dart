@@ -52,7 +52,7 @@ class Const{
       ),
     );}
 
-  static emptyWidget(context,{text='Not Data Yet!'})=>SingleChildScrollView(
+  static emptyWidget(context,{text='No Data Yet!'})=>SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

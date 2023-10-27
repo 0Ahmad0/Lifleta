@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
@@ -8,8 +9,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lifleta/src/common_widgets/custom_text_filed.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
+import 'package:lifleta/src/features/create_report/presentation/controller/report_controller.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
 
+import '../../../../core/data/model/models.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../location_picker/location_picker_page.dart';
 
@@ -28,7 +31,15 @@ class _CreateReportPageState extends State<CreateReportPage>
   final reportLocationController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   List<File> files = [];
+  Location? location;
+  late ReportController reportController;
 
+  @override
+  void initState() {
+    reportController= ReportController(context: context);
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   void dispose() {
     reportSubjectController.dispose();
@@ -311,8 +322,8 @@ class _CreateReportPageState extends State<CreateReportPage>
                 FadeInUp(
                   child: TextFormField(
                     readOnly: true,
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_)=>const LocationPickerPage()));
+                    onTap: () async {
+                      reportLocationController.text=(await Navigator.push(context, MaterialPageRoute(builder: (_)=>const LocationPickerPage())))??'';
                     },
                     validator: (value) {
                       if (value!.trim().isEmpty) {
@@ -342,8 +353,16 @@ class _CreateReportPageState extends State<CreateReportPage>
                               color: ColorManager.primaryColor,
                               borderRadius: BorderRadius.circular(10.r)),
                           child: TextButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {}
+                              onPressed: () async {
+
+                                if (_formKey.currentState!.validate()) {
+                                  await reportController.addReport(context,
+                                      description: reportDescriptionController.value.text,
+                                      subject: reportSubjectController.value.text,
+                                      dateTime: DateFormat.yMd().add_jm().parse(reportDateController.value.text),
+                                      location: Location(country:reportLocationController.value.text ),
+                                      files: files);
+                                }
                               },
                               child: Text(
                                 tr(LocaleKeys.create_report_send),
@@ -359,8 +378,17 @@ class _CreateReportPageState extends State<CreateReportPage>
                               color: ColorManager.grey,
                               borderRadius: BorderRadius.circular(10.r)),
                           child: TextButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {}
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+
+                                  await reportController.addReport(context,
+                                      description: reportDescriptionController.value.text,
+                                      subject: reportSubjectController.value.text,
+                                      dateTime: DateFormat.yMd().add_jm().parse(reportDateController.value.text),
+                                      reportType: ReportType.Dreft.name,
+                                      location: Location(country:reportLocationController.value.text ),
+                                      files: files);
+                                }
                               },
                               child: Text(
                                 tr(LocaleKeys.create_report_save_draft),

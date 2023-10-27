@@ -59,7 +59,7 @@ class HomeDrawer extends StatelessWidget {
                     height: AppSize.s20,
                   ),
                   Text(
-                   '${profileProvider.firstName}',
+                   '${profileProvider.user.name}',
                  //   'دانة منصور الحربي',
                     maxLines: 2,
                     textAlign: TextAlign.center,
@@ -74,7 +74,7 @@ class HomeDrawer extends StatelessWidget {
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_id),
                     icon: Icons.person_outline,
-                    subTitle: '${profileProvider.phoneNumber}'//'54987354',
+                    subTitle: '${profileProvider.user.phoneNumber}'//'54987354',
                   ),
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_phone),

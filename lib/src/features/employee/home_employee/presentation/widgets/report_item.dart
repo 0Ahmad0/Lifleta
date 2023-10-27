@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lifleta/src/core/data/model/models.dart';
 import 'package:lifleta/src/core/routing/app_router.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
@@ -17,13 +18,14 @@ class ReportItem extends StatelessWidget {
     required this.reportDate,
     required this.type,
     required this.description,
-    required this.location, required this.reportId,
+    required this.location, required this.reportId, required this.report,
   });
 
   final String title;
   final String reportDate;
   final String type;
   final String reportId;
+  final Report report ;
   final String description;
   final String location;
 

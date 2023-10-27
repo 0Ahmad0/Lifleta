@@ -6,7 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
+import 'package:lifleta/src/features/create_report/presentation/controller/provider/report_provider.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
 class HomeReportSection extends StatefulWidget {
@@ -47,6 +49,8 @@ class _HomeReportSectionState extends State<HomeReportSection> {
                 onPressed: () {
                   setState(() {
                     widget.currentIndex = 0;
+                    context.read<ReportProvider>().currentIndex=0;
+                    context.read<ReportProvider>().notifyListeners();
                   });
                   print(widget.currentIndex);
                 },
@@ -74,6 +78,8 @@ class _HomeReportSectionState extends State<HomeReportSection> {
                 onPressed: () {
                   setState(() {
                     widget.currentIndex = 1;
+                    context.read<ReportProvider>().currentIndex=1;
+                    context.read<ReportProvider>().notifyListeners();
                   });
                   print(widget.currentIndex);
                 },

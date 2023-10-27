@@ -2,12 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lifleta/src/core/utils/theme_manager.dart';
+import 'package:lifleta/src/features/notification/controller/provider/notification_provider.dart';
 import 'package:lifleta/src/features/splash/presentation/pages/splash_page.dart';
 import 'package:provider/provider.dart';
 
 import 'core/routing/app_router.dart';
 import 'features/auth/controller/provider/auth_provider.dart';
 import 'features/auth/controller/provider/profile_provider.dart';
+import 'features/create_report/presentation/controller/provider/report_provider.dart';
 
 class LifletaApp extends StatelessWidget {
   const LifletaApp({super.key});
@@ -24,7 +26,8 @@ class LifletaApp extends StatelessWidget {
         // Provider<HomeProvider>(create: (_)=>HomeProvider()),
         Provider<AuthProvider>(create: (_) => AuthProvider()),
         Provider<ProfileProvider>(create: (_)=>ProfileProvider()),
-        // Provider<ProcessProvider>(create: (_)=>ProcessProvider()),
+        Provider<ReportProvider>(create: (_)=>ReportProvider()),
+        Provider<NotificationProvider>(create: (_)=>NotificationProvider()),
         //
         ],
           child:  MaterialApp.router(

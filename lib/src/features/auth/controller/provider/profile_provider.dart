@@ -64,6 +64,19 @@ class ProfileProvider with ChangeNotifier{
      Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
      return result;
    }
+  addRateUser(context,String rate) async {
+    models.User tempUser= models.User.fromJson(user.toJson());
+    tempUser.rate =rate;
+
+
+      var result =await FirebaseFun.updateUser(user: tempUser);
+      if(result['status']){
+        updateUser(user:models.User.fromJson(result['body']));
+        notifyListeners();
+      }
+    Const.TOAST(context,textToast: FirebaseFun.findTextToast('Done rate'));
+    return result;
+  }
    logout(context)async{
      var result =await FirebaseFun.logout();
      if(result['status']){

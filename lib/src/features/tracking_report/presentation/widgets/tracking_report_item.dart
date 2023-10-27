@@ -13,11 +13,13 @@ class TrackingReportItem extends StatelessWidget {
     super.key,
     required this.status,
     required this.reportId,
+    required this.reportSubject,
     required this.reportDescription,
   });
 
   final String status;
   final String reportId;
+  final String reportSubject;
   final String reportDescription;
 
   Color _getStatusReportColor(String status) {
@@ -83,7 +85,15 @@ class TrackingReportItem extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: SizedBox.shrink(),
+                  child:  ListTile(
+                    title: Text.rich(TextSpan(children: [
+                      TextSpan(
+                          text: reportId,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: ColorManager.primaryColor)),
+                    ])),
+                  ),
                 ),
                 Container(
                   padding: const EdgeInsets.all(AppPadding.p8),
@@ -105,7 +115,7 @@ class TrackingReportItem extends StatelessWidget {
             ListTile(
               title: Text.rich(TextSpan(children: [
                 TextSpan(
-                    text: 'رقم البلاغ : ',
+                    text: 'تاريخ البلاغ : ',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: ColorManager.primaryColor)),
@@ -127,7 +137,7 @@ class TrackingReportItem extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: ColorManager.primaryColor)),
                 TextSpan(
-                    text: 'ارتفاع في منسوب المياه',
+                    text: reportSubject,
                     style: TextStyle(
                       color: ColorManager.grey,
                     )),

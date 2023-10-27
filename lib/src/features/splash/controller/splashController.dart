@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lifleta/src/common_widgets/constans.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/data/local/storage.dart';
@@ -13,6 +14,7 @@ class SplashController{
 
   init(BuildContext context) async {
 
+
       AuthProvider authProvider= Provider.of<AuthProvider>(context,listen: false);
       ProfileProvider profileProvider= Provider.of<ProfileProvider>(context,listen: false);
       await AppStorage.init(context);
@@ -22,7 +24,9 @@ class SplashController{
 
       ///end
       if(Advance.isLogined&&Advance.token!=""){
+        //Const.loading(context);
         final result = await authProvider.fetchUser(uid: Advance.uid);
+        //goRouter.pop();
         if(result['status']){
 
           if(authProvider.listTypeUserWithActive.contains(result['body']['typeUser'])
@@ -32,7 +36,7 @@ class SplashController{
           }
           else{
             profileProvider.updateUser(user:User.fromJson(result['body']));
-            if(authProvider.typeUser==AppConstants.collectionEmployee)
+            if(profileProvider.user.typeUser==AppConstants.collectionEmployee)
                 goRouter.pushReplacementNamed(AppRoute.homeEmployee.name);
             else
               goRouter.pushReplacementNamed(AppRoute.home.name);

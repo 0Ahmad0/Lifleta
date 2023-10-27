@@ -183,6 +183,44 @@ class FirebaseFun{
   }
 
 
+  ///Notification
+  static addNotification( {required model.Notification notification}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionNotification).add(
+        notification.toJson()
+    ).then(onValueAddNotification).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static updateNotification( {required model.Notification notification}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionNotification).doc(
+        notification.id
+    ).update(notification.toJson()).then(onValueUpdateNotification).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static deleteNotification( {required model.Notification notification}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionNotification).doc(
+        notification.id
+    ).delete().then(onValueDeleteNotification).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static fetchNotificationByFieldOrderBy({required String field,required String value})  async {
+    final result=await FirebaseFirestore.instance.collection(AppConstants.collectionNotification)
+        .where(field,isEqualTo: value)
+        .get()
+        .then((onValueFetchNotifications))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static fetchNotificationByField({required String field,required String value,String orderBy='dateTime'})  async {
+    final result=await FirebaseFirestore.instance.collection(AppConstants.collectionNotification)
+        .where(field,isEqualTo: value)
+        .orderBy(orderBy)
+        .get()
+        .then((onValueFetchNotifications))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+
+
   // ///Wallet
   // static addWallet( {required model.Wallet wallet}) async {
   //   final result= await FirebaseFirestore.instance.collection(AppConstants.collectionWallet).add(
@@ -211,33 +249,33 @@ class FirebaseFun{
   //   return result;
   // }
   //
-  // ///Report
-  // static addReport( {required model.Report report}) async {
-  //   final result= await FirebaseFirestore.instance.collection(AppConstants.collectionReport).add(
-  //       report.toJson()
-  //   ).then(onValueAddReport).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
-  //   return result;
-  // }
-  // static updateReport( {required model.Report report}) async {
-  //   final result= await FirebaseFirestore.instance.collection(AppConstants.collectionReport).doc(
-  //       report.id
-  //   ).update(report.toJson()).then(onValueUpdateReport).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
-  //   return result;
-  // }
-  // static deleteReport( {required model.Report report}) async {
-  //   final result= await FirebaseFirestore.instance.collection(AppConstants.collectionReport).doc(
-  //       report.id
-  //   ).delete().then(onValueDeleteReport).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
-  //   return result;
-  // }
-  // static fetchReports()  async {
-  //   final result=await FirebaseFirestore.instance.collection(AppConstants.collectionReport)
-  //   .orderBy('dateTime',descending: true)
-  //       .get()
-  //       .then((onValueFetchReports))
-  //       .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
-  //   return result;
-  // }
+  ///Report
+  static addReport( {required model.Report report}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionReport).add(
+        report.toJson()
+    ).then(onValueAddReport).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static updateReport( {required model.Report report}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionReport).doc(
+        report.id
+    ).update(report.toJson()).then(onValueUpdateReport).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static deleteReport( {required model.Report report}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionReport).doc(
+        report.id
+    ).delete().then(onValueDeleteReport).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static fetchReports()  async {
+    final result=await FirebaseFirestore.instance.collection(AppConstants.collectionReport)
+    .orderBy('dateTime',descending: true)
+        .get()
+        .then((onValueFetchReports))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
 
   // ///DateLawyer
   // static addDateTrainer( {required model.DateTrainer dateTrainer}) async {
@@ -689,7 +727,22 @@ class FirebaseFun{
             month*30+
             day);
   }
+  static Future uploadFile2({required File file, required String folder}) async {
+    try {
 
+      String path = basename(file.path??'');
+      print(file.path);
+
+//FirebaseStorage storage = FirebaseStorage.instance.ref().child(path);
+      Reference storage = FirebaseStorage.instance.ref().child("${folder}/${path}");
+      UploadTask storageUploadTask = storage.putFile(file);
+      TaskSnapshot taskSnapshot = await storageUploadTask;
+      String url = await taskSnapshot.ref.getDownloadURL();
+      return url;
+    } catch (ex) {
+      //Const.TOAST( context,textToast:FirebaseFun.findTextToast("Please, upload the image"));
+    }
+  }
   static Future uploadImage({required XFile image, required String folder}) async {
     try {
       String path = basename(image.path);

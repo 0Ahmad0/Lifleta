@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,8 +11,14 @@ import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
+import '../../../../../common_widgets/constans.dart';
+import '../../../../../core/data/model/models.dart';
+import '../../../../../core/utils/app_constant.dart';
+import '../../../../auth/controller/provider/profile_provider.dart';
+import '../../../../create_report/presentation/controller/provider/report_provider.dart';
 import '../widgets/home_drawer.dart';
 import '../widgets/home_report_section.dart';
 import '../widgets/report_item.dart';
@@ -121,6 +128,60 @@ class _HomeEmployeePageState extends State<HomeEmployeePage> {
                 ],
               ),
             ));
+  }
+
+  Widget buildReports(BuildContext context,{required List<Report> currentReports,required List<Report> prevReports,required List<Report> newReports}){
+    if(_currentIndex==0)
+      return
+        buildListReport(context, reports: currentReports);
+    else if(_currentIndex==1)
+      return
+        buildListReport(context, reports: prevReports);
+    else
+      return buildListReport(context, reports: newReports);
+  }
+  Widget buildListReport(BuildContext context,{required List<Report> reports})
+  =>  reports.isEmpty?
+  Const.emptyWidget(context,text: "لايوجد بلاغات بعد")
+      : CarouselSlider(
+    options: CarouselOptions(
+        enlargeFactor: .2,
+        enlargeCenterPage: true,
+        enableInfiniteScroll: true,
+        height: MediaQuery.of(context).size.height / 2.5),
+    items: List.generate(
+      reports.length,
+          (index) => ReportItem(
+          report: reports[index],
+          title:reports[index].subject,// 'ارتفاع منسوب المياه ',
+          reportDate: DateFormat.yMd(/*'ar_SA' arabic format*/)
+              .add_jm()
+              .format(
+            reports[index].dateTime,
+          ),
+          type:reports[index].status, //index.isEven ? 'done' : '',
+          description:
+          reports[index].description,
+          // 'يوجد طفح مياه في محطة المروى عند مسجد ابو بكر الصديق مما سبب مشكلة في الطرق وازدحام في المحطة',
+          location: reports[index].location?.country??'',//'حي الأمير خالد',
+          reportId: reports[index].numReport),
+    ),
+  );
+
+  var getReports;
+
+
+  DateTime selectDate=DateTime.now();
+  getReportsFun()  {
+    getReports = FirebaseFirestore.instance.collection(AppConstants.collectionReport)
+        .where('reportType',isEqualTo: ReportType.None.name)
+        .snapshots();
+    return getReports;
+  }
+  @override
+  void initState() {
+    getReportsFun();
+    super.initState();
   }
 
   _showStatusReportAlertDialog(BuildContext context) {
@@ -610,28 +671,50 @@ class _HomeEmployeePageState extends State<HomeEmployeePage> {
           ),
           Expanded(
               child: FadeInUp(
-            child: CarouselSlider(
-              options: CarouselOptions(
-                  enlargeFactor: .2,
-                  enlargeCenterPage: true,
-                  enableInfiniteScroll: true,
-                  height: MediaQuery.of(context).size.height / 2.5),
-              items: List.generate(
-                10,
-                (index) => ReportItem(
-                    title: 'ارتفاع منسوب المياه ',
-                    reportDate: DateFormat.yMd(/*'ar_SA' arabic format*/)
-                        .add_jm()
-                        .format(
-                          DateTime.now(),
-                        ),
-                    type: index.isEven ? 'done' : '',
-                    description:
-                        'يوجد طفح مياه في محطة المروى عند مسجد ابو بكر الصديق مما سبب مشكلة في الطرق وازدحام في المحطة',
-                    location: 'حي الأمير خالد',
-                    reportId: '123846795'),
-              ),
-            ),
+            child:  ChangeNotifierProvider<ReportProvider>.value(
+                value: Provider.of<ReportProvider>(context),
+                child: Consumer<ReportProvider>(
+                    builder: (context, value, child)=>
+                        StreamBuilder<QuerySnapshot>(
+                          //prints the messages to the screen0
+                            stream: getReports,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return Const.SHOWLOADINGINDECATOR();
+                              } else if (snapshot.connectionState == ConnectionState.active) {
+                                if (snapshot.hasError) {
+                                  return const Text('Error');
+                                } else if (snapshot.hasData) {
+                                  _currentIndex=value.currentIndex;
+                                  Const.SHOWLOADINGINDECATOR();
+                                  value.reports.listReport.clear();
+                                  List<Report> currentReports=[];
+                                  List<Report> prevReports=[];
+                                  List<Report> newReports=[];
+                                  if (snapshot.data!.docs!.length > 0) {
+                                    value.reports =
+                                        Reports.fromJson(snapshot.data!.docs!);
+                                    for (Report report in value.reports.listReport) {
+                                      if ( report.status ==
+                                          StateReports.Processing.name)
+                                        currentReports.add(report);
+                                      else  if ( report.status ==
+                                          StateReports.Implemented.name)
+                                        prevReports.add(report);
+                                      else
+                                        newReports.add(report);
+                                    }
+
+                                  }
+                                  return buildReports(context,currentReports:currentReports,prevReports:prevReports, newReports: newReports);
+                                } else {
+                                  return const Text('Empty data');
+                                }
+                              } else {
+                                return Text('State: ${snapshot.connectionState}');
+                              }
+                            })))
+                ,
           )),
           SizedBox(
             height: 75.h,

@@ -3,12 +3,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lifleta/src/core/data/model/models.dart';
 import 'package:lifleta/src/core/routing/app_router.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
+import 'package:lifleta/src/features/create_report/presentation/controller/report_controller.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
+
+import '../../../create_report/presentation/controller/provider/report_provider.dart';
 
 class ReportItem extends StatelessWidget {
   const ReportItem({
@@ -17,6 +22,7 @@ class ReportItem extends StatelessWidget {
     required this.reportDate,
     required this.type,
     required this.description,
+    required this.report,
     required this.location, required this.reportId,
   });
 
@@ -26,6 +32,7 @@ class ReportItem extends StatelessWidget {
   final String reportId;
   final String description;
   final String location;
+  final Report report;
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +140,7 @@ class ReportItem extends StatelessWidget {
                   ],
                 ),
               ),
-              type == 'done' ?
+              type == StateReports.Implemented ?
               Expanded(child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -165,6 +172,7 @@ class ReportItem extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(12.r),
                               )),
                           onPressed: () {
+                            context.read<ReportProvider>().report=report;
                             goRouter.pushNamed(AppRoute.trackingReport.name);
                           },
                           child: Text(tr(LocaleKeys.home_tracking)),
@@ -239,7 +247,9 @@ class ReportItem extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(100.r),
                                 )),
-                            onPressed: () {},
+                            onPressed: () {
+                              ReportController(context: context).addNotifyReport(context, report: report);
+                            },
                             child: Text(
                               tr(LocaleKeys.home_send),
                               style: TextStyle(color: ColorManager.white),

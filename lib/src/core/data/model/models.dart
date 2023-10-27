@@ -38,6 +38,7 @@ class User {
   String? firstName;
   String? lastName;
   String? photoUrl;
+  String? rate;
   String email;
   String? phoneNumber;
   String password;
@@ -61,6 +62,7 @@ class User {
      this.lastName='',
     required this.email,
      this.phoneNumber,
+     this.rate,
     required this.password,
     required this.typeUser,
      this.photoUrl,
@@ -103,6 +105,7 @@ class User {
         // tokens: json["tokens"],
         description: (data['description']!=null) ? json["description"] : "",
         wallet: (data['wallet']!=null) ? json["wallet"] : 0,
+      rate: (data['rate']!=null) ? json["rate"] : null,
       disKm: json['disKm'],
       latitude: json['latitude'],
       longitude: json['longitude'],
@@ -127,6 +130,7 @@ class User {
     'gender': gender,
     'dateBirth':dateBirth!=null?Timestamp.fromDate(dateBirth!):dateBirth,
     'photoUrl': photoUrl,
+    'rate': rate,
     'description': description,
     'active': active,
     'band': band,
@@ -276,143 +280,92 @@ class TrainerInfo {
   };
 }
 
-//WalletChange
-class WalletChange {
-  String id;
-  String idUser;
-  String idChange;
-  String change;
-  num value;
-  DateTime dateTime;
-  bool notification;
-
-  WalletChange({
-    this.id="",
-    required this.idUser,
-     this.idChange='',
-     this.value=0,
-    required this.change,
-    required this.dateTime,
-    this.notification=false,
-  });
-
-  factory WalletChange.fromJson(json) {
-    return WalletChange(
-        id: json['id'],
-        idUser: json['idUser'],
-        idChange: json['idChange'],
-        change: json['change'],
-        value: json['value'],
-        notification: json['notification'],
-        dateTime: json['dateTime'].toDate());
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'idUser': idUser,
-      'idChange': idChange,
-      'change': change,
-      'value': value,
-      'notification': notification,
-      'dateTime': dateTime,
-    };
-  }
-  factory WalletChange.init(){
-    return WalletChange(idUser: '', change: '', dateTime: DateTime.now());
-  }
-}
-
-//Wallet
-class Wallet {
-  String id;
-  String idUser;
-  num value;
-  List<WalletChange> listWalletChange;
-
-  //DateTime date;
-  Wallet({
-    this.id="",
-    this.value=0,
-    required this.idUser,
-     required this.listWalletChange});
-
-  factory Wallet.fromJson(json) {
-    List<WalletChange> temp = [];
-    for (int i = 0; i < json['listWalletChange'].length; i++) {
-      WalletChange tempElement = WalletChange.fromJson(json['listWalletChange'][i]);
-      temp.add(tempElement);
-    }
-    return Wallet(
-        id: (json['id']=='')?json.id:json['id'],
-        idUser: json['idUser'],
-        value: json['value'],
-        listWalletChange: temp);
-  }
-
-  Map<String, dynamic> toJson() {
-    List<Map<String, dynamic>> temp = [];
-    for (var element in listWalletChange) {
-      temp.add(element.toJson());
-    }
-    return {
-      'id': id,
-      'idUser': idUser,
-      'value': value,
-      'listWalletChange': temp,
-    };
-  }
-  factory Wallet.init()=>Wallet(idUser: '',listWalletChange: []);
-}
 
 
 //Report
 class Report {
   String id;
   String idUser;
+  String idEmployee;
   String numReport;
-  String details;
+  String subject;
+  String description;
   String replay;
   DateTime dateTime;
+  List<String> files;
+  List<String> states;
+  String status;
+  String reportType;
+  Location? location;
   bool notificationAdmin;
   bool notificationUser;
   Report({
     this.id="",
      this.idUser='',
+     this.idEmployee='',
      this.numReport='',
      this.replay='',
-    required this.details,
+     this.location,
+    required this.status,
+    required this.reportType,
+    required this.description,
+    required this.subject,
     required this.dateTime,
+    required this.files,
+    required this.states,
      this.notificationUser=false,
      this.notificationAdmin=false,
   });
 
   factory Report.fromJson(json) {
+    List<String> listTemp1=[];
+    for(String temp in json['files'])
+      listTemp1.add(temp);
+
+    List<String> listTemp2=[];
+    for(String temp in json['states'])
+      listTemp2.add(temp);
     return Report(
         id: json['id'],
         idUser: json['idUser'],
-        details: json['details'],
+        subject: json['subject'],
+        idEmployee: json['idEmployee'],
+        description: json['description'],
         numReport: json['numReport'],
         replay: json['replay'],
+        status: json['status'],
+        reportType: json['reportType'],
+        files: listTemp1,
+        states: listTemp2,
         notificationAdmin: json['notificationAdmin'],
         notificationUser: json['notificationUser'],
+        location:json['location']==null?null: Location.fromJson(json['location']),
+
         dateTime: json['dateTime'].toDate());
   }
 
   Map<String, dynamic> toJson() {
+
     return {
       'id': id,
       'idUser': idUser,
-      'details': details,
+      'idEmployee': idEmployee,
+      'description': description,
+      'subject': subject,
       'replay': replay,
+      'status': status,
       'numReport': numReport,
       'notificationUser': notificationUser,
       'notificationAdmin': notificationAdmin,
       'dateTime': dateTime,
+      'files':files,
+      'states':states,
+      'reportType':reportType,
+      'location': location?.toJson()??null,
     };
   }
   factory Report.init(){
-    return Report(idUser: '', numReport: '', details: '', dateTime: DateTime.now());
+    return Report(idUser: '', numReport: '', dateTime: DateTime.now(), description: '', subject: '', files: [], states: [StateReports.Suspended.name], status: '${StateReports.Suspended.name}', reportType: ReportType.None.name);
   }
 }
 
@@ -446,6 +399,63 @@ class Reports {
     };
   }
   factory Reports.init()=>Reports(listReport: []);
+}
+
+//Location
+class Location {
+  String id;
+  String? suburb;
+  String? province;
+  String? state;
+  String? postcode;
+  String? country;
+  String? country_code;
+  num? latitude;
+  num? longitude;
+  Location({
+     this.id='',
+     this.suburb='',
+     this.province='',
+    this.state='',
+    this.postcode='',
+    this.country='',
+    this.country_code='',
+    this.latitude=0,
+    this.longitude=0,
+  });
+
+  factory Location.fromJson(json) {
+    var data;
+    if(Map<String,dynamic>().runtimeType!=json.runtimeType)
+      data=json.data();
+    else
+      data=json;
+    return Location(
+      id: json['id'],
+      suburb: json["suburb"],
+      province: json["province"],
+      state: json["state"],
+      postcode: json["postcode"],
+      country: json["country"],
+      country_code: json["country_code"],
+      latitude: json['latitude'],
+      longitude: json['longitude'],
+    );
+  }
+  factory Location.init(){
+    return Location(id: "",);
+  }
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'suburb': suburb,
+    'state': state,
+    'postcode': postcode,
+    'country': country,
+    'country_code': country_code,
+    'latitude': latitude,
+    'longitude': longitude,
+  };
 }
 
 //DateTrainer
@@ -914,6 +924,21 @@ enum TypeMessage{
   text,
   image,
   file,
+}
+enum StateStream{
+  Wait,
+  Empty,
+  Error
+}
+enum StateReports{
+  Suspended,
+  Processing,
+  Implemented
+}
+enum ReportType{
+  None,
+  Dreft,
+
 }
 /*
 flutter pub run easy_localization:generate -S "assets/translations/" -O "lib/translations"

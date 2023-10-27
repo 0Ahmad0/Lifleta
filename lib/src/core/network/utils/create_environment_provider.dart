@@ -2,13 +2,64 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:lifleta/src/core/routing/app_router.dart';
 
 
 
+import '../../../common_widgets/constans.dart';
+import '../../data/model/models.dart';
 import '../../utils/app_constant.dart';
 import 'firebase.dart';
 
 class CreateEnvironmentProvider with ChangeNotifier{
+
+
+  List<User> listEmployee=[
+    User(id: "",
+        uid: "",
+        name: "Employee",
+        email: "employee@gmail.com",
+        phoneNumber: "11",
+        password: "12345678",
+        typeUser: AppConstants.collectionEmployee,
+        photoUrl: "", gender: 'Male', dateBirth: DateTime.now(),active: true),
+
+    User(id: "",
+        uid: "",
+        name: "موظف",
+        email: "e@gmail.com",
+        phoneNumber: "22",
+        password: "12345678",
+        typeUser: AppConstants.collectionEmployee,
+        photoUrl: "", gender: 'Male', dateBirth: DateTime.now(),active: true),
+  ];
+  createEmployee(context,{int indexListEmployee=0}) async {
+    if(listEmployee.length<1){
+      return FirebaseFun.errorUser("a user is empty");
+    }
+    User user=listEmployee[indexListEmployee];
+    var result =await FirebaseFun.signup(email: user.email, password: user.password);
+    if(result['status']){
+        user.uid= result['body']?.uid;
+        result = await FirebaseFun.createUser(user: user);
+    }
+    print(result);
+    Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
+    return result;
+  }
+
+  createEmployees(context) async {
+    Const.loading(context);
+    var result;
+    if(listEmployee.length<1){
+      return FirebaseFun.errorUser("a list admin is empty");
+    }
+    for(int i=0;i<listEmployee.length;i++){
+      result =await createEmployee(context,indexListEmployee: i);
+    }
+    goRouter.pop();
+    return result;
+  }
 
   // List<User> listAdmin=[
   //   User(id: "",

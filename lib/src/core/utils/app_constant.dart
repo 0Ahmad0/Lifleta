@@ -18,5 +18,7 @@ class AppConstants {
   static String collectionUser = "User";
   static String collectionEmployee = "Employee";
   static String collectionVisitor = "Visitor";
+  static String collectionReport = "Report";
+  static String collectionNotification = "Notification ";
 
 }

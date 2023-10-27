@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:lifleta/src/common_widgets/constans.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
+import '../../core/routing/app_router.dart';
 import '/src/core/utils/color_manager.dart';
 
 class LocationPickerPage extends StatefulWidget {
@@ -24,7 +27,11 @@ class _LocationPickerPageState extends State<LocationPickerPage> {
     controller.dispose();
     super.dispose();
   }
-
+@override
+  void initState() {
+  controller;
+    super.initState();
+  }
   String? areaName;
 
   @override
@@ -33,15 +40,24 @@ class _LocationPickerPageState extends State<LocationPickerPage> {
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          OSMFlutter(
-            controller: controller,
-            initZoom: 12,
-            trackMyPosition: true,
-            minZoomLevel: 8,
-            maxZoomLevel: 18,
-            stepZoom: 1.0,
-            isPicker: true,
-          ),
+          Listener(
+            onPointerUp: (move) async {
+              Const.loading(context);
+              final GeoPoint selectedPoint = await controller.centerMap;
+               await getAreaName(selectedPoint.latitude, selectedPoint.longitude);
+              goRouter.pop();
+            },
+            child:  OSMFlutter(
+              controller: controller,
+              initZoom: 12,
+              trackMyPosition: true,
+              minZoomLevel: 8,
+              maxZoomLevel: 18,
+              stepZoom: 1.0,
+              isPicker: true,
+            ),
+          )
+         ,
           Positioned(
             top: AppSize.s50,
             child: SizedBox(
@@ -57,12 +73,23 @@ class _LocationPickerPageState extends State<LocationPickerPage> {
             padding: const EdgeInsets.all(12.0),
             child: ElevatedButton(
               onPressed: () async {
-                final GeoPoint selectedPoint = await controller.centerMap;
-                getAreaName(selectedPoint.latitude, selectedPoint.longitude);
+                goRouter.pop(areaName);
+                // final GeoPoint selectedPoint = await controller.centerMap;
+                // getAreaName(selectedPoint.latitude, selectedPoint.longitude);
               },
               child: const Icon(Icons.my_location),
             ),
           ),
+          // Padding(
+          //   padding: const EdgeInsets.all(12.0),
+          //   child: ElevatedButton(
+          //     onPressed: () async {
+          //       final GeoPoint selectedPoint = await controller.centerMap;
+          //       getAreaName(selectedPoint.latitude, selectedPoint.longitude);
+          //     },
+          //     child: const Icon(Icons.my_location),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -76,10 +103,11 @@ class _LocationPickerPageState extends State<LocationPickerPage> {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final address = data['address'];
-      final area = address['city'] ??
-          address['village'] ??
-          address['town'] ??
-          address['county'] ??
+      final area = address['suburb'] ??
+          address['municipality'] ??
+          address['province'] ??
+          address['state'] ??
+          address['country'] ??
           'غير معروف';
       print(address);
       setState(() {
