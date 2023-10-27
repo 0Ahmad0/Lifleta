@@ -1,14 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../../translations/locale_keys.g.dart';
-import '../../../../../core/data/local/storage.dart';
-import '../../../../../core/routing/app_router.dart';
 import '../../../../../core/utils/color_manager.dart';
 import '../../../../../core/utils/values_manager.dart';
-import '../../../../auth/controller/provider/profile_provider.dart';
 import 'drawer_item.dart';
 
 class HomeDrawer extends StatelessWidget {
@@ -18,12 +14,7 @@ class HomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      ChangeNotifierProvider<ProfileProvider>.value(
-          value: Provider.of<ProfileProvider>(context),
-          child: Consumer<ProfileProvider>(
-          builder: (context, profileProvider, child) =>
-      Drawer(
+    return Drawer(
       backgroundColor: ColorManager.primaryColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
       shadowColor: ColorManager.primaryColor,
@@ -59,8 +50,7 @@ class HomeDrawer extends StatelessWidget {
                     height: AppSize.s20,
                   ),
                   Text(
-                   '${profileProvider.user.name}',
-                 //   'دانة منصور الحربي',
+                    'دانة منصور الحربي',
                     maxLines: 2,
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -74,7 +64,7 @@ class HomeDrawer extends StatelessWidget {
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_id),
                     icon: Icons.person_outline,
-                    subTitle: '${profileProvider.user.phoneNumber}'//'54987354',
+                    subTitle: '54987354',
                   ),
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_phone),
@@ -96,10 +86,6 @@ class HomeDrawer extends StatelessWidget {
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_log_out),
                     icon: Icons.logout,
-                    onTap:() async {
-                      await AppStorage.depose();
-                      goRouter.pushReplacementNamed(AppRoute.splash.name);
-                    },
                   ),
                 ],
               ),
@@ -107,6 +93,6 @@ class HomeDrawer extends StatelessWidget {
           ),
         ),
       ),
-    )));
+    );
   }
 }
