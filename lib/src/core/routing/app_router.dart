@@ -39,21 +39,6 @@ final goRouter = GoRouter(
       name: AppRoute.splash.name,
       builder: (context, state) => SplashPage(),
       routes: [
-        GoRoute(
-          path: 'selectedLanguage',
-          name: AppRoute.selectedLanguage.name,
-          builder: (context, state) => SelectedLanguagePage(),
-        ),
-        GoRoute(
-          path: 'logIn',
-          name: AppRoute.logIn.name,
-          builder: (context, state) => LoginPage(),
-        ),
-        GoRoute(
-          path: 'signUp',
-          name: AppRoute.signUp.name,
-          builder: (context, state) => SignUpPage(),
-        )
         // GoRoute(
         //     path: 'product/:id',
         //     name: AppRoute.product.name,
@@ -99,46 +84,62 @@ final goRouter = GoRouter(
       ],
     ),
     GoRoute(
+      path: '/signUp',
+      name: AppRoute.signUp.name,
+      builder: (context, state) => SignUpPage(),
+    ),
+
+    GoRoute(
+      path: '/logIn',
+      name: AppRoute.logIn.name,
+      builder: (context, state) => LoginPage(),
+    ),
+
+    GoRoute(
+      path: '/selectedLanguage',
+      name: AppRoute.selectedLanguage.name,
+      builder: (context, state) => SelectedLanguagePage(),
+    ),
+    GoRoute(
+      path: '/createReport',
+      name: AppRoute.createReport.name,
+      builder: (context, state) {
+        return CreateReportPage(
+          report: state.extra as Report?,
+        );
+      },
+    ),
+    GoRoute(
+      path: '/drafts',
+      name: AppRoute.drafts.name,
+      builder: (context, state) => DraftsPage(),
+    ),
+
+    GoRoute(
         path: '/home',
         name: AppRoute.home.name,
         builder: (context, state) => HomePage(),
-        routes: [
-          GoRoute(
-            path: 'createReport',
-            name: AppRoute.createReport.name,
-            builder: (context,  state) {
-              return CreateReportPage(
-              report: state.extra as Report?,
-            );
-              },
-          ),
-          GoRoute(
-            path: 'drafts',
-            name: AppRoute.drafts.name,
-            builder: (context, state) => DraftsPage(),
-          ),
-          GoRoute(
-            path: 'profilePage',
-            name: AppRoute.profilePage.name,
-            builder: (context, state) => ProfilePage(),
-          ),
-          GoRoute(
-            path: 'notification',
-            name: AppRoute.notification.name,
-            builder: (context, state) => NotificationPage(),
-          ),
-          GoRoute(
-            path: 'trackingReport',
-            name: AppRoute.trackingReport.name,
-            builder: (context, state) => TrackingReportPage(),
-          ),
-        ]),
+        routes: []),
+    GoRoute(
+      path: '/profilePage',
+      name: AppRoute.profilePage.name,
+      builder: (context, state) => ProfilePage(),
+    ),
+    GoRoute(
+      path: '/notification',
+      name: AppRoute.notification.name,
+      builder: (context, state) => NotificationPage(),
+    ),
+    GoRoute(
+      path: '/trackingReport',
+      name: AppRoute.trackingReport.name,
+      builder: (context, state) => TrackingReportPage(),
+    ),
     GoRoute(
         path: '/homeEmployee',
         name: AppRoute.homeEmployee.name,
         builder: (context, state) => HomeEmployeePage(),
         routes: [
-
           // GoRoute(
           //   path: 'createReport',
           //   name: AppRoute.createReport.name,
@@ -155,6 +156,5 @@ final goRouter = GoRouter(
           //   builder: (context, state) => TrackingReportPage(),
           // ),
         ]),
-
   ],
 );
