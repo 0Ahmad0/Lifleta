@@ -26,7 +26,8 @@ class CodegenLoader extends AssetLoader{
     "arabic": "العربية",
     "english": "English",
     "login_as_employee": "دخول الموظف",
-    "login_as_user": "دخول المواطن"
+    "login_as_user": "دخول المواطن",
+    "about": "رسالتنا حماية حياة وممتلكات المواطنين وتعزيز السلامة العامة من خلال إنشاء نظام انذار مبكر للفيضانات وتوفير بيئة صحية من خلال الاستجابة السريعة لبلاغات المواطنين ومتابعتها.\nرؤيتنا توفير مجتمع متعاون وبيئة صحية وأمنة عن طريق حل مشكلة الفيضانات وتحقيق استجابة سريعة للسلطات والمواطنين.\n"
   },
   "not_found": {
     "not_found": "الصفحة غير موجودة",
@@ -119,7 +120,8 @@ static const Map<String,dynamic> en = {
     "arabic": "العربية",
     "english": "English",
     "login_as_employee": "Login as Employee",
-    "login_as_user": "Login as User"
+    "login_as_user": "Login as User",
+    "about": "Our mission is to protect the lives and property of citizens and enhance public safety by establishing an early warning system for floods and providing a healthy environment by quickly responding to citizens’ reports and following them up.\nOur vision is to provide a cooperative society and a healthy and safe environment by solving the flood problem and achieving a rapid response to the authorities and citizens."
   },
   "login": {
     "login": "Login",

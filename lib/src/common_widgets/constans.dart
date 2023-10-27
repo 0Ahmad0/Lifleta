@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:get/get.dart';
-//import 'package:get/get_core/src/get_main.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lottie/lottie.dart';
@@ -17,8 +15,8 @@ class Const{
         return Center(
           child: Container(
               alignment: Alignment.center,
-              width:  MediaQuery.sizeOf(context).width  * 0.2,
-              height: MediaQuery.sizeOf(context).width * 0.2,
+              width:  MediaQuery.of(context).size.width  * 0.2,
+              height: MediaQuery.of(context).size.width * 0.2,
               decoration: BoxDecoration(
                   color: ColorManager.white,
                   borderRadius: BorderRadius.circular(8)),
@@ -58,7 +56,7 @@ class Const{
         children: [
           Lottie.asset(AssetsManager.emptyIMG),
           Text(text,style: TextStyle(
-              fontSize: MediaQuery.sizeOf(context).width * 0.08,
+              fontSize: MediaQuery.of(context).size.width * 0.08,
               fontWeight: FontWeight.bold
           ),),
         ],

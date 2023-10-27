@@ -96,7 +96,6 @@ class SelectedLanguagePage extends StatelessWidget {
                 context.read<AuthProvider>().typeUser =
                     AppConstants.collectionUser;
                 goRouter.pushReplacementNamed(AppRoute.logIn.name);
-               
               },
               child: Text(
                 tr(LocaleKeys.selected_language_login_as_user),
@@ -140,32 +139,26 @@ class SelectedLanguagePage extends StatelessWidget {
         builder: (_) {
           return Container(
             padding: const EdgeInsets.all(AppPadding.p12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const CircleAvatar(
-                    child: Icon(Icons.close),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const CircleAvatar(
+                      child: Icon(Icons.close),
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: ListView(
-                    children: [
-                      const Text(
-                        'نحن تطبيق Lifleta نهدف إلى بمكن استبدال هذا النص هذا النص هذا النص هذا النص هذا النص هذا النص هذا النص هذا النص هذا النص هذا النص هذا النص'
-                        ' النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص'
-                        ' النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص'
-                        ' النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص'
-                        ' النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص'
-                        ' النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص النص هذا النص'
-                        ' النص هذا النص',
-                        style: TextStyle(height: 1.5),
-                      )
-                    ],
-                  ),
-                )
-              ],
+                  Text(
+                    tr(LocaleKeys.selected_language_about),
+                    style: TextStyle(
+                      height: 1.5,
+                      color: ColorManager.primaryColor,
+                    ),
+                  )
+                ],
+              ),
             ),
           );
         });
