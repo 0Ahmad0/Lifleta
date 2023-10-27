@@ -329,7 +329,7 @@ class _ReportItemState extends State<ReportItem> {
                             )),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(
-                              builder: (_)=>CreateReportPage(/*isEmployee: true,*/)
+                              builder: (_)=>CreateReportPage(isEmployee: true,)
                           ));
                         },
                         child: Text(tr(LocaleKeys.home_show)),

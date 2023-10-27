@@ -62,6 +62,7 @@
     "cancel": "إلغاء",
     "more": "المزيد...",
     "show": "عرض",
+    "reject": "رفض",
     "enter_the_reason_refusing_report": "فضلاً أدخل سبب رفض قبول البلاغ",
     "please_select_status_report": "فضلاً أختر حالة تنفيذ البلاغ",
     "update": "تحديث"
@@ -77,7 +78,8 @@
     "location": "الموقع",
     "select_location": "اضغط لتحديد الموقع",
     "send": "إرسال",
-    "save_draft": "مسودة"
+    "save_draft": "مسودة",
+    "accept_report": "قبول"
   },
   "drawer": {
     "id": "الرقم التعريفي",

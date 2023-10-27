@@ -57,6 +57,7 @@ abstract class  LocaleKeys {
   static const home_cancel = 'home.cancel';
   static const home_more = 'home.more';
   static const home_show = 'home.show';
+  static const home_reject = 'home.reject';
   static const home_enter_the_reason_refusing_report = 'home.enter_the_reason_refusing_report';
   static const home_please_select_status_report = 'home.please_select_status_report';
   static const home_update = 'home.update';
@@ -72,6 +73,7 @@ abstract class  LocaleKeys {
   static const create_report_select_location = 'create_report.select_location';
   static const create_report_send = 'create_report.send';
   static const create_report_save_draft = 'create_report.save_draft';
+  static const create_report_accept_report = 'create_report.accept_report';
   static const create_report = 'create_report';
   static const drawer_id = 'drawer.id';
   static const drawer_phone = 'drawer.phone';

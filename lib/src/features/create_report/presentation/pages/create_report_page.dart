@@ -17,7 +17,8 @@ import '../../../../core/utils/assets_manager.dart';
 import '../../../location_picker/location_picker_page.dart';
 
 class CreateReportPage extends StatefulWidget {
-  const CreateReportPage({super.key});
+  final bool isEmployee;
+  const CreateReportPage({super.key, this.isEmployee = false});
 
   @override
   State<CreateReportPage> createState() => _CreateReportPageState();
@@ -29,25 +30,36 @@ class _CreateReportPageState extends State<CreateReportPage>
   final reportDescriptionController = TextEditingController();
   final reportDateController = TextEditingController();
   final reportLocationController = TextEditingController();
+  final refuseReportController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   List<File> files = [];
   Location? location;
   late ReportController reportController;
-
   @override
   void initState() {
     reportController= ReportController(context: context);
-    // TODO: implement initState
+
+    if(widget.isEmployee){
+      files.addAll([File(''),File('')]);
+      reportSubjectController.text = 'ابلاغ عن ابلاغ عن';
+      reportDescriptionController.text = 'وصف وصف وصف وصف يوجد هناك اشياء ...................';
+      reportDateController.text = '2023/8/5';
+      reportLocationController.text = 'حي الاميرة نورة';
+    }
     super.initState();
   }
+
   @override
   void dispose() {
     reportSubjectController.dispose();
     reportDescriptionController.dispose();
     reportDateController.dispose();
     reportLocationController.dispose();
+    refuseReportController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -365,7 +377,9 @@ class _CreateReportPageState extends State<CreateReportPage>
                                 }
                               },
                               child: Text(
-                                tr(LocaleKeys.create_report_send),
+                                widget.isEmployee
+                                    ?tr(LocaleKeys.create_report_accept_report)
+                                    :tr(LocaleKeys.create_report_send),
                                 style: TextStyle(color: ColorManager.white),
                               ))),
                     ),
@@ -380,18 +394,24 @@ class _CreateReportPageState extends State<CreateReportPage>
                           child: TextButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-
-                                  await reportController.addReport(context,
-                                      description: reportDescriptionController.value.text,
-                                      subject: reportSubjectController.value.text,
-                                      dateTime: DateFormat.yMd().add_jm().parse(reportDateController.value.text),
-                                      reportType: ReportType.Dreft.name,
-                                      location: Location(country:reportLocationController.value.text ),
-                                      files: files);
+                                  if(true){
+                                    _showRefuseReportAlertDialog(context);
+                                  }else{
+                                    await reportController.addReport(context,
+                                        description: reportDescriptionController.value.text,
+                                        subject: reportSubjectController.value.text,
+                                        dateTime: DateFormat.yMd().add_jm().parse(reportDateController.value.text),
+                                        reportType: ReportType.Dreft.name,
+                                        location: Location(country:reportLocationController.value.text ),
+                                        files: files);
+                                  }
                                 }
                               },
                               child: Text(
-                                tr(LocaleKeys.create_report_save_draft),
+                                //ToDo : Rejected statment
+                                0.isEven?
+                                tr(LocaleKeys.home_reject)
+                                :tr(LocaleKeys.create_report_save_draft),
                                 style: TextStyle(color: ColorManager.black),
                               ))),
                     )
@@ -403,6 +423,86 @@ class _CreateReportPageState extends State<CreateReportPage>
         ),
       ),
     );
+  }
+  _showRefuseReportAlertDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          contentPadding: EdgeInsets.all(AppPadding.p12),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                tr(LocaleKeys.home_enter_the_reason_refusing_report),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: ColorManager.primaryColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(AppPadding.p16),
+                decoration: BoxDecoration(
+                    color: ColorManager.grey.shade300,
+                    borderRadius: BorderRadius.circular(10.r)),
+                child: TextFormField(
+                  textInputAction: TextInputAction.newline,
+                  keyboardType: TextInputType.multiline,
+                  controller: refuseReportController,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                  minLines: 3,
+                  maxLines: 5,
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s20,
+              ),
+              Row(
+                children: [
+                  const SizedBox(
+                    width: AppSize.s8,
+                  ),
+                  Expanded(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: ColorManager.primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100.r),
+                            )),
+                        onPressed: () {},
+                        child: Text(
+                          tr(LocaleKeys.home_send),
+                          style: TextStyle(color: ColorManager.white),
+                        ),
+                      )),
+                  const SizedBox(
+                    width: AppSize.s8,
+                  ),
+                  Expanded(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: ColorManager.grey,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100.r),
+                            )),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          tr(LocaleKeys.home_cancel),
+                          style: TextStyle(color: ColorManager.black),
+                        ),
+                      )),
+                  const SizedBox(
+                    width: AppSize.s8,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ));
   }
 
   Future<DateTime?> _selectReportDate(BuildContext context) {

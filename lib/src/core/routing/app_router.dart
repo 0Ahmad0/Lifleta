@@ -5,6 +5,7 @@ import 'package:lifleta/src/features/home/presentation/pages/home_page.dart';
 import 'package:lifleta/src/features/notification/presentation/pages/notification_page.dart';
 import 'package:lifleta/src/features/select_language/presentation/pages/selected_langauge_page.dart';
 import 'package:lifleta/src/features/tracking_report/presentation/pages/tracking_report_page.dart';
+import '../../features/drafts/drafts_page.dart';
 import '/src/features/auth/presentation/pages/login_page.dart';
 import '/src/features/auth/presentation/pages/sign_up_page.dart';
 import '/src/features/splash/presentation/pages/splash_page.dart';
@@ -19,7 +20,8 @@ enum AppRoute {
   createReport,
   notification,
   trackingReport,
-  homeEmployee
+  homeEmployee,
+  drafts
 }
 
 final goRouter = GoRouter(
@@ -101,6 +103,11 @@ final goRouter = GoRouter(
             path: 'createReport',
             name: AppRoute.createReport.name,
             builder: (context, state) => CreateReportPage(),
+          ),
+          GoRoute(
+            path: 'drafts',
+            name: AppRoute.drafts.name,
+            builder: (context, state) => DraftsPage(),
           ),
           GoRoute(
             path: 'notification',
