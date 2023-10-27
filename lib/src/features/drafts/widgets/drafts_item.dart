@@ -21,64 +21,77 @@ class DraftItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         goRouter.goNamed(AppRoute.createReport.name);
       },
-      child: Container(
-        decoration: BoxDecoration(
-            color: ColorManager.primaryColor,
-            borderRadius: BorderRadius.circular(10.r),
-            boxShadow: [
-              BoxShadow(
-                  color: ColorManager.black.withOpacity(.4),
-                  blurRadius: 8,
-                  offset: Offset(0, 6.sp),
-                  spreadRadius: 2)
-            ]),
-        child: Container(
-          margin: EdgeInsets.only(
-            right: context.locale.languageCode == 'ar' ? 10.sp : 0.0,
-            left: context.locale.languageCode == 'en' ? 10.sp : 0.0,
-          ),
-          decoration: BoxDecoration(
-            color: ColorManager.white,
-            borderRadius: BorderRadius.circular(10.r),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ListTile(
-                leading: Icon(
-                  Icons.bookmark_rounded,
-                  color: ColorManager.primaryColor,
-                ),
-                title: Text(
-                  title,
-                  style: TextStyle(
-                    overflow: TextOverflow.ellipsis,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Divider(
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
                 color: ColorManager.primaryColor,
+                borderRadius: BorderRadius.circular(10.r),
+                boxShadow: [
+                  BoxShadow(
+                      color: ColorManager.black.withOpacity(.4),
+                      blurRadius: 8,
+                      offset: Offset(0, 6.sp),
+                      spreadRadius: 2)
+                ]),
+            child: Container(
+              margin: EdgeInsets.only(
+                right: context.locale.languageCode == 'ar' ? 10.sp : 0.0,
+                left: context.locale.languageCode == 'en' ? 10.sp : 0.0,
               ),
-              ListTile(
-                leading: Icon(
-                  Icons.location_on,
-                  color: ColorManager.primaryColor,
-                ),
-                title: Text(
-                  location,
-                  style: TextStyle(
-                    overflow: TextOverflow.ellipsis,
-                    fontWeight: FontWeight.bold,
+              decoration: BoxDecoration(
+                color: ColorManager.white,
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ListTile(
+                    leading: Icon(
+                      Icons.bookmark_rounded,
+                      color: ColorManager.primaryColor,
+                    ),
+                    title: Text(
+                      title,
+                      style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
+                  Divider(
+                    color: ColorManager.primaryColor,
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.location_on,
+                      color: ColorManager.primaryColor,
+                    ),
+                    title: Text(
+                      location,
+                      style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          Positioned(
+            right: context.locale.languageCode == 'en' ? 0 : null,
+            left: context.locale.languageCode == 'ar' ? 0 : null,
+            top: 0,
+            child: Icon(
+              Icons.bookmark,
+              size: 40.sp,
+            ),
+          ),
+        ],
       ),
     );
   }
