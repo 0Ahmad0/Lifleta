@@ -5,6 +5,7 @@ import 'package:lifleta/src/core/routing/app_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../../translations/locale_keys.g.dart';
+import '../../../../../core/data/local/storage.dart';
 import '../../../../../core/utils/color_manager.dart';
 import '../../../../../core/utils/values_manager.dart';
 import '../../../../auth/controller/provider/profile_provider.dart';
@@ -143,8 +144,9 @@ class HomeDrawer extends StatelessWidget {
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_log_out),
                     icon: Icons.logout,
-                    onTap: (){
-
+                    onTap: () async {
+                      await AppStorage.depose();
+                      goRouter.pushReplacementNamed(AppRoute.selectedLanguage.name);
                     },
                   ),
                 ],
