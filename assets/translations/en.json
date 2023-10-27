@@ -39,6 +39,8 @@
     "id": "ID",
     "enter_id": "Enter your Id",
     "password": "Password",
+    "phone": "Phone number",
+    "enter_phone": "Enter phone number",
     "enter_Password": "***********",
     "confirm_password": "Confirm password",
     "have_account": "Are you have account? ",

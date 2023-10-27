@@ -24,6 +24,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final nameController = TextEditingController();
   final idController = TextEditingController();
   final emailController = TextEditingController();
+  final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -42,6 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
     passwordController.dispose();
     confirmPasswordController.dispose();
     emailController.dispose();
+    phoneController.dispose();
     super.dispose();
   }
 
@@ -126,6 +128,19 @@ class _SignUpPageState extends State<SignUpPage> {
                   controller: idController,
                   hintText: tr(LocaleKeys.signup_enter_id),
                   iconData: Icons.credit_card_sharp,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: AppSize.s20,
+            ),
+            FadeInLeft(
+              child: TextFieldWithTitle(
+                title: tr(LocaleKeys.signup_phone),
+                child: TextFiledApp(
+                  controller: phoneController,
+                  hintText: tr(LocaleKeys.signup_enter_phone),
+                  iconData: Icons.phone_android_outlined,
                 ),
               ),
             ),
