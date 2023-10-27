@@ -58,6 +58,7 @@ abstract class  LocaleKeys {
   static const home_more = 'home.more';
   static const home_show = 'home.show';
   static const home_reject = 'home.reject';
+  static const home_drafts = 'home.drafts';
   static const home_enter_the_reason_refusing_report = 'home.enter_the_reason_refusing_report';
   static const home_please_select_status_report = 'home.please_select_status_report';
   static const home_update = 'home.update';

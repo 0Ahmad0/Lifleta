@@ -78,6 +78,7 @@ class CodegenLoader extends AssetLoader{
     "more": "المزيد...",
     "show": "عرض",
     "reject": "رفض",
+    "drafts": "المسودات",
     "enter_the_reason_refusing_report": "فضلاً أدخل سبب رفض قبول البلاغ",
     "please_select_status_report": "فضلاً أختر حالة تنفيذ البلاغ",
     "update": "تحديث"
@@ -169,6 +170,7 @@ static const Map<String,dynamic> en = {
     "more": "More...",
     "show": "Show",
     "reject": "Reject",
+    "drafts": "Drafts",
     "enter_the_reason_refusing_report": "Please enter the reason for refusing to accept the report",
     "please_select_status_report": "Please select the status of execution of the report ",
     "update": "Update"
