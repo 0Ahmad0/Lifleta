@@ -81,7 +81,7 @@ class HomeDrawer extends StatelessWidget {
                     title: tr(LocaleKeys.drawer_drafts),
                     icon: Icons.bookmark_outline_outlined,
                     onTap: (){
-                      goRouter.goNamed(name)
+                      goRouter.goNamed(AppRoute.drafts.name);
                     },
                   ),
                   Container(
