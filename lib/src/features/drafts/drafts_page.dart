@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
@@ -37,7 +38,7 @@ class _DraftsPageState extends State<DraftsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.home_drafts),
+        title: Text(tr(LocaleKeys.home_drafts)),
       ),
       body:
       StreamBuilder<QuerySnapshot>(
