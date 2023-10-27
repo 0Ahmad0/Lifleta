@@ -41,7 +41,8 @@ class ReportController{
            ,location: location, files: [], states: [StateReports.Suspended.name], status: StateReports.Suspended.name, reportType: reportType??ReportType.None.name),
        files: files);
        if(result['status']){
-           context.read<NotificationProvider>().addNotification(context, notification:
+
+         NotificationProvider().addNotification(context, notification:
            Notification(idUser: AppConstants.collectionEmployee, subtitle: 'add new report number ${numReport}', dateTime: DateTime.now(), title: 'New Report', message: ''));
 
          goRouter.pop();
@@ -56,7 +57,7 @@ class ReportController{
     var result=await reportProvider.updateReport(context,report: report,files:files);
      goRouter.pop();
     if(result['status']){
-      //  goRouter.pop();
+        goRouter.pop();
       //  goRouter.pop();
     }
     Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
@@ -69,10 +70,10 @@ class ReportController{
     var result=await reportProvider.updateReport(context,report: report,files:[]);
     goRouter.pop();
     if(result['status']){
-      context.read<NotificationProvider>().addNotification(context, notification:
+      NotificationProvider().addNotification(context, notification:
       Notification(idUser: report.idUser, subtitle: '${report.states} report number ${report.numReport}', dateTime: DateTime.now(), title: 'Change State Report', message: ''));
 
-      //  goRouter.pop();
+        goRouter.pop();
       //  goRouter.pop();
     }
     else{
@@ -84,12 +85,12 @@ class ReportController{
   }
   addNotifyReport(context,{ required Report report}) async {
     Const.loading(context);
-    var result=   context.read<NotificationProvider>().addNotification(context, notification:
-    Notification(idUser: AppConstants.collectionEmployee, subtitle: 'You have notify report number ${report.numReport}', dateTime: DateTime.now(), title: 'Notify Report', message: ''));
+    var result=   await NotificationProvider().addNotification(context, notification:
+    Notification(idUser: AppConstants.collectionEmployee, subtitle: 'تم ارسال تنبيه بتأخير التقرير ذو الرقم ${report.numReport}', dateTime: DateTime.now(), title: 'تنبيه تأخير', message: ''));
     goRouter.pop();
     if(result['status']){
 
-      //  goRouter.pop();
+        goRouter.pop();
       //  goRouter.pop();
     }
     Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
@@ -99,6 +100,7 @@ class ReportController{
     Const.loading(context);
     await reportProvider.deleteReport(context,report: report);
      goRouter.pop();
+    goRouter.pop();
   }
 
   genOrderId(){

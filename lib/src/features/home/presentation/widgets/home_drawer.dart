@@ -80,7 +80,7 @@ class HomeDrawer extends StatelessWidget {
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_phone),
                     icon: Icons.phone_enabled_outlined,
-                    subTitle: '052664855',
+                    subTitle: profileProvider.user.number??'052664855',
                   ),
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_edit_profile),
@@ -92,6 +92,9 @@ class HomeDrawer extends StatelessWidget {
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_drafts),
                     icon: Icons.bookmark_outline_outlined,
+                    onTap: (){
+                      goRouter.goNamed(AppRoute.drafts.name);
+                    },
                   ),
                   Container(
                     width: double.infinity,

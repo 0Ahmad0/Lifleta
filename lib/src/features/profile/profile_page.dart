@@ -82,15 +82,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                       name: value.user.name,
                                       radius: size.width / 5,
                                       fontSize: size.width / 5,
-                                      backgroundColor: ColorManager.grey,
-                                      textColor: ColorManager.primaryColor,
+                                      backgroundColor: ColorManager.primaryColor,
+                                      textColor: ColorManager.white,
                                     ),
                                     errorWidget: WidgetProfilePicture(
                                       name: value.user.name,
                                       radius: size.width / 5,
                                       fontSize: size.width / 5,
-                                      backgroundColor: ColorManager.success,
-                                      textColor: ColorManager.primaryColor,
+                                      backgroundColor: ColorManager.primaryColor,
+                                      textColor: ColorManager.white,
                                     ),
                                   )
                                   )
@@ -208,7 +208,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 20.0,
                             ),
                             TextFiledApp(
-                              iconData: Icons.phone_android_outlined,
+                              iconData: Icons.credit_card_sharp,
                               controller: value.phoneNumber,
                             ),
                             const SizedBox(
@@ -216,7 +216,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             TextFiledApp(
                               iconData: Icons.phone_android_outlined,
-                              controller: value.phoneNumber,
+                              controller: value.number,
                             ),
 
                           ],

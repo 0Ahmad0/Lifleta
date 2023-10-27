@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lifleta/src/core/data/model/models.dart';
 import 'package:lifleta/src/core/routing/app_router.dart';
 import 'package:readmore/readmore.dart';
 
@@ -12,9 +13,10 @@ class DraftItem extends StatelessWidget {
   const DraftItem({
     super.key,
     required this.title,
-    required this.location,
+    required this.location, required this.report,
   });
 
+  final Report report;
   final String title;
   final String location;
 
@@ -22,7 +24,7 @@ class DraftItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        goRouter.goNamed(AppRoute.createReport.name);
+        goRouter.goNamed(AppRoute.createReport.name,extra: report);
       },
       child: Stack(
         children: [

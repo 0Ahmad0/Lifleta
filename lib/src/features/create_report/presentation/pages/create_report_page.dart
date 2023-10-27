@@ -7,18 +7,21 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lifleta/src/common_widgets/custom_text_filed.dart';
+import 'package:lifleta/src/core/utils/app_constant.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
+import 'package:lifleta/src/features/auth/controller/provider/profile_provider.dart';
 import 'package:lifleta/src/features/create_report/presentation/controller/report_controller.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/data/model/models.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../location_picker/location_picker_page.dart';
 
 class CreateReportPage extends StatefulWidget {
-  final bool isEmployee;
-  const CreateReportPage({super.key, this.isEmployee = false});
+  final Report? report;
+  const CreateReportPage({super.key,this.report});
 
   @override
   State<CreateReportPage> createState() => _CreateReportPageState();
@@ -36,16 +39,17 @@ class _CreateReportPageState extends State<CreateReportPage>
   List<File> files = [];
   Location? location;
   late ReportController reportController;
+  late bool isEmployee=false;
   @override
   void initState() {
     reportController= ReportController(context: context);
-
-    if(widget.isEmployee){
-      files.addAll([File(''),File('')]);
-      reportSubjectController.text = 'ابلاغ عن ابلاغ عن';
-      reportDescriptionController.text = 'وصف وصف وصف وصف يوجد هناك اشياء ...................';
-      reportDateController.text = '2023/8/5';
-      reportLocationController.text = 'حي الاميرة نورة';
+    isEmployee=Provider.of<ProfileProvider>(context,listen: false).user.typeUser==AppConstants.collectionEmployee;
+    if(widget.report!=null){
+      files.addAll([File('')]);
+      reportSubjectController.text = widget.report!.subject;//'ابلاغ عن ابلاغ عن';
+      reportDescriptionController.text =widget.report!.description;// 'وصف وصف وصف وصف يوجد هناك اشياء ...................';
+      reportDateController.text =DateFormat.yMd().add_Hm().format(widget.report!.dateTime) ;// '2023/8/5';
+      reportLocationController.text =widget.report!.location?.country??'';// 'حي الاميرة نورة';
     }
     super.initState();
   }
@@ -63,6 +67,7 @@ class _CreateReportPageState extends State<CreateReportPage>
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
@@ -102,6 +107,7 @@ class _CreateReportPageState extends State<CreateReportPage>
                 ),
                 FadeInUp(
                   child: TextFormField(
+                    readOnly: isEmployee,
                     validator: (value) {
                       if (value!.trim().isEmpty) {
                         return tr(LocaleKeys.text_filed_field_required);
@@ -140,6 +146,7 @@ class _CreateReportPageState extends State<CreateReportPage>
                     child: TextFormField(
                       readOnly: true,
                       onTap: () {
+                        if(!isEmployee)
                         _selectReportDate(context).then((selectedDate) {
                           if (selectedDate != null) {
                             reportDateController.text =
@@ -184,6 +191,7 @@ class _CreateReportPageState extends State<CreateReportPage>
                 ),
                 FadeInUp(
                   child: TextFormField(
+                    readOnly: isEmployee,
                     validator: (value) {
                       if (value!.trim().isEmpty) {
                         return tr(LocaleKeys.text_filed_field_required);
@@ -233,30 +241,33 @@ class _CreateReportPageState extends State<CreateReportPage>
                     child: StatefulBuilder(builder: (context, setStateFiles) {
                       return Row(
                         children: [
-                          TextButton(
-                            onPressed: () async {
-                              FilePickerResult? result = await FilePicker
-                                  .platform
-                                  .pickFiles(allowMultiple: true);
+                          Visibility(
+                            visible: !isEmployee,
+                            child: TextButton(
+                              onPressed: () async {
+                                FilePickerResult? result = await FilePicker
+                                    .platform
+                                    .pickFiles(allowMultiple: true);
 
-                              if (result != null) {
-                                files = result.paths
-                                    .map((path) => File(path!))
-                                    .toList();
-                                setStateFiles(() {});
-                              } else {
-                                // User canceled the picker
-                              }
-                            },
-                            child: Container(
-                              width: 80.sp,
-                              height: 80.sp,
-                              decoration: BoxDecoration(
-                                  color: ColorManager.white,
-                                  borderRadius: BorderRadius.circular(10.r)),
-                              child: Icon(
-                                Icons.add,
-                                size: 30.sp,
+                                if (result != null) {
+                                  files = result.paths
+                                      .map((path) => File(path!))
+                                      .toList();
+                                  setStateFiles(() {});
+                                } else {
+                                  // User canceled the picker
+                                }
+                              },
+                              child: Container(
+                                width: 80.sp,
+                                height: 80.sp,
+                                decoration: BoxDecoration(
+                                    color: ColorManager.white,
+                                    borderRadius: BorderRadius.circular(10.r)),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 30.sp,
+                                ),
                               ),
                             ),
                           ),
@@ -280,28 +291,31 @@ class _CreateReportPageState extends State<CreateReportPage>
                                             child:
                                                 const Icon(Icons.file_present),
                                           ),
-                                          Positioned(
-                                            left: 5.sp,
-                                            top: 12.sp,
-                                            child: GestureDetector(
-                                                onTap: () {
-                                                  files.removeAt(index);
+                                          Visibility(
+                                            visible: !isEmployee,
+                                            child: Positioned(
+                                              left: 5.sp,
+                                              top: 12.sp,
+                                              child: GestureDetector(
+                                                  onTap: () {
+                                                    files.removeAt(index);
 
-                                                  setStateFiles(() {});
-                                                },
-                                                child: Container(
-                                                  alignment: Alignment.center,
-                                                  padding: EdgeInsets.all(1.sp),
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      color:
-                                                          ColorManager.error),
-                                                  child: Icon(
-                                                    Icons.close,
-                                                    size: 14.sp,
-                                                    color: ColorManager.white,
-                                                  ),
-                                                )),
+                                                    setStateFiles(() {});
+                                                  },
+                                                  child: Container(
+                                                    alignment: Alignment.center,
+                                                    padding: EdgeInsets.all(1.sp),
+                                                    decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color:
+                                                            ColorManager.error),
+                                                    child: Icon(
+                                                      Icons.close,
+                                                      size: 14.sp,
+                                                      color: ColorManager.white,
+                                                    ),
+                                                  )),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -335,6 +349,7 @@ class _CreateReportPageState extends State<CreateReportPage>
                   child: TextFormField(
                     readOnly: true,
                     onTap: () async {
+                      if( !isEmployee)
                       reportLocationController.text=(await Navigator.push(context, MaterialPageRoute(builder: (_)=>const LocationPickerPage())))??'';
                     },
                     validator: (value) {
@@ -366,9 +381,19 @@ class _CreateReportPageState extends State<CreateReportPage>
                               borderRadius: BorderRadius.circular(10.r)),
                           child: TextButton(
                               onPressed: () async {
-
                                 if (_formKey.currentState!.validate()) {
-                                  await reportController.addReport(context,
+                                  if(isEmployee)
+                                   await reportController.addStateReport(context, status: StateReports.Processing.name, report:widget.report??Report.init() );
+                                else if(widget.report!=null) {
+                                  widget.report!.subject=reportSubjectController.value.text;
+                                  widget.report!=reportDescriptionController.value.text;
+                                  widget.report!.location= Location(country:reportLocationController.value.text );
+                                  widget.report!.dateTime=DateFormat.yMd().add_jm().parse(reportDateController.value.text);
+                                  await reportController.updateReport(context,report: widget.report!, files: []);
+
+                                  }
+                                  else
+                                    await reportController.addReport(context,
                                       description: reportDescriptionController.value.text,
                                       subject: reportSubjectController.value.text,
                                       dateTime: DateFormat.yMd().add_jm().parse(reportDateController.value.text),
@@ -377,7 +402,7 @@ class _CreateReportPageState extends State<CreateReportPage>
                                 }
                               },
                               child: Text(
-                                widget.isEmployee
+                                isEmployee
                                     ?tr(LocaleKeys.create_report_accept_report)
                                     :tr(LocaleKeys.create_report_send),
                                 style: TextStyle(color: ColorManager.white),
@@ -394,9 +419,12 @@ class _CreateReportPageState extends State<CreateReportPage>
                           child: TextButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  if(true){
+                                  if(isEmployee){
                                     _showRefuseReportAlertDialog(context);
-                                  }else{
+                                  }
+                                  else if(widget.report!=null)
+                                    await reportController.deleteReport(context, report: widget.report!);
+                                  else {
                                     await reportController.addReport(context,
                                         description: reportDescriptionController.value.text,
                                         subject: reportSubjectController.value.text,
@@ -409,9 +437,11 @@ class _CreateReportPageState extends State<CreateReportPage>
                               },
                               child: Text(
                                 //ToDo : Rejected statment
-                                0.isEven?
+                                isEmployee?
                                 tr(LocaleKeys.home_reject)
-                                :tr(LocaleKeys.create_report_save_draft),
+                                : widget.report!=null
+                                    ?tr(LocaleKeys.home_cancel)
+                                    :tr(LocaleKeys.create_report_save_draft),
                                 style: TextStyle(color: ColorManager.black),
                               ))),
                     )

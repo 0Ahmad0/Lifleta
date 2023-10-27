@@ -41,6 +41,7 @@ class User {
   String? rate;
   String email;
   String? phoneNumber;
+  String? number;
   String password;
   String typeUser;
   String? description;
@@ -62,6 +63,7 @@ class User {
      this.lastName='',
     required this.email,
      this.phoneNumber,
+     this.number,
      this.rate,
     required this.password,
     required this.typeUser,
@@ -95,6 +97,7 @@ class User {
         lastName: json["lastName"],
         email: json["email"],
         phoneNumber: json["phoneNumber"],
+      number:(data['number']!=null) ? json["number"] : null,
         password: json["password"],
         typeUser: json["typeUser"],
         photoUrl: json["photoUrl"],
@@ -114,7 +117,7 @@ class User {
     );
   }
   factory User.init(){
-    return User(id: "", uid: '', name: '', email: '', phoneNumber: '', password: '', typeUser: '', photoUrl: "", gender: "", dateBirth: DateTime.now());
+    return User(id: "", uid: '', name: '', email: '', phoneNumber: '',number:'', password: '', typeUser: '', photoUrl: "", gender: "", dateBirth: DateTime.now());
   }
 
   Map<String, dynamic> toJson() => {
@@ -125,6 +128,7 @@ class User {
     'lastName': lastName,
     'email': email,
     'phoneNumber': phoneNumber,
+    'number': number,
     'password': password,
     'typeUser': typeUser,
     'gender': gender,

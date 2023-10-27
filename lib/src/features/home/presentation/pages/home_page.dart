@@ -461,7 +461,8 @@ class _HomePageState extends State<HomePage> {
                   } else {
                     return Text('State: ${snapshot.connectionState}');
                   }
-                })))
+                })
+              ))
                   ,
           )),
           SizedBox(

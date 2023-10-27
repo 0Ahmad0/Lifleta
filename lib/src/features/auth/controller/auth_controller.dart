@@ -41,7 +41,7 @@ class AuthController{
 
   }
 
-  signUp(BuildContext context,{required String firstName,required String lastName,required String gender,required DateTime dateBirth,required String email,required String password,required String phoneNumber,required String photoUrl,required String typeUser}) async {
+  signUp(BuildContext context,{required String firstName,required String lastName,required String gender,required DateTime dateBirth,required String email,required String password,required String number,required String phoneNumber,required String photoUrl,required String typeUser}) async {
     authProvider.user=User(id: '', uid: '',
         name: '$firstName $lastName',
         firstName: firstName,
@@ -52,6 +52,7 @@ class AuthController{
         typeUser: typeUser,
         photoUrl: photoUrl,
         gender: gender,
+        number:number,
 
         dateBirth: dateBirth);
     final result=await signUpByUser(context);

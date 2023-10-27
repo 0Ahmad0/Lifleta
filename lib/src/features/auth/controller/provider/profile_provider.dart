@@ -23,6 +23,7 @@ class ProfileProvider with ChangeNotifier{
   var lastName = TextEditingController(text: 'عبد الغني');
   var email = TextEditingController(text: 'haya,143@gmail.com');
   var phoneNumber = TextEditingController(text: '05965626202');
+  var number = TextEditingController(text: '12');
    var name = TextEditingController(text: '');
 
   // var email = TextEditingController(text: "Ahmad2001@gmail.com");
@@ -36,6 +37,7 @@ class ProfileProvider with ChangeNotifier{
      name = TextEditingController(text: user.name);
      email = TextEditingController(text: user.email);
      phoneNumber = TextEditingController(text: user.phoneNumber);
+    number = TextEditingController(text: user.number);
     firstName = TextEditingController(text: user.firstName);
     lastName = TextEditingController(text: user.lastName);
     if(name.text=='');
@@ -47,19 +49,20 @@ class ProfileProvider with ChangeNotifier{
      tempUser.email =email.text;
      tempUser.name=name.text;
      tempUser.phoneNumber=phoneNumber.text;
+     tempUser.number=number.text;
      tempUser.firstName=firstName.text;
      tempUser.lastName=lastName.text;
      if(name.text=='');
      tempUser.name='${firstName.text} ${lastName.text}';
     /// print(tempUser.toJson());
-     var result =await FirebaseFun.updateUserEmail(user: tempUser);
-     if(result['status']){
-        result =await FirebaseFun.updateUser(user: tempUser);
+    // var result =await FirebaseFun.updateUserEmail(user: tempUser);
+   //  if(result['status']){
+       var result =await FirebaseFun.updateUser(user: tempUser);
        if(result['status']){
          updateUser(user:models.User.fromJson(result['body']));
          notifyListeners();
        }
-     }
+     //}
      print(result);
      Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
      return result;

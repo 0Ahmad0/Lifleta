@@ -43,7 +43,7 @@ class WidgetProfilePicture extends StatelessWidget {
     String firstsCharFromText="";
     List<String> listFromWord=text.split(" ");
     firstsCharFromText+=listFromWord.first[0].toUpperCase();
-    (listFromWord.length>1)?firstsCharFromText+=listFromWord.last[0]:"";
+    (listFromWord.length>1&&!listFromWord.last.isEmpty)?firstsCharFromText+=listFromWord.last:"";
     return firstsCharFromText;
   }
 }
