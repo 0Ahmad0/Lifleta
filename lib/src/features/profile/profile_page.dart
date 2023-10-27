@@ -211,6 +211,13 @@ class _ProfilePageState extends State<ProfilePage> {
                               iconData: Icons.phone_android_outlined,
                               controller: value.phoneNumber,
                             ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            TextFiledApp(
+                              iconData: Icons.phone_android_outlined,
+                              controller: value.phoneNumber,
+                            ),
 
                           ],
                         ),
