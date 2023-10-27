@@ -76,6 +76,9 @@ class HomeDrawer extends StatelessWidget {
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_edit_profile),
                     icon: Icons.edit_outlined,
+                    onTap: (){
+                      goRouter.goNamed(AppRoute.profilePage.name);
+                    },
                   ),
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_drafts),

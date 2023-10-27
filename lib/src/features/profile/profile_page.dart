@@ -188,30 +188,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 20.0,
                       ),
                       Container(
-                        padding: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
                             color: ColorManager.white,
                             borderRadius: BorderRadius.circular(24.0)),
                         child: Column(
                           children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: TextFiledApp(
-                                    iconData: Icons.person,
-                                    controller: value.firstName,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 20.0,
-                                ),
-                                Expanded(
-                                  child: TextFiledApp(
-                                    iconData: Icons.person,
-                                    controller: value.lastName,
-                                  ),
-                                ),
-                              ],
+                            TextFiledApp(
+                              iconData: Icons.person,
+                              controller: value.firstName,
                             ),
                             const SizedBox(
                               height: 20.0,
