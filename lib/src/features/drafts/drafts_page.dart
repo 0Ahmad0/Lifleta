@@ -22,27 +22,30 @@ class DraftsPage extends StatefulWidget {
 
 class _DraftsPageState extends State<DraftsPage> {
   var getReports;
-  getReportsFun()  {
-    getReports = FirebaseFirestore.instance.collection(AppConstants.collectionReport)
-        .where('idUser',isEqualTo: context.read<ProfileProvider>().user.id)
-        .where('reportType',isEqualTo: ReportType.Dreft.name)
+
+  getReportsFun() {
+    getReports = FirebaseFirestore.instance
+        .collection(AppConstants.collectionReport)
+        .where('idUser', isEqualTo: context.read<ProfileProvider>().user.id)
+        .where('reportType', isEqualTo: ReportType.Dreft.name)
         .snapshots();
     return getReports;
   }
+
   @override
   void initState() {
     getReportsFun();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(tr(LocaleKeys.home_drafts)),
       ),
-      body:
-      StreamBuilder<QuerySnapshot>(
-        //prints the messages to the screen0
+      body: StreamBuilder<QuerySnapshot>(
+          //prints the messages to the screen0
           stream: getReports,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -51,34 +54,38 @@ class _DraftsPageState extends State<DraftsPage> {
               if (snapshot.hasError) {
                 return const Text('Error');
               } else if (snapshot.hasData) {
-
                 Const.SHOWLOADINGINDECATOR();
-                context.read<ReportProvider>().reports.listReport.clear();;
+                context.read<ReportProvider>().reports.listReport.clear();
+                ;
                 if (snapshot.data!.docs!.length > 0) {
                   context.read<ReportProvider>().reports =
                       Reports.fromJson(snapshot.data!.docs!);
                 }
-                return buildReports(context,reports:context.read<ReportProvider>().reports.listReport);
+                return buildReports(context,
+                    reports: context.read<ReportProvider>().reports.listReport);
               } else {
                 return const Text('Empty data');
               }
             } else {
               return Text('State: ${snapshot.connectionState}');
             }
-          })
-      ,
+          }),
     );
   }
-  Widget buildReports(BuildContext context,{required List<Report> reports})
-  =>  reports.isEmpty?
-  Const.emptyWidget(context,text: "لايوجد مسودات بعد")
-      : ListView.separated(
-    itemCount: reports.length,
-    padding: const EdgeInsets.all(AppPadding.p12),
-    itemBuilder: (_, index) => DraftItem(
-        title: reports[index].subject, location:  reports[index].location?.country??'', report:  reports[index],),
-    separatorBuilder: (_,__)=>SizedBox(height: AppSize.s20,),
-  );
 
-
+  Widget buildReports(BuildContext context, {required List<Report> reports}) =>
+      reports.isEmpty
+          ? Const.emptyWidget(context, text: "لايوجد مسودات بعد")
+          : ListView.separated(
+              itemCount: reports.length,
+              padding: const EdgeInsets.all(AppPadding.p12),
+              itemBuilder: (_, index) => DraftItem(
+                title: reports[index].subject,
+                location: reports[index].location?.country ?? '',
+                report: reports[index],
+              ),
+              separatorBuilder: (_, __) => SizedBox(
+                height: AppSize.s20,
+              ),
+            );
 }

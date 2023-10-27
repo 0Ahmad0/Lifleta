@@ -86,7 +86,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       textColor: ColorManager.white,
                                     ),
                                     errorWidget: WidgetProfilePicture(
-                                      name: value.user.name,
+                                      //ToDo:Fix This
+                                      name: 'value.user.name',
                                       radius: size.width / 5,
                                       fontSize: size.width / 5,
                                       backgroundColor: ColorManager.primaryColor,

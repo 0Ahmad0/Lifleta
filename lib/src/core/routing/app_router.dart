@@ -39,122 +39,81 @@ final goRouter = GoRouter(
       name: AppRoute.splash.name,
       builder: (context, state) => SplashPage(),
       routes: [
-        // GoRoute(
-        //     path: 'product/:id',
-        //     name: AppRoute.product.name,
-        //     builder: (context, state) {
-        //       final productId = state.pathParameters['id']!;
-        //       return Scaffold(
-        //         appBar: AppBar(
-        //           title: Text('${productId}'),
-        //         ),
-        //       );
-        //       /*
-        //     parmas:{'id':Product.id}
-        //      */
-        //     },
-        //   ),
-        // GoRoute(
-        //     name: AppRoute.cart.name,
-        //     path: 'cart',
-        //     pageBuilder: (context, state) => MaterialPage(
-        //       key: state.pageKey,
-        //       fullscreenDialog: true,
-        //       child: Scaffold(
-        //         appBar: AppBar(
-        //           title: Text('Cart'),
-        //         ),
-        //       ),
-        //     ),
-        //     routes: [
-        //       GoRoute(
-        //         path: 'checkout',
-        //         name: AppRoute.checkout.name,
-        //         pageBuilder: (context, state) => MaterialPage(
-        //           key: state.pageKey,
-        //           fullscreenDialog: true,
-        //           child: Scaffold(
-        //             appBar: AppBar(
-        //               title: Text('Checkout'),
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //     ]),
+        GoRoute(
+          path: 'signUp',
+          name: AppRoute.signUp.name,
+          builder: (context, state) => SignUpPage(),
+        ),
+        GoRoute(
+          path: 'logIn',
+          name: AppRoute.logIn.name,
+          builder: (context, state) => LoginPage(),
+        ),
+        GoRoute(
+          path: 'selectedLanguage',
+          name: AppRoute.selectedLanguage.name,
+          builder: (context, state) => SelectedLanguagePage(),
+        ),
+        GoRoute(
+          path: 'createReport',
+          name: AppRoute.createReport.name,
+          builder: (context,  state) {
+            return CreateReportPage(
+              report: state.extra as Report?,
+            );
+          },
+        ),
+        GoRoute(
+          path: 'drafts',
+          name: AppRoute.drafts.name,
+          builder: (context, state) => DraftsPage(),
+        ),
+        GoRoute(
+            path: 'home',
+            name: AppRoute.home.name,
+            builder: (context, state) => HomePage(),
+            routes: [
+
+            ]),
+        GoRoute(
+          path: 'profilePage',
+          name: AppRoute.profilePage.name,
+          builder: (context, state) => ProfilePage(),
+        ),
+        GoRoute(
+          path: 'notification',
+          name: AppRoute.notification.name,
+          builder: (context, state) => NotificationPage(),
+        ),
+        GoRoute(
+          path: 'trackingReport',
+          name: AppRoute.trackingReport.name,
+          builder: (context, state) => TrackingReportPage(),
+        ),
+        GoRoute(
+            path: 'homeEmployee',
+            name: AppRoute.homeEmployee.name,
+            builder: (context, state) => HomeEmployeePage(),
+            routes: [
+              // GoRoute(
+              //   path: 'createReport',
+              //   name: AppRoute.createReport.name,
+              //   builder: (context, state) => CreateReportPage(),
+              // ),
+              // GoRoute(
+              //   path: 'notification',
+              //   name: AppRoute.notification.name,
+              //   builder: (context, state) => NotificationPage(),
+              // ),
+              // GoRoute(
+              //   path: 'trackingReport',
+              //   name: AppRoute.trackingReport.name,
+              //   builder: (context, state) => TrackingReportPage(),
+              // ),
+            ]),
       ],
     ),
-    GoRoute(
-      path: '/signUp',
-      name: AppRoute.signUp.name,
-      builder: (context, state) => SignUpPage(),
-    ),
 
-    GoRoute(
-      path: '/logIn',
-      name: AppRoute.logIn.name,
-      builder: (context, state) => LoginPage(),
-    ),
 
-    GoRoute(
-      path: '/selectedLanguage',
-      name: AppRoute.selectedLanguage.name,
-      builder: (context, state) => SelectedLanguagePage(),
-    ),
-    GoRoute(
-      path: '/createReport',
-      name: AppRoute.createReport.name,
-      builder: (context, state) {
-        return CreateReportPage(
-          report: state.extra as Report?,
-        );
-      },
-    ),
-    GoRoute(
-      path: '/drafts',
-      name: AppRoute.drafts.name,
-      builder: (context, state) => DraftsPage(),
-    ),
-
-    GoRoute(
-        path: '/home',
-        name: AppRoute.home.name,
-        builder: (context, state) => HomePage(),
-        routes: []),
-    GoRoute(
-      path: '/profilePage',
-      name: AppRoute.profilePage.name,
-      builder: (context, state) => ProfilePage(),
-    ),
-    GoRoute(
-      path: '/notification',
-      name: AppRoute.notification.name,
-      builder: (context, state) => NotificationPage(),
-    ),
-    GoRoute(
-      path: '/trackingReport',
-      name: AppRoute.trackingReport.name,
-      builder: (context, state) => TrackingReportPage(),
-    ),
-    GoRoute(
-        path: '/homeEmployee',
-        name: AppRoute.homeEmployee.name,
-        builder: (context, state) => HomeEmployeePage(),
-        routes: [
-          // GoRoute(
-          //   path: 'createReport',
-          //   name: AppRoute.createReport.name,
-          //   builder: (context, state) => CreateReportPage(),
-          // ),
-          // GoRoute(
-          //   path: 'notification',
-          //   name: AppRoute.notification.name,
-          //   builder: (context, state) => NotificationPage(),
-          // ),
-          // GoRoute(
-          //   path: 'trackingReport',
-          //   name: AppRoute.trackingReport.name,
-          //   builder: (context, state) => TrackingReportPage(),
-          // ),
-        ]),
   ],
 );

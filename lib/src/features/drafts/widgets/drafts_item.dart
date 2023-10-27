@@ -24,7 +24,7 @@ class DraftItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        goRouter.goNamed(AppRoute.createReport.name,extra: report);
+        goRouter.pushNamed(AppRoute.createReport.name,extra: report);
       },
       child: Stack(
         children: [

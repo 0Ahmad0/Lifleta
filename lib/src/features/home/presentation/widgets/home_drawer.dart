@@ -86,14 +86,14 @@ class HomeDrawer extends StatelessWidget {
                     title: tr(LocaleKeys.drawer_edit_profile),
                     icon: Icons.edit_outlined,
                     onTap: (){
-                      goRouter.goNamed(AppRoute.profilePage.name);
+                      goRouter.pushNamed(AppRoute.profilePage.name);
                     },
                   ),
                   DrawerItem(
                     title: tr(LocaleKeys.drawer_drafts),
                     icon: Icons.bookmark_outline_outlined,
                     onTap: (){
-                      goRouter.goNamed(AppRoute.drafts.name);
+                      goRouter.pushNamed(AppRoute.drafts.name);
                     },
                   ),
                   Container(
