@@ -19,6 +19,6 @@ class AppConstants {
   static String collectionEmployee = "Employee";
   static String collectionVisitor = "Visitor";
   static String collectionReport = "Report";
-  static String collectionNotification = "Notification ";
+  static String collectionNotification = "Notification";
 
 }

@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
+import 'package:lifleta/src/core/network/utils/create_environment_provider.dart';
 import 'package:lifleta/src/core/routing/app_router.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
@@ -74,7 +75,9 @@ class _HomePageState extends State<HomePage> {
             size: 50.sp,
           ),
           key: UniqueKey(),
-          onPressed: () {
+          onPressed: () async {
+           // await CreateEnvironmentProvider().createEmployees(context);
+           // await CreateEnvironmentProvider().createReports(context);
             goRouter.pushNamed(AppRoute.createReport.name);
           },
         ),
@@ -279,6 +282,28 @@ class _HomePageState extends State<HomePage> {
                                 )),
                           );
                         }),
+                          finalChild: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(AssetsManager.logoIMG),
+                              const SizedBox(height: AppSize.s20,),
+                              Text('شكراً لك!',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: ColorManager.primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 24.sp
+                                ),),
+                              const SizedBox(height: AppSize.s20,),
+                              Text('شكرًا على ملاحظاتك , ستساعدنا ملاحظاتك في تحسين خدماتنا لكم ..',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                            ],
+                          ),
                         buttonText: 'التالي',
                         onTap: (){
                         print('object');
@@ -331,7 +356,10 @@ class _HomePageState extends State<HomePage> {
                       _modalRateContent(context,question: 'بناءًا على اختيارك ماهي أهم الأسباب التي أثرت على تقييمك ؟',
                           child:            Container(),
                           buttonText: 'إغلاق',
-                        onTap: ()=> Navigator.pop(context),
+                        onTap: () async {
+                       await context.read<ProfileProvider>().addRateUser(context, '2');
+                          Navigator.pop(context);
+                        },
                         isShowIcon: false,
                         finalChild: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -361,7 +389,7 @@ class _HomePageState extends State<HomePage> {
                 );
               },
               icon: const Icon(
-                Icons.notifications,
+                Icons.star,
               )),
         ],
       ),
@@ -446,11 +474,10 @@ class _HomePageState extends State<HomePage> {
                         value.reports =
                             Reports.fromJson(snapshot.data!.docs!);
                         for (Report report in value.reports.listReport) {
-                          if ( report.status !=
-                              StateReports.Implemented.name)
-                            currentReports.add(report);
-                          else
+                          if( [StateReports.Implemented.name,StateReports.Failing.name,StateReports.Rejected.name].contains(report.status))
                             prevReports.add(report);
+                          else
+                            currentReports.add(report);
                         }
 
                       }
@@ -481,7 +508,7 @@ class _HomePageState extends State<HomePage> {
                 }
   Widget buildListReport(BuildContext context,{required List<Report> reports})
   =>  reports.isEmpty?
-  Const.emptyWidget(context,text: "لايوجد بلاغات بعد")
+  Const.emptyWidget(context,text: tr(LocaleKeys.empty_reports))
       : CarouselSlider(
     options: CarouselOptions(
         enlargeFactor: .2,
@@ -508,7 +535,7 @@ class _HomePageState extends State<HomePage> {
   );
 
 
-    Column _modalRateContent(
+     _modalRateContent(
     BuildContext context,
   {required String question,
     required Widget child,
@@ -518,22 +545,24 @@ class _HomePageState extends State<HomePage> {
     Widget? finalChild
   }
   ) {
-    return Column(
+    return
+      ChangeNotifierProvider<ProfileProvider>.value(
+          value: Provider.of<ProfileProvider>(context,listen: false),
+          child: Consumer<ProfileProvider>(
+          builder: (context, value, childa)=>
+      Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Visibility(
-          visible: isShowIcon,
+          visible: //isShowIcon
+          value.user.rate!=null,
           child: IconButton(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(Icons.close)),
         ),
-
-      ChangeNotifierProvider<ProfileProvider>.value(
-      value: Provider.of<ProfileProvider>(context,listen: false),
-      child: Consumer<ProfileProvider>(
-      builder: (context, value, child)=>
         Visibility(
-          visible: value.user.rate==null,
+          visible: //isShowIcon||
+              value.user.rate==null,
           child: Expanded(
               child: ListView(
             children: [
@@ -568,33 +597,36 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: AppSize.s30,
               ),
-              child??SizedBox.shrink()
+              child
 
             ],
           )),
-        ))),
+        ),
         Visibility(
-            visible: !isShowIcon,
+            visible:  !isShowIcon||value.user.rate!=null,
             child: Expanded(child: finalChild??SizedBox.shrink())),
-        TextButton(
-          onPressed: onTap,
-          child: Container(
-            padding: const EdgeInsets.all(AppPadding.p12),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                  color: ColorManager.primaryColor,
-                  borderRadius: BorderRadius.circular(10.r)),
-            child: Text(
-                  buttonText,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: ColorManager.white,
+        Visibility(
+          visible:  value.user.rate==null,
+          child: TextButton(
+            onPressed: onTap,
+            child: Container(
+              padding: const EdgeInsets.all(AppPadding.p12),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                    color: ColorManager.primaryColor,
+                    borderRadius: BorderRadius.circular(10.r)),
+              child: Text(
+                    buttonText,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: ColorManager.white,
+                    ),
                   ),
-                ),
+            ),
           ),
         )
       ],
-    );
+    )));
   }
 
   _showModalBottomHome(context, child) {

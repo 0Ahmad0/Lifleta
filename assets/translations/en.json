@@ -54,6 +54,10 @@
     "current_report": "Current Report",
     "previous_report": "Previous Report",
     "done_report": "Report Done",
+    "new_report": "New report",
+    "rejected_report": "Rejected Report",
+    "failed_report": "Failed Report",
+    "implemented_report": "Implemented Report",
     "not_done_report": "Report Fail",
     "previous_reports": "Previous Reports",
     "new_reports": "New Reports",
@@ -91,6 +95,34 @@
     "drafts": "Drafts",
     "change_language": "Change Language",
     "log_out": "Logout"
+  },
+  "empty": {
+    "data": "No Data Yet",
+    "reports": "No Reports Yet",
+    "notification": "No Notifications Yet",
+    "draft_reports": "No Drafts Yet"
+  },
+  "notification": {
+    "new_report_title": "New Report",
+    "new_report_subTitle": "You have a new report with the number",
+    "notify_report_title": "Delay Alert",
+    "notify_report_subTitle": "You have an delay alert that a report with a number",
+    "change_state_report_title":"Change Report State",
+    "change_state_report_subTitle":"The status of the report with the number has changed",
+    "accepted_report_title":"Accepted Report",
+    "accepted_report_subTitle":"Your report number has been accepted",
+    "rejected_report_title":"Rejected report",
+    "rejected_report_subTitle":"The report with the number was rejected",
+    "done_report_title":"Executing a Report",
+    "done_report_subTitle":"The report with the number has been executed",
+    "fail_report_title":"Report Failed",
+    "fail_report_subTitle":"The report with number was not executed"
+  },
+  "state_report": {
+    "report_processed": "Report being processed",
+    "report_implemented": "Report implemented",
+    "report_failed": "Report not implemented",
+    "report_rejected": "Report rejected",
+    "report_being_implemented": "Report being"
   }
-
 }

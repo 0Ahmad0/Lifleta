@@ -501,7 +501,11 @@ class _CreateReportPageState extends State<CreateReportPage>
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100.r),
                             )),
-                        onPressed: () {},
+                        onPressed: () async {
+                          widget.report!.replay=refuseReportController.value.text;
+                          await reportController.addStateReport(context, report: widget.report!, status: StateReports.Rejected.name,);
+                          Navigator.pop(context);
+                          },
                         child: Text(
                           tr(LocaleKeys.home_send),
                           style: TextStyle(color: ColorManager.white),

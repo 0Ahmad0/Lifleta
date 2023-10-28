@@ -82,7 +82,7 @@ class ReportItem extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(AppPadding.p8),
                     decoration: BoxDecoration(
-                      color: type == 'done'
+                      color: type == StateReports.Implemented.name
                           ? ColorManager.primaryColor.withOpacity(.3)
                           : ColorManager.grey,
                       borderRadius: BorderRadius.horizontal(
@@ -92,10 +92,12 @@ class ReportItem extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      type == 'done' ?
-                      tr(LocaleKeys.home_done_report)
-                          :
-                      tr(LocaleKeys.home_current_report),
+                        ReportController(context: context).getStateTr(state:type)
+
+                      // type == 'done' ?
+                      // tr(LocaleKeys.home_done_report)
+                      //     :
+                      // tr(LocaleKeys.home_current_report),
                     ),
                   )
                 ],
@@ -140,7 +142,7 @@ class ReportItem extends StatelessWidget {
                   ],
                 ),
               ),
-              type == StateReports.Implemented ?
+               [StateReports.Implemented.name,StateReports.Failing.name,StateReports.Rejected.name].contains(type)?
               Expanded(child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -151,8 +153,11 @@ class ReportItem extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.r),
                             )),
-                        onPressed: () {},
-                        child: Text(tr(LocaleKeys.home_show)),
+                        onPressed: () {
+                          context.read<ReportProvider>().report=report;
+                          goRouter.pushNamed(AppRoute.trackingReport.name);
+                        },
+                        child: Text(tr(LocaleKeys.home_tracking)),
                       )),
                   const Expanded(child: SizedBox.shrink()),
 

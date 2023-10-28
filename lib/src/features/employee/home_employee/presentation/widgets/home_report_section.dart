@@ -7,7 +7,10 @@ import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
+
+import '../../../../create_report/presentation/controller/provider/report_provider.dart';
 
 class HomeReportSection extends StatefulWidget {
   int currentIndex;
@@ -47,6 +50,8 @@ class _HomeReportSectionState extends State<HomeReportSection> {
                 onPressed: () {
                   setState(() {
                     widget.currentIndex = 0;
+                    context.read<ReportProvider>().currentIndex=0;
+                    context.read<ReportProvider>().notifyListeners();
                   });
                   print(widget.currentIndex);
                 },
@@ -76,6 +81,8 @@ class _HomeReportSectionState extends State<HomeReportSection> {
                 onPressed: () {
                   setState(() {
                     widget.currentIndex = 1;
+                    context.read<ReportProvider>().currentIndex=1;
+                    context.read<ReportProvider>().notifyListeners();
                   });
                   print(widget.currentIndex);
                 },
@@ -96,7 +103,7 @@ class _HomeReportSectionState extends State<HomeReportSection> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: widget.currentIndex == 3
+                color: widget.currentIndex == 2
                     ? ColorManager.grey.shade400
                     : ColorManager.white,
                 borderRadius: BorderRadius.circular(10.r),
@@ -104,7 +111,9 @@ class _HomeReportSectionState extends State<HomeReportSection> {
               child: TextButton(
                 onPressed: () {
                   setState(() {
-                    widget.currentIndex = 3;
+                    widget.currentIndex = 2;
+                    context.read<ReportProvider>().currentIndex=2;
+                    context.read<ReportProvider>().notifyListeners();
                   });
                   print(widget.currentIndex);
                 },

@@ -63,10 +63,20 @@ class CodegenLoader extends AssetLoader{
     "less_character": "8 حروف على الأقل",
     "contain_number_and_characters": "رموز وأرقام وأحرف كبيرة"
   },
+  "empty": {
+    "data": "لايوجد بيانات بعد",
+    "reports": "لايوجد تقارير بعد",
+    "notification": "لايوجد اشعارات بعد",
+    "draft_reports": "لايوجد مسودات بعد"
+  },
   "home": {
     "hello": "مرحباً بك...",
     "current_reports": "البلاغات الحالية",
     "current_report": "بلاغ حالي",
+    "new_report": "بلاغ جديد",
+    "rejected_report": "بلاغ مرفوض",
+    "failed_report": "بلاغ لم يتم تنفيذه",
+    "implemented_report": "بلاغ تم تنفيذه",
     "previous_report": "بلاغ سابق",
     "done_report": "تم التنفيذ",
     "not_done_report": "لم يتم التنفيذ",
@@ -106,6 +116,29 @@ class CodegenLoader extends AssetLoader{
     "drafts": "المسودات",
     "change_language": "تبديل اللغة",
     "log_out": "تسجيل الخروج"
+  },
+  "state_report": {
+    "report_processed": "جاري معالجة التقرير",
+    "report_implemented": "تم تنفيذ التقرير",
+    "report_failed": "لم يتم تنفيذ التقرير",
+    "report_rejected": "تم رفض التقرير",
+    "report_being_implemented": "جاري تنفيذ التقرير"
+  },
+  "notification": {
+    "new_report_title": "تقرير جديد",
+    "new_report_subTitle": "لديك تقرير جديد ذو الرقم",
+    "notify_report_title": "تنبيه تأخير",
+    "notify_report_subTitle": "لديك تنبيه بتأخير التقرير ذو الرقم",
+    "change_state_report_title": "تغيير حالة التقرير",
+    "change_state_report_subTitle": "تم تغيير حالة التقرير ذو الرقم",
+    "accepted_report_title": "قبول تقرير",
+    "accepted_report_subTitle": "تم قبول تقريرك ذو الرقم",
+    "rejected_report_title": "رفض تقرير",
+    "rejected_report_subTitle": "تم رفض تقرير ذو الرقم",
+    "done_report_title": "تنفيذ تقرير",
+    "done_report_subTitle": "تم تنفيذ التقرير ذو الرقم",
+    "fail_report_title": "فشل تقرير",
+    "fail_report_subTitle": "لم يتم تنفيذ التقرير ذو الرقم"
   }
 };
 static const Map<String,dynamic> en = {
@@ -163,6 +196,10 @@ static const Map<String,dynamic> en = {
     "current_report": "Current Report",
     "previous_report": "Previous Report",
     "done_report": "Report Done",
+    "new_report": "New report",
+    "rejected_report": "Rejected Report",
+    "failed_report": "Failed Report",
+    "implemented_report": "Implemented Report",
     "not_done_report": "Report Fail",
     "previous_reports": "Previous Reports",
     "new_reports": "New Reports",
@@ -200,6 +237,35 @@ static const Map<String,dynamic> en = {
     "drafts": "Drafts",
     "change_language": "Change Language",
     "log_out": "Logout"
+  },
+  "empty": {
+    "data": "No Data Yet",
+    "reports": "No Reports Yet",
+    "notification": "No Notifications Yet",
+    "draft_reports": "No Drafts Yet"
+  },
+  "notification": {
+    "new_report_title": "New Report",
+    "new_report_subTitle": "You have a new report with the number",
+    "notify_report_title": "Delay Alert",
+    "notify_report_subTitle": "You have an delay alert that a report with a number",
+    "change_state_report_title": "Change Report State",
+    "change_state_report_subTitle": "The status of the report with the number has changed",
+    "accepted_report_title": "Accepted Report",
+    "accepted_report_subTitle": "Your report number has been accepted",
+    "rejected_report_title": "Rejected report",
+    "rejected_report_subTitle": "The report with the number was rejected",
+    "done_report_title": "Executing a Report",
+    "done_report_subTitle": "The report with the number has been executed",
+    "fail_report_title": "Report Failed",
+    "fail_report_subTitle": "The report with number was not executed"
+  },
+  "state_report": {
+    "report_processed": "Report being processed",
+    "report_implemented": "Report implemented",
+    "report_failed": "Report not implemented",
+    "report_rejected": "Report rejected",
+    "report_being_implemented": "Report being"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};

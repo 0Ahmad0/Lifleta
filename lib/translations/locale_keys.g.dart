@@ -44,9 +44,18 @@ abstract class  LocaleKeys {
   static const signup_less_character = 'signup.less_character';
   static const signup_contain_number_and_characters = 'signup.contain_number_and_characters';
   static const signup = 'signup';
+  static const empty_data = 'empty.data';
+  static const empty_reports = 'empty.reports';
+  static const empty_notification = 'empty.notification';
+  static const empty_draft_reports = 'empty.draft_reports';
+  static const empty = 'empty';
   static const home_hello = 'home.hello';
   static const home_current_reports = 'home.current_reports';
   static const home_current_report = 'home.current_report';
+  static const home_new_report = 'home.new_report';
+  static const home_rejected_report = 'home.rejected_report';
+  static const home_failed_report = 'home.failed_report';
+  static const home_implemented_report = 'home.implemented_report';
   static const home_previous_report = 'home.previous_report';
   static const home_done_report = 'home.done_report';
   static const home_not_done_report = 'home.not_done_report';
@@ -85,5 +94,26 @@ abstract class  LocaleKeys {
   static const drawer_change_language = 'drawer.change_language';
   static const drawer_log_out = 'drawer.log_out';
   static const drawer = 'drawer';
+  static const state_report_report_processed = 'state_report.report_processed';
+  static const state_report_report_implemented = 'state_report.report_implemented';
+  static const state_report_report_failed = 'state_report.report_failed';
+  static const state_report_report_rejected = 'state_report.report_rejected';
+  static const state_report_report_being_implemented = 'state_report.report_being_implemented';
+  static const state_report = 'state_report';
+  static const notification_new_report_title = 'notification.new_report_title';
+  static const notification_new_report_subTitle = 'notification.new_report_subTitle';
+  static const notification_notify_report_title = 'notification.notify_report_title';
+  static const notification_notify_report_subTitle = 'notification.notify_report_subTitle';
+  static const notification_change_state_report_title = 'notification.change_state_report_title';
+  static const notification_change_state_report_subTitle = 'notification.change_state_report_subTitle';
+  static const notification_accepted_report_title = 'notification.accepted_report_title';
+  static const notification_accepted_report_subTitle = 'notification.accepted_report_subTitle';
+  static const notification_rejected_report_title = 'notification.rejected_report_title';
+  static const notification_rejected_report_subTitle = 'notification.rejected_report_subTitle';
+  static const notification_done_report_title = 'notification.done_report_title';
+  static const notification_done_report_subTitle = 'notification.done_report_subTitle';
+  static const notification_fail_report_title = 'notification.fail_report_title';
+  static const notification_fail_report_subTitle = 'notification.fail_report_subTitle';
+  static const notification = 'notification';
 
 }

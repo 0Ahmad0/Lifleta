@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lifleta/src/core/data/model/models.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/features/tracking_report/presentation/widgets/tracking_report_item.dart';
+import 'package:lifleta/translations/locale_keys.g.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/routing/app_router.dart';
@@ -43,9 +45,11 @@ class _TrackingReportPageState extends State<TrackingReportPage> {
           itemBuilder: (_,index)=>TrackingReportItem(
             reportId:report.numReport,
             reportSubject: report.subject,
-            status: report.states[index] == StateReports.Implemented.name ?'تم تنفيذ البلاغ'
-                :report.states[index] == StateReports.Processing.name ?'جاري تنفيذ البلاغ'
-                :'جاري معالجة البلاغ',
+            status: report.states[index] == StateReports.Implemented.name ?tr(LocaleKeys.state_report_report_implemented)
+                :report.states[index] == StateReports.Processing.name ?tr(LocaleKeys.state_report_report_being_implemented)
+                :report.states[index] == StateReports.Failing.name?tr(LocaleKeys.state_report_report_failed)
+                :report.states[index] == StateReports.Rejected.name ?tr(LocaleKeys.state_report_report_rejected)
+                :tr(LocaleKeys.state_report_report_processed),
             reportDescription: report.description
             //'ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ارتفاع في منسوب المياه ',
           ),

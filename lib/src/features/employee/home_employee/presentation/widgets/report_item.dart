@@ -7,9 +7,14 @@ import 'package:lifleta/src/core/routing/app_router.dart';
 import 'package:lifleta/src/core/utils/assets_manager.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
 import 'package:lifleta/src/core/utils/values_manager.dart';
+import 'package:lifleta/src/features/tracking_report/presentation/pages/tracking_report_page.dart';
 import 'package:lifleta/translations/locale_keys.g.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
+import '../../../../../core/data/model/models.dart';
+import '../../../../create_report/presentation/controller/provider/report_provider.dart';
+import '../../../../create_report/presentation/controller/report_controller.dart';
 import '../../../../create_report/presentation/pages/create_report_page.dart';
 
 class ReportItem extends StatefulWidget {
@@ -19,13 +24,14 @@ class ReportItem extends StatefulWidget {
     required this.reportDate,
     required this.type,
     required this.description,
-    required this.location, required this.reportId,
+    required this.location, required this.reportId, required this.report,
   });
 
   final String title;
   final String reportDate;
   final String type;
   final String reportId;
+  final Report report ;
   final String description;
   final String location;
 
@@ -176,7 +182,12 @@ class _ReportItemState extends State<ReportItem> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100.r),
                             )),
-                        onPressed: () {},
+                        onPressed: () async {
+                          statusReportController.text==tr(LocaleKeys.home_done_report)?
+                          await ReportController(context: context).addStateReport(context, report: widget.report!, status: StateReports.Implemented.name)
+                              :await ReportController(context: context).addStateReport(context, report: widget.report!, status: StateReports.Failing.name)
+                          ;
+                        },
                         child: Text(
                           tr(LocaleKeys.home_update),
                           style: TextStyle(color: ColorManager.white),
@@ -258,7 +269,7 @@ class _ReportItemState extends State<ReportItem> {
                   Container(
                     padding: const EdgeInsets.all(AppPadding.p8),
                     decoration: BoxDecoration(
-                      color: widget.type == 'done'
+                      color: widget.type == StateReports.Implemented.name
                           ? ColorManager.primaryColor.withOpacity(.3)
                           : ColorManager.grey,
                       borderRadius: BorderRadius.horizontal(
@@ -268,10 +279,12 @@ class _ReportItemState extends State<ReportItem> {
                       ),
                     ),
                     child: Text(
-                      widget.type == 'done' ?
-                      tr(LocaleKeys.home_done_report)
-                          :
-                      tr(LocaleKeys.home_current_report),
+
+                      ReportController(context: context).getStateTr(state: widget.type)
+                      // widget.type == 'done' ?
+                      // tr(LocaleKeys.home_done_report)
+                      //     :
+                      // tr(LocaleKeys.home_current_report),
                     ),
                   )
                 ],
@@ -316,7 +329,8 @@ class _ReportItemState extends State<ReportItem> {
                   ],
                 ),
               ),
-              widget.type == 'done' ?
+
+              widget.type ==StateReports.Suspended.name ?
               Expanded(child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -329,7 +343,9 @@ class _ReportItemState extends State<ReportItem> {
                             )),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(
-                              builder: (_)=>CreateReportPage()
+                              builder: (_)=>CreateReportPage(
+                                report: widget.report,
+                              )
                           ));
                         },
                         child: Text(tr(LocaleKeys.home_show)),
@@ -339,6 +355,7 @@ class _ReportItemState extends State<ReportItem> {
                 ],
               ))
                   :
+              widget.type ==StateReports.Processing.name ?
               Expanded(
                 child: Row(
                   children: [
@@ -362,7 +379,29 @@ class _ReportItemState extends State<ReportItem> {
                     const Expanded(child: SizedBox.shrink()),
                   ],
                 ),
-              ),
+              )
+              :Expanded(child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Expanded(child: SizedBox.shrink()),
+                  Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            )),
+                        onPressed: () {
+                          context.read<ReportProvider>().report=widget.report;
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (_)=>TrackingReportPage()
+                          ));
+                        },
+                        child: Text(tr(LocaleKeys.home_tracking)),
+                      )),
+                  const Expanded(child: SizedBox.shrink()),
+
+                ],
+              )),
 
             ],
           ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lifleta/src/core/utils/color_manager.dart';
+import 'package:lifleta/src/features/create_report/presentation/controller/report_controller.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../../../../translations/locale_keys.g.dart';
@@ -22,17 +23,18 @@ class TrackingReportItem extends StatelessWidget {
   final String reportSubject;
   final String reportDescription;
 
-  Color _getStatusReportColor(String status) {
-    switch (status) {
-      case 'جاري معالجة البلاغ':
-        return Color(0xffD3BEA4);
-      case 'جاري تنفيذ البلاغ':
-        return Color(0xffBA7929).withOpacity(.68);
-      case 'تم تنفيذ البلاغ':
-        return Color(0xff3A8977).withOpacity(.64);
-      default:
-        return ColorManager.primaryColor;
-    }
+  Color _getStatusReportColor(BuildContext context,String status) {
+    return ReportController(context: context).getStateColor(status: status);
+    // switch (status) {
+    //   case 'جاري معالجة البلاغ':
+    //     return Color(0xffD3BEA4);
+    //   case 'جاري تنفيذ البلاغ':
+    //     return Color(0xffBA7929).withOpacity(.68);
+    //   case 'تم تنفيذ البلاغ':
+    //     return Color(0xff3A8977).withOpacity(.64);
+    //   default:
+    //     return ColorManager.primaryColor;
+    // }
   }
 
   List<Color> _getStatusItemColor(String status) {
@@ -98,7 +100,7 @@ class TrackingReportItem extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(AppPadding.p8),
                   decoration: BoxDecoration(
-                    color: _getStatusReportColor(status),
+                    color: _getStatusReportColor(context,status),
                     borderRadius: BorderRadius.horizontal(
                       right: context.locale.languageCode == 'ar'
                           ? Radius.circular(14.r)

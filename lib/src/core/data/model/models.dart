@@ -936,13 +936,14 @@ enum StateStream{
 }
 enum StateReports{
   Suspended,
+  Rejected,
+  Failing,
   Processing,
   Implemented
 }
 enum ReportType{
   None,
   Dreft,
-
 }
 /*
 flutter pub run easy_localization:generate -S "assets/translations/" -O "lib/translations"

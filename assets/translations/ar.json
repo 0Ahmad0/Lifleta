@@ -48,10 +48,20 @@
     "less_character": "8 حروف على الأقل",
     "contain_number_and_characters": "رموز وأرقام وأحرف كبيرة"
   },
+  "empty": {
+    "data": "لايوجد بيانات بعد",
+    "reports": "لايوجد تقارير بعد",
+    "notification": "لايوجد اشعارات بعد",
+    "draft_reports": "لايوجد مسودات بعد"
+  },
   "home": {
     "hello": "مرحباً بك...",
     "current_reports": "البلاغات الحالية",
     "current_report": "بلاغ حالي",
+    "new_report": "بلاغ جديد",
+    "rejected_report": "بلاغ مرفوض",
+    "failed_report": "بلاغ لم يتم تنفيذه",
+    "implemented_report": "بلاغ تم تنفيذه",
     "previous_report": "بلاغ سابق",
     "done_report": "تم التنفيذ",
     "not_done_report": "لم يتم التنفيذ",
@@ -91,5 +101,28 @@
     "drafts": "المسودات",
     "change_language": "تبديل اللغة",
     "log_out": "تسجيل الخروج"
+  },
+  "state_report": {
+    "report_processed": "جاري معالجة التقرير",
+    "report_implemented": "تم تنفيذ التقرير",
+    "report_failed": "لم يتم تنفيذ التقرير",
+    "report_rejected": "تم رفض التقرير",
+    "report_being_implemented": "جاري تنفيذ التقرير"
+  },
+  "notification": {
+    "new_report_title": "تقرير جديد",
+    "new_report_subTitle": "لديك تقرير جديد ذو الرقم",
+    "notify_report_title": "تنبيه تأخير",
+    "notify_report_subTitle": "لديك تنبيه بتأخير التقرير ذو الرقم",
+    "change_state_report_title":"تغيير حالة التقرير",
+    "change_state_report_subTitle":"تم تغيير حالة التقرير ذو الرقم",
+    "accepted_report_title":"قبول تقرير",
+    "accepted_report_subTitle":"تم قبول تقريرك ذو الرقم",
+    "rejected_report_title":"رفض تقرير",
+    "rejected_report_subTitle":"تم رفض تقرير ذو الرقم",
+    "done_report_title":"تنفيذ تقرير",
+    "done_report_subTitle":"تم تنفيذ التقرير ذو الرقم",
+    "fail_report_title":"فشل تقرير",
+    "fail_report_subTitle":"لم يتم تنفيذ التقرير ذو الرقم"
   }
 }
