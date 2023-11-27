@@ -75,11 +75,11 @@ dependencies:
   provider: ^6.0.5
   get_storage: ^2.1.1
   url_launcher: ^6.1.11
-  flutter_osm_plugin:
+#  flutter_osm_plugin:
   http: ^0.13.6
   flutter_styled_toast:
   #google Maps ====> API KEY
-#  google_maps_flutter: ^2.3.0
+  google_maps_flutter: ^2.3.0
 
 
 

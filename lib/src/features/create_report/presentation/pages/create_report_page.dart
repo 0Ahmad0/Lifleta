@@ -350,7 +350,7 @@ class _CreateReportPageState extends State<CreateReportPage>
                     readOnly: true,
                     onTap: () async {
                       if( !isEmployee)
-                      reportLocationController.text=(await Navigator.push(context, MaterialPageRoute(builder: (_)=>const LocationPickerPage())))??'';
+                      reportLocationController.text=(await Navigator.push(context, MaterialPageRoute(builder: (_)=> LocationPickerPage())))??'';
                     },
                     validator: (value) {
                       if (value!.trim().isEmpty) {
