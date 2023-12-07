@@ -28,6 +28,7 @@ class AuthController{
     authProvider.user.email=email??'';
     authProvider.user.phoneNumber=phone;
     authProvider.user.password=password;
+
     final result=await authProvider.login(context);
 
     goRouter.pop();

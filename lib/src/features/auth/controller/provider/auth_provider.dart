@@ -80,6 +80,7 @@ class AuthProvider with ChangeNotifier{
     return result;
   }
   login(context) async{
+
     var result=await loginWithPhoneNumber(context);
     if(!result['status'])
       result=await loginWithEmil(context);
@@ -101,10 +102,10 @@ class AuthProvider with ChangeNotifier{
     return result;
   }
   loginWithPhoneNumber(context) async{
-
-    var resultUser =await FirebaseFun.loginWithPhoneNumber(phoneNumber: user.phoneNumber??user.email, password: user.password,typeUser: AppConstants.collectionUser);
-    if(!resultUser["status"])
-      resultUser =await FirebaseFun.loginWithPhoneNumber(phoneNumber: user.phoneNumber??user.email, password: user.password,typeUser: AppConstants.collectionEmployee);
+     var resultUser =await FirebaseFun.loginWithPhoneNumber(phoneNumber: user.phoneNumber??user.email, password: user.password,typeUser: typeUser);
+     // var resultUser =await FirebaseFun.loginWithPhoneNumber(phoneNumber: user.phoneNumber??user.email, password: user.password,typeUser: AppConstants.collectionUser);
+    // if(!resultUser["status"])
+    //   resultUser =await FirebaseFun.loginWithPhoneNumber(phoneNumber: user.phoneNumber??user.email, password: user.password,typeUser: AppConstants.collectionEmployee);
     if(!resultUser["status"])
       resultUser =await FirebaseFun.loginWithPhoneNumber(phoneNumber: user.phoneNumber??user.email, password: user.password,typeUser: AppConstants.collectionAdmin);
     if(resultUser['status'])
@@ -170,10 +171,11 @@ class AuthProvider with ChangeNotifier{
     // user.uid=result['body']['uid'];
   }
   fetchUser({required String uid}) async {
-    var result= await FirebaseFun.fetchUser(uid: uid, typeUser: AppConstants.collectionUser);
+    var result= await FirebaseFun.fetchUser(uid: uid, typeUser: typeUser);
+    // var result= await FirebaseFun.fetchUser(uid: uid, typeUser: AppConstants.collectionUser);
     // print(result);
-    if(result['status']&&result['body']==null){
-      result = await FirebaseFun.fetchUser(uid: uid, typeUser: AppConstants.collectionEmployee);
+    // if(result['status']&&result['body']==null){
+    //   result = await FirebaseFun.fetchUser(uid: uid, typeUser: AppConstants.collectionEmployee);
       if(result['status']&&result['body']==null){
 
         result = await FirebaseFun.fetchUser(uid: uid, typeUser: AppConstants.collectionAdmin);
@@ -184,7 +186,7 @@ class AuthProvider with ChangeNotifier{
           };
         }
       }
-    }
+    // }
     return result;
   }
 

@@ -100,6 +100,22 @@ abstract class  LocaleKeys {
   static const state_report_report_rejected = 'state_report.report_rejected';
   static const state_report_report_being_implemented = 'state_report.report_being_implemented';
   static const state_report = 'state_report';
+  static const toast = 'toast';
+  static const toast_successfully_created = 'toast_successfully_created';
+  static const toast_successfully_update = 'toast_successfully_update';
+  static const toast_Unsuccessfully_created = 'toast_Unsuccessfully_created';
+  static const toast_email_already_use = 'toast_email_already_use';
+  static const toast_short_password = 'toast_short_password';
+  static const toast_successfully_logged = 'toast_successfully_logged';
+  static const toast_email_invalid = 'toast_email_invalid';
+  static const toast_password_invalid = 'toast_password_invalid';
+  static const toast_network_error = 'toast_network_error';
+  static const toast_account_invalid = 'toast_account_invalid';
+  static const toast_Bad_data_fetch = 'toast_Bad_data_fetch';
+  static const toast_time_out = 'toast_time_out';
+  static const toast_given_empty = 'toast_given_empty';
+  static const toast_account_not_active = 'toast_account_not_active';
+  static const toast_unable_connection = 'toast_unable_connection';
   static const notification_new_report_title = 'notification.new_report_title';
   static const notification_new_report_subTitle = 'notification.new_report_subTitle';
   static const notification_notify_report_title = 'notification.notify_report_title';
@@ -114,6 +130,23 @@ abstract class  LocaleKeys {
   static const notification_done_report_subTitle = 'notification.done_report_subTitle';
   static const notification_fail_report_title = 'notification.fail_report_title';
   static const notification_fail_report_subTitle = 'notification.fail_report_subTitle';
+  static const notification_toast = 'notification.toast';
+  static const notification_toast_successfully_created = 'notification.toast_successfully_created';
+  static const notification_toast_successfully_update = 'notification.toast_successfully_update';
+  static const notification_toast_Unsuccessfully_created = 'notification.toast_Unsuccessfully_created';
+  static const notification_toast_email_already_use = 'notification.toast_email_already_use';
+  static const notification_toast_short_password = 'notification.toast_short_password';
+  static const notification_toast_successfully_logged = 'notification.toast_successfully_logged';
+  static const notification_toast_email_invalid = 'notification.toast_email_invalid';
+  static const notification_toast_password_invalid = 'notification.toast_password_invalid';
+  static const notification_toast_network_error = 'notification.toast_network_error';
+  static const notification_toast_account_invalid = 'notification.toast_account_invalid';
+  static const notification_toast_Bad_data_fetch = 'notification.toast_Bad_data_fetch';
+  static const notification_toast_time_out = 'notification.toast_time_out';
+  static const notification_toast_given_empty = 'notification.toast_given_empty';
+  static const notification_toast_account_not_active = 'notification.toast_account_not_active';
+  static const notification_toast_unable_connection = 'notification.toast_unable_connection';
   static const notification = 'notification';
+
 
 }

@@ -316,6 +316,7 @@ class _HomeEmployeePageState extends State<HomeEmployeePage> {
                           }),
 
                       /// ----
+                      if(context.read<ProfileProvider>().user.rate==null)...[
                       _modalRateContent(context,
                           question:
                               'بناءًا على اختيارك ماهي أهم الأسباب التي أثرت على تقييمك ؟',
@@ -403,6 +404,7 @@ class _HomeEmployeePageState extends State<HomeEmployeePage> {
                               ),
                             ],
                           )),
+                      ]
                     ],
                   ),
                 );

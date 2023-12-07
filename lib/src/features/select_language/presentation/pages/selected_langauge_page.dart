@@ -80,6 +80,7 @@ class SelectedLanguagePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
+
                 context.read<AuthProvider>().typeUser =
                     AppConstants.collectionEmployee;
                 goRouter.pushReplacementNamed(AppRoute.logIn.name);

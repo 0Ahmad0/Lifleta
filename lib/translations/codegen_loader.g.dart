@@ -138,7 +138,23 @@ class CodegenLoader extends AssetLoader{
     "done_report_title": "تنفيذ تقرير",
     "done_report_subTitle": "تم تنفيذ التقرير ذو الرقم",
     "fail_report_title": "فشل تقرير",
-    "fail_report_subTitle": "لم يتم تنفيذ التقرير ذو الرقم"
+    "fail_report_subTitle": "لم يتم تنفيذ التقرير ذو الرقم",
+    "toast": "",
+    "toast_successfully_created": "تم إنشاء الحساب بنجاح",
+    "toast_successfully_update": "تم تحديث المعلومات بنجاح",
+    "toast_Unsuccessfully_created": "فشل إنشاء الحساب",
+    "toast_email_already_use": "البريد الإلكتروني قيد الاستخدام بالفعل",
+    "toast_short_password": "كلمة المرور قصيرة\nيجب ألا تقل عن 6 أحرف",
+    "toast_successfully_logged": "تم تسجيل الدخول بنجاح",
+    "toast_email_invalid": "البريد غير صحيح",
+    "toast_password_invalid": "كلمة السر غير صحيحة",
+    "toast_network_error": "حدث خطأ في الاتصال",
+    "toast_account_invalid": "الحساب غير صحيح",
+    "toast_Bad_data_fetch": "خطأ داخلي: جلب سيء للبيانات",
+    "toast_time_out": "خطأ في الاتصال",
+    "toast_given_empty": "القيمة المعطاء فارغة",
+    "toast_account_not_active": "الحساب غير نشط",
+    "toast_unable_connection": "غير قادر على الاتصال"
   }
 };
 static const Map<String,dynamic> en = {
@@ -266,7 +282,23 @@ static const Map<String,dynamic> en = {
     "report_failed": "Report not implemented",
     "report_rejected": "Report rejected",
     "report_being_implemented": "Report being"
-  }
+  },
+  "toast": "",
+  "toast_successfully_created": "Account successfully created",
+  "toast_successfully_update": "Account successfully update",
+  "toast_Unsuccessfully_created": "Account Unsuccessfully created",
+  "toast_email_already_use": "The email address is already in use",
+  "toast_short_password": "short password\nshould be at least 6 characters",
+  "toast_successfully_logged": "successfully logged",
+  "toast_email_invalid": "The email is invalid",
+  "toast_password_invalid": "The password is invalid",
+  "toast_network_error": "A network error",
+  "toast_account_invalid": "Account is invalid",
+  "toast_Bad_data_fetch": "Internal Error: Bad data fetch",
+  "toast_time_out": "time out",
+  "toast_given_empty": "Given String is empty or null",
+  "toast_account_not_active": "Account not Active",
+  "toast_unable_connection": "Unable connection"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
