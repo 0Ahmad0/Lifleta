@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -29,19 +27,24 @@ class _LoginPageState extends State<LoginPage> {
 
   final idController = TextEditingController();
   final passwordController = TextEditingController();
+  final forgetPasswordController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   bool rememberMe = false;
- late  AuthController authController;
- @override
+  late AuthController authController;
+
+  @override
   void initState() {
     // TODO: implement initState
-   authController=AuthController(context: context);
+    authController = AuthController(context: context);
     super.initState();
   }
+
   @override
   void dispose() {
     idController.dispose();
     passwordController.dispose();
+    forgetPasswordController.dispose();
     super.dispose();
   }
 
@@ -49,15 +52,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:  Image.asset(AssetsManager.logoIMG),
+        leading: Image.asset(AssetsManager.logoIMG),
         actions: [
           IconButton(
-          onPressed: () {},
-      icon: Icon(
-        Icons.arrow_back_ios_new,
-        color: Theme.of(context).primaryColor,
-      ),
-    ),
+            onPressed: () {},
+            icon: Icon(
+              Icons.arrow_back_ios_new,
+              color: Theme
+                  .of(context)
+                  .primaryColor,
+            ),
+          ),
         ],
       ),
       body: Padding(
@@ -73,26 +78,30 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 FadeInLeft(
                     child: Row(
-                  children: [
-                    Container(
-                      width: 8.w,
-                      height: 30.h,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: BorderRadius.circular(10.r)),
-                    ),
-                    const SizedBox(
-                      width: AppSize.s4,
-                    ),
-                    Text(
-                      tr(LocaleKeys.login_login),
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24.sp,
-                          color: Theme.of(context).primaryColor),
-                    )
-                  ],
-                )),
+                      children: [
+                        Container(
+                          width: 8.w,
+                          height: 30.h,
+                          decoration: BoxDecoration(
+                              color: Theme
+                                  .of(context)
+                                  .primaryColor,
+                              borderRadius: BorderRadius.circular(10.r)),
+                        ),
+                        const SizedBox(
+                          width: AppSize.s4,
+                        ),
+                        Text(
+                          tr(LocaleKeys.login_login),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24.sp,
+                              color: Theme
+                                  .of(context)
+                                  .primaryColor),
+                        )
+                      ],
+                    )),
                 const SizedBox(
                   height: AppSize.s40,
                 ),
@@ -132,9 +141,8 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       tr(LocaleKeys.login_forget_password),
                       style: TextStyle(
-                        fontSize: 14.sp,
-                        decoration: TextDecoration.underline
-                      ),
+                          fontSize: 14.sp,
+                          decoration: TextDecoration.underline),
                     ),
                   ),
                 ),
@@ -145,9 +153,10 @@ class _LoginPageState extends State<LoginPage> {
                       title: Text(tr(LocaleKeys.login_remember_me)),
                       leading: Checkbox(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3.r)
-                        ),
-                        activeColor: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(3.r)),
+                        activeColor: Theme
+                            .of(context)
+                            .primaryColor,
                         value: rememberMe,
                         onChanged: (value) {
                           setStateCheckBox(() {
@@ -170,9 +179,11 @@ class _LoginPageState extends State<LoginPage> {
                   child: ElevatedButton(
                       onPressed: () async {
                         //Form Validate
-                    ///    CreateEnvironmentProvider().createEmployees(context);
+                        ///    CreateEnvironmentProvider().createEmployees(context);
                         if (_formKey.currentState!.validate()) {
-                          await authController.login(context,phone: idController.value.text, password: passwordController.value.text);
+                          await authController.login(context,
+                              phone: idController.value.text,
+                              password: passwordController.value.text);
                         }
                       },
                       child: Text(tr(LocaleKeys.login_login))),
@@ -181,34 +192,34 @@ class _LoginPageState extends State<LoginPage> {
                   height: AppSize.s20,
                 ),
                 Visibility(
-                  visible: context.read<AuthProvider>().typeUser==AppConstants.collectionUser,
+                  visible: context
+                      .read<AuthProvider>()
+                      .typeUser ==
+                      AppConstants.collectionUser,
                   child: FadeInUp(
                     child: Align(
                       alignment: Alignment.center,
                       child: TextButton(
                           style: ButtonStyle(
-                              overlayColor:
-                                  MaterialStateProperty.all(Colors.transparent)),
+                              overlayColor: MaterialStateProperty.all(
+                                  Colors.transparent)),
                           onPressed: () {
                             goRouter.pushReplacementNamed(
                               AppRoute.signUp.name,
                             );
                           },
-                          child: Text.rich(
-
-                              TextSpan(
-                                  children: [
+                          child: Text.rich(TextSpan(children: [
                             TextSpan(
-                                text:
-                                    tr(LocaleKeys.login_do_not_have_account) + '  ',
-                                style: const TextStyle(color: ColorManager.black)),
+                                text: tr(LocaleKeys.login_do_not_have_account) +
+                                    '  ',
+                                style:
+                                const TextStyle(color: ColorManager.black)),
                             TextSpan(
                                 text: tr(LocaleKeys.login_create_account),
                                 style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.sp,
-                                  decoration: TextDecoration.underline
-                                ))
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.sp,
+                                    decoration: TextDecoration.underline))
                           ]))),
                     ),
                   ),
@@ -221,8 +232,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
   _showForgetPasswordDialog(BuildContext context) {
-    final forgetPasswordController = TextEditingController();
-    showDialog(
+   showDialog(
         context: context,
         builder: (BuildContext context) =>
           Center(
@@ -231,16 +241,20 @@ class _LoginPageState extends State<LoginPage> {
               child: Container(
                 padding: const EdgeInsets.all(AppPadding.p20),
                 margin: const EdgeInsets.all(AppMargin.m20),
-                height: 150.h,
+               //
+                height: MediaQuery.of(context).size.height
+                    / 4,
                 decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(AppSize.s14)),
                 child: Column(
+                  //
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     TextFiledApp(
                         controller: forgetPasswordController,
                         iconData: Icons.email,
-                        hintText:tr(LocaleKeys.login_recovery_email)),
+                        hintText:tr(LocaleKeys.signup_enter_email)),
                     Spacer(),
                   FadeInRight(
                     child: ElevatedButton(
@@ -248,7 +262,7 @@ class _LoginPageState extends State<LoginPage> {
                           await authController.sendPasswordResetEmail(context, email: forgetPasswordController.value.text);
                           goRouter.pop();;
                         },
-                        child: Text(tr(LocaleKeys.login_send))),
+                        child: Text(tr(LocaleKeys.home_send))),
                   ),
                   ],
                 ),

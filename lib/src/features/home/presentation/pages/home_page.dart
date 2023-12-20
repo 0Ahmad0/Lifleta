@@ -236,8 +236,7 @@ class _HomePageState extends State<HomePage> {
                     controller: _pageViewController,
                     children: [
                       _modalRateContent(context,question: 'مامدى رضاك عن تجربتك بشكل عام مع تطبيق Lifeleta؟',
-                        child:
-                        StatefulBuilder(builder: (context, setStateRate) {
+                        child:             StatefulBuilder(builder: (context, setStateRate) {
                           final rateList = [
                             AssetsManager.rate1IMG,
                             AssetsManager.rate2IMG,
@@ -312,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                         }
                       ),
                       /// ----
-                      if(context.read<ProfileProvider>().user.rate==null)...[ _modalRateContent(context,question: 'بناءًا على اختيارك ماهي أهم الأسباب التي أثرت على تقييمك ؟',
+                      _modalRateContent(context,question: 'بناءًا على اختيارك ماهي أهم الأسباب التي أثرت على تقييمك ؟',
                           child:             StatefulBuilder(builder: (context, setStateRate) {
                             final questionRateList = [
                               'تصفح التطبيق وسهولة التنقل',
@@ -349,44 +348,42 @@ class _HomePageState extends State<HomePage> {
                             );
                           }),
                           buttonText: 'قيم',
-                          onTap: (){
-                            _pageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
-                          }
+                        onTap: (){
+                          _pageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+                        }
                       ),
-                        _modalRateContent(context,question: 'بناءًا على اختيارك ماهي أهم الأسباب التي أثرت على تقييمك ؟',
-                            child:            Container(),
-                            buttonText: 'إغلاق',
-                            onTap: () async {
-                              await context.read<ProfileProvider>().addRateUser(context, '2');
-                              Navigator.pop(context);
-                            },
-                            isShowIcon: false,
-                            finalChild: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(AssetsManager.logoIMG),
-                                const SizedBox(height: AppSize.s20,),
-                                Text('شكراً لك!',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: ColorManager.primaryColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24.sp
-                                  ),),
-                                const SizedBox(height: AppSize.s20,),
-                                Text('شكرًا على ملاحظاتك , ستساعدنا ملاحظاتك في تحسين خدماتنا لكم ..',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-
-                              ],
-                            )
-                        ),]
-                     ,
                       /// ---
+                      _modalRateContent(context,question: 'بناءًا على اختيارك ماهي أهم الأسباب التي أثرت على تقييمك ؟',
+                          child:            Container(),
+                          buttonText: 'إغلاق',
+                        onTap: () async {
+                       await context.read<ProfileProvider>().addRateUser(context, '2');
+                          Navigator.pop(context);
+                        },
+                        isShowIcon: false,
+                        finalChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(AssetsManager.logoIMG),
+                            const SizedBox(height: AppSize.s20,),
+                            Text('شكراً لك!',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: ColorManager.primaryColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24.sp
+                            ),),
+                            const SizedBox(height: AppSize.s20,),
+                            Text('شكرًا على ملاحظاتك , ستساعدنا ملاحظاتك في تحسين خدماتنا لكم ..',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                              ),
+                            ),
 
+                          ],
+                        )
+                      ),
                     ],
                   ),
                 );
