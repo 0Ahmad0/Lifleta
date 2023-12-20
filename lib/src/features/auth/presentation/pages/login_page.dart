@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final idController = TextEditingController();
   final passwordController = TextEditingController();
-  final forgetPasswordController = TextEditingController();
+
 
   final _formKey = GlobalKey<FormState>();
   bool rememberMe = false;
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
   void dispose() {
     idController.dispose();
     passwordController.dispose();
-    forgetPasswordController.dispose();
+
     super.dispose();
   }
 
@@ -232,6 +232,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
   _showForgetPasswordDialog(BuildContext context) {
+    final forgetPasswordController = TextEditingController();
    showDialog(
         context: context,
         builder: (BuildContext context) =>
