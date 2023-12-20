@@ -515,8 +515,8 @@ class _HomePageState extends State<HomePage> {
       : CarouselSlider(
     options: CarouselOptions(
         enlargeFactor: .2,
-        enlargeCenterPage: true,
-        enableInfiniteScroll: true,
+        enlargeCenterPage: false,
+        enableInfiniteScroll: false,
         height: MediaQuery.of(context).size.height / 2.5),
     items: List.generate(
       reports.length,

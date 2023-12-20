@@ -22,6 +22,8 @@
   "login": {
     "login": "Login",
     "id": "ID",
+    "recovery_email": "Recovery email",
+    "send": "Send",
     "enter_id": "Enter your ID here",
     "password": "Password",
     "enter_Password": "Enter your Password here",
@@ -129,6 +131,7 @@
 
 
   "toast": "",
+  "toast_email_successfully_send_code": "Email successfully send code",
   "toast_successfully_created": "Account successfully created",
   "toast_successfully_update": "Account successfully update",
   "toast_Unsuccessfully_created": "Account Unsuccessfully created",

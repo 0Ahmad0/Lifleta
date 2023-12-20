@@ -23,6 +23,8 @@
     "login": "تسجيل الدخول",
     "id": "الرقم التعريفي",
     "enter_id": "أدخل الرقم التعريفي",
+    "recovery_email": "البريد الالكتروني لاستعادة الحساب",
+    "send": "ارسال",
     "password": "كلمة المرور",
     "enter_Password": "أدخل كلمة المرور",
     "remember_me": "تذكرني",
@@ -127,6 +129,7 @@
 
 
     "toast": "",
+    "toast_email_successfully_send_code": "تم ارسال الرمز الى البريد بنجاح",
     "toast_successfully_created": "تم إنشاء الحساب بنجاح",
     "toast_successfully_update": "تم تحديث المعلومات بنجاح",
     "toast_Unsuccessfully_created": "فشل إنشاء الحساب",

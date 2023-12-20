@@ -37,25 +37,26 @@ class TrackingReportItem extends StatelessWidget {
     // }
   }
 
-  List<Color> _getStatusItemColor(String status) {
-    switch (status) {
-      case 'جاري معالجة البلاغ':
-        return [Color(0xffD3BEA4), ColorManager.grey, ColorManager.grey];
-      case 'جاري تنفيذ البلاغ':
-        return [
-          Color(0xffD3BEA4),
-          Color(0xffBA7929).withOpacity(.68),
-          ColorManager.grey
-        ];
-      case 'تم تنفيذ البلاغ':
-        return [
-          Color(0xffD3BEA4),
-          Color(0xffBA7929).withOpacity(.68),
-          Color(0xff3A8977).withOpacity(.64)
-        ];
-      default:
-        return [ColorManager.grey, ColorManager.grey, ColorManager.grey];
-    }
+  List<Color> _getStatusItemColor(BuildContext context,String status) {
+    return ReportController(context: context).getStatusItemColor(status: status);
+    // switch (status) {
+    //   case 'جاري معالجة البلاغ':
+    //     return [Color(0xffD3BEA4), ColorManager.grey, ColorManager.grey];
+    //   case 'جاري تنفيذ البلاغ':
+    //     return [
+    //       Color(0xffD3BEA4),
+    //       Color(0xffBA7929).withOpacity(.68),
+    //       ColorManager.grey
+    //     ];
+    //   case 'تم تنفيذ البلاغ':
+    //     return [
+    //       Color(0xffD3BEA4),
+    //       Color(0xffBA7929).withOpacity(.68),
+    //       Color(0xff3A8977).withOpacity(.64)
+    //     ];
+    //   default:
+    //     return [ColorManager.grey, ColorManager.grey, ColorManager.grey];
+    // }
   }
 
   @override
@@ -157,7 +158,7 @@ class TrackingReportItem extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100.0),
                     //change To status Color
-                    color: _getStatusItemColor(status)[index],
+                    color: _getStatusItemColor(context,status)[index],
                   ),
                 ));
               }),

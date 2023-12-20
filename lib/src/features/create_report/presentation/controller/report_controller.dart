@@ -132,6 +132,40 @@ class ReportController{
     else
       return ColorManager.primaryColor;
   }
+  List<Color> getStatusItemColor({ required String status}) {
+    if(status==tr(LocaleKeys.state_report_report_processed))
+      return [Color(0xffD3BEA4), ColorManager.grey, ColorManager.grey];
+    else if(status==tr(LocaleKeys.state_report_report_being_implemented))
+      return [
+          Color(0xffD3BEA4),
+          Color(0xffBA7929).withOpacity(.68),
+          ColorManager.grey
+       ];
+    else if(status==tr(LocaleKeys.state_report_report_implemented))
+      return  [
+             Color(0xffD3BEA4),
+              Color(0xffBA7929).withOpacity(.68),
+            Color(0xff3A8977).withOpacity(.64)
+        ];
+    else if(status==tr(LocaleKeys.state_report_report_failed))
+      return
+    [
+      Color(0xffD3BEA4),
+      Color(0xffBA7929).withOpacity(.68),
+      ColorManager.error.withOpacity(.54)
+    ];
+
+    else if(status==tr(LocaleKeys.state_report_report_rejected))
+    return  [
+      Color(0xffD3BEA4),
+      ColorManager.error.withOpacity(.64),
+      ColorManager.grey
+    ];
+
+    else
+      return [ColorManager.grey, ColorManager.grey, ColorManager.grey];
+  }
+
   getStateNotification({ required String state})  {
     if(state==StateReports.Implemented.name)
       return  {'title':tr(LocaleKeys.notification_done_report_title),

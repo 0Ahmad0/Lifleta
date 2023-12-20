@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -124,7 +126,9 @@ class _LoginPageState extends State<LoginPage> {
                     style: ButtonStyle(
                         overlayColor:
                             MaterialStateProperty.all(Colors.transparent)),
-                    onPressed: () {},
+                    onPressed: () {
+                      _showForgetPasswordDialog(context);
+                    },
                     child: Text(
                       tr(LocaleKeys.login_forget_password),
                       style: TextStyle(
@@ -215,5 +219,42 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+  _showForgetPasswordDialog(BuildContext context) {
+    final forgetPasswordController = TextEditingController();
+    showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+          Center(
+            child: Material(
+              color: Colors.transparent,
+              child: Container(
+                padding: const EdgeInsets.all(AppPadding.p20),
+                margin: const EdgeInsets.all(AppMargin.m20),
+                height: 150.h,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
+                    borderRadius: BorderRadius.circular(AppSize.s14)),
+                child: Column(
+                  children: [
+                    TextFiledApp(
+                        controller: forgetPasswordController,
+                        iconData: Icons.email,
+                        hintText:tr(LocaleKeys.login_recovery_email)),
+                    Spacer(),
+                  FadeInRight(
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          await authController.sendPasswordResetEmail(context, email: forgetPasswordController.value.text);
+                          goRouter.pop();;
+                        },
+                        child: Text(tr(LocaleKeys.login_send))),
+                  ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        );
   }
 }

@@ -717,6 +717,9 @@ class FirebaseFun{
     else if(text.contains("Account not Active")){
       return tr(LocaleKeys.toast_account_not_active);
     }
+    else if(text.contains("Email successfully send code")){
+      return tr(LocaleKeys.toast_email_successfully_send_code);
+    }
     else if(text.contains("[firebase_auth/channel-error] Unable to establish connection on channel.")){
       return tr(LocaleKeys.toast_unable_connection);
     }

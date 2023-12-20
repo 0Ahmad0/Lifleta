@@ -22,10 +22,12 @@ abstract class  LocaleKeys {
   static const login_enter_id = 'login.enter_id';
   static const login_password = 'login.password';
   static const login_enter_Password = 'login.enter_Password';
+  static const login_recovery_email = 'login.recovery_email';
   static const login_remember_me = 'login.remember_me';
   static const login_forget_password = 'login.forget_password';
   static const login_do_not_have_account = 'login.do_not_have_account';
   static const login_create_account = 'login.create_account';
+  static const login_send = 'login.send';
   static const login = 'login';
   static const signup_signup = 'signup.signup';
   static const signup_email = 'signup.email';
@@ -102,6 +104,7 @@ abstract class  LocaleKeys {
   static const state_report = 'state_report';
   static const toast = 'toast';
   static const toast_successfully_created = 'toast_successfully_created';
+  static const toast_email_successfully_send_code = 'toast_email_successfully_send_code';
   static const toast_successfully_update = 'toast_successfully_update';
   static const toast_Unsuccessfully_created = 'toast_Unsuccessfully_created';
   static const toast_email_already_use = 'toast_email_already_use';
